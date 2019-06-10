@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exam.mapper.MovieMapper">
+
+<select id="getMovies" resultType="MovieVO">
+	SELECT * 
+	FROM d_diver.movie
+	<where>
+		<if test="search != null and search != ''">
+			movie_nm LIKE CONCAT('%', #{search}, '%')
+		</if>
+		<if test="repNationNm != null and repNationNm != ''">
+			AND rep_genre_nm = #{repNationNm}
+		</if>
+	</where>
+	ORDER BY movie_nm ASC
+	LIMIT #{amount} OFFSET #{startRow}
+</select>
+
+<select id="getMovieCount" resultType="int">
+	SELECT COUNT(*) 
+	FROM d_diver.movie
+	<where>
+		<if test="search != null and search != ''">
+			movie_nm LIKE CONCAT('%', #{search}, '%')
+		</if>
+		<if test="repNationNm != null and repNationNm != ''">
+			AND rep_genre_nm = #{repNationNm}
+		</if>
+	</where>
+</select>
+
+<select id="getMovie" resultType="MovieVO">
+	SELECT * FROM d_diver.movie WHERE movie_cd = #{movieCd}
+</select>
+
+<select id="newGetMovie" resultType="MovieVO">
+	SELECT * 
+	FROM d_diver.movie	
+	ORDER BY open_dt DESC
+	LIMIT #{amount}
+</select>
+
+
+
+
+
+<!-- 내 컨텐츠 -->
+
+<insert id="insertWatchList"><!-- 시청 목록 추가 -->
+	INSERT INTO d_diver.watch_list (id, movie_cd, watch_date)
+	VALUES (#{id}, #{movieCd}, CURRENT_TIMESTAMP)
+</insert>
+
+<select id="countWatchListByIdAndMovieCd" resultType="_int">
+	SELECT COUNT(*) FROM d_diver.watch_list 
+	WHERE id = #{id} 
+	<if test="movieCd != 0" >
+		AND movie_cd = #{movieCd}
+	</if>
+</select>
+
+<delete id="deleteWatchList"><!-- 시청 목록 중복 시 삭제 -->
+	DELETE FROM d_diver.watch_list
+	WHERE id = #{id} AND movie_cd = #{movieCd}
+</delete>
+
+<delete id="deleteFullWatchList"><!-- 시청 목록이 가득 차면 가장 오래된 값 삭제 -->
+	DELETE FROM watch_list WHERE id = #{id} 
+	ORDER BY watch_date ASC LIMIT 1;
+</delete>
+
+<select id="getWatchList" resultType="movieVO"><!-- 시청 목록 가져오기 -->
+	SELECT m.*
+	FROM d_diver.movie m INNER JOIN 
+	(SELECT * FROM d_diver.watch_list WHERE id = #{id}) w
+	ON m.movie_cd = w.movie_cd
+	ORDER BY watch_date DESC
+	LIMIT #{amount}
+</select>
+
+
+<insert id="insertWishList"><!-- 즐겨찾기 추가 -->
+	INSERT INTO d_diver.wish_list (id, movie_cd)
+	VALUES (#{id}, #{movieCd})
+</insert>
+
+<select id="countWishListByIdAndMovieCd" resultType="_int">
+	SELECT COUNT(*) FROM d_diver.wish_list 
+	WHERE id = #{id} 
+	<if test="movieCd != 0" >
+		AND movie_cd = #{movieCd}
+	</if>
+</select>
+
+<delete id="deleteWishList"><!-- 즐겨찾기 삭제 -->
+	DELETE FROM d_diver.wish_list
+	WHERE id = #{id} AND movie_cd = #{movieCd}
+</delete>
+	
+<select id="getWishList" resultType="movieVO"><!-- 즐겨찾기 목록 가져오기 -->
+	SELECT m.*
+	FROM d_diver.movie m INNER JOIN 
+	(SELECT * FROM d_diver.wish_List WHERE id = #{id}) w
+	ON m.movie_cd = w.movie_cd
+	<if test="amount != 0">
+		LIMIT #{amount}
+	</if>
+</select>
+
+<!-- 내 컨텐츠 -->
+	
+	
+	
+	
+
+ 
+<resultMap type="movieInfoVO" id="collectionResultMap">
+	<result column="movie_cd" property="movieCd" />
+	<result column="movie_nm" property="movieNm" />
+	<result column="movie_nm_en" property="movieNmEn" />
+	<result column="rep_nation_nm" property="repNationNm" />
+	<result column="rep_genre_nm" property="repGenreNm" />
+	<result column="synopsis" property="synopsis" />
+	<result column="cov_url" property="covUrl" />
+	<result column="cov_th_url" property="covThUrl" />
+	<result column="watch_grade_nm" property="watchGradeNm" />
+	<result column="open_dt" property="openDt" />
+	<result column="show_tm" property="showTm" />
+	<result column="views" property="views" />
+	<result column="price" property="price" />
+	<result column="avg_score" property="avgScore" />
+
+	<collection property="starsIn" ofType="starsInVO">
+		<result column="star_cd" property="starCd"/>
+		<result column="star_nm" property="starNm"/>
+		<result column="star_nm_en" property="starNmEn"/>
+		<result column="star_cast" property="starCast"/>
+	</collection>
+	<collection property="directorsIn" ofType="directorsInVo">
+		<result column="director_cd" property="directorCd"/>
+		<result column="director_nm" property="directorNm"/>
+		<result column="director_nm_en" property="directorNmEn"/>
+	</collection>
+	<collection property="companiesIn" ofType="companiesInVo">
+		<result column="company_cd" property="companyCd"/>
+		<result column="company_nm" property="companyNm"/>
+		<result column="company_nm_en" property="companyNmEn"/>
+		<result column="company_part_nm" property="companyPartNm"/>
+	</collection>
+	<collection property="movieGenre" ofType="movieGenreVo">
+		<result column="movie_genre" property="movieGenre"/>
+	</collection>
+	<collection property="movieStillCut" ofType="movieStillCutVO">
+		<result column="still_cut_url" property="stillCutUrl"/>
+	</collection>
+</resultMap>
+
+<!-- 뷰 생성되어 있음 -->
+<select id="getMovieInfo" resultMap="collectionResultMap">
+	select * from movie_info where movie_cd = #{movieCd}
+</select>
+	
+	
+</mapper>  

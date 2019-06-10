@@ -1,0 +1,281 @@
+.join{
+	width: 100%;
+	margin-bottom: 25px;
+}
+
+
+.logout {
+	background-color: white;
+	font-size: 12px;
+    color: #444;
+    border: 1px solid #e5e8ef;
+    padding: 0 5px;
+    height: 22px;
+    line-height: 23px;
+    text-decoration: none!important;
+}
+.logout:hover {
+	border: 1px solid #BDC0C7;
+	background-color: #F3F3F3;
+}
+
+.pur {
+	flex: 0 0 calc(33% - 40px);
+/* 	max-width: calc(33% - 40px); */
+	border: 2px solid gray;
+	margin: 20px;
+	padding-bottom: 10px;
+}
+
+
+.cash {
+	width: 50%;
+}
+
+.cash-warp {
+    width: 1558px;
+    margin: 0 auto;
+    background: #eff3f7;
+    padding: 80px 0;
+}
+
+
+.cash-btn {
+    display: inline-block;
+    min-width: 100%;
+    text-align: center;
+    border: none;
+    padding: 18px 5px;
+    font-weight: 400;
+    font-size: 14px;
+    position: relative;
+    color: #fff;
+    cursor: pointer;
+    background: #c40f0f;
+    font-size: 40px;
+}
+
+
+.txt-box {
+    width: 100%;
+    height: 53px;
+    border: none;
+    background: #eff3f7;
+    font-size: 14px;
+    padding: 0 30px;
+    margin-bottom: 25px;
+}
+
+.site-pagination .more-page {
+    min-width: 48px;
+    height: 48px;
+    display: inline-block;
+    text-align: center;
+    padding: 13px 10px 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    background: none;
+    margin-right: 4px;
+}
+
+#reply {
+	color: gray;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.pagePaddingZero {
+	padding-top: 0px;
+	margin: 0 auto;
+}
+
+
+/* movieDetail */
+
+.movie-details-section {
+	margin-top: 70px;
+}
+
+.starInput>.input, .starInput>.input>label:hover, .starInput>.input>input:focus+label,
+	.starInput>.input>input:checked+label {
+	display: inline-block;
+	vertical-align: middle;
+	background: url('/resources/img/grade_img.png') no-repeat;
+}
+
+.starInput {
+	display: inline-block;
+	white-space: nowrap;
+	width: 225px;
+	height: 40px;
+	line-height: 30px;
+}
+
+.starInput>.input {
+	display: inline-block;
+	width: 150px;
+	background-size: 150px;
+	height: 28px;
+	white-space: nowrap;
+	overflow: hidden;
+	position: relative;
+}
+
+.starInput>.input>input {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+}
+
+.starInput>.input.focus {
+	outline: 1px dotted #ddd;
+}
+
+.starInput>.input>label {
+	width: 30px;
+	height: 0;
+	padding: 28px 0 0 0;
+	overflow: hidden;
+	float: left;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.starInput>.input>label:hover, .starInput>.input>input:focus+label,
+	.starInput>.input>input:checked+label {
+	background-size: 150px;
+	background-position: 0 bottom;
+}
+
+.starInput>.input>label:hover ~label {
+	background-image: none;
+}
+
+.starInput>.input>label[for="p1"] {
+	width: 15px;
+	z-index: 10;
+}
+
+.starInput>.input>label[for="p2"] {
+	width: 30px;
+	z-index: 9;
+}
+
+.starInput>.input>label[for="p3"] {
+	width: 45px;
+	z-index: 8;
+}
+
+.starInput>.input>label[for="p4"] {
+	width: 60px;
+	z-index: 7;
+}
+
+.starInput>.input>label[for="p5"] {
+	width: 75px;
+	z-index: 6;
+}
+
+.starInput>.input>label[for="p6"] {
+	width: 90px;
+	z-index: 5;
+}
+
+.starInput>.input>label[for="p7"] {
+	width: 105px;
+	z-index: 4;
+}
+
+.starInput>.input>label[for="p8"] {
+	width: 120px;
+	z-index: 3;
+}
+
+.starInput>.input>label[for="p9"] {
+	width: 135px;
+	z-index: 2;
+}
+
+.starInput>.input>label[for="p10"] {
+	width: 150px;
+	z-index: 1;
+}
+
+.starInput>output {
+	display: inline-block;
+	width: 60px;
+	font-size: 18px;
+	text-align: right;
+	vertical-align: middle;
+}
+
+
+
+#summmary-ul{
+	list-style:none;
+    list-style-type:none;
+}
+
+#summmary-ul>li{
+	margin-top: 10px;
+}
+.btn{
+	height: 50px;
+	border: solid 1px #f2a6a6;
+	background: #fff;
+	box-sizing: border-box;
+	text-align: center;
+	color: #ea003d;
+	min-width: 140px;
+	margin-top: 20px;	
+}
+
+.selected {
+	background: #ea003d;
+	color: #fff;	
+}
+
+.movie-detail{
+	margin-bottom: 30px;
+}
+.container-row{
+	display: flex;
+}
+.thumb{
+	margin-right: 50px;
+	flex: 0.5;
+}
+.row2{
+	flex: 1.5;
+}
+
+#movieP{
+ width: 230px;
+ height: 336px;
+}
+.summary{
+	height: 150px;
+	overflow: auto;
+}
+.fnt{
+	font-size: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

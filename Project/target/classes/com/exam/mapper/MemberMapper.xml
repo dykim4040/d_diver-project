@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.exam.mapper.MemberMapper">
+
+<insert id="insert">
+	INSERT INTO d_diver.member
+	(id, password, reg_date, cash, mileage, email, birthday, gender,hint)
+	VALUES (#{id},#{password},CURRENT_TIMESTAMP, 0, 0, #{email},#{birthday},#{gender},#{hint})
+</insert>
+
+<select id="getMemberById" resultType="memberVO">
+	SELECT * FROM d_diver.member WHERE id = #{id}
+</select>
+
+<select id="countById" resultType="_int">
+	SELECT COUNT(*) FROM d_diver.member WHERE id = #{id}
+</select>
+
+<select id = "getHintById" resultType="string">
+	SELECT hint FROM member WHERE id = #{id}
+</select>
+
+<select id = "countByhint" resultType="_int">
+	SELECT COUNT(*) FROM d_diver.member WHERE hint = #{hint}
+</select> 
+
+<update id = "updatePassword" >
+	UPDATE member
+	SET password = #{password}
+	WHERE id = #{id}
+</update>
+
+<select id="checkPw" resultType="string">
+	select password from d_diver.member where id = #{id}
+</select>
+
+
+<update id = "upDateMember">
+	UPDATE d_diver.member 
+	SET password = #{password},
+	email = #{email},
+	birthday = #{birthday},
+	hint = #{hint}
+	WHERE id = #{id}
+</update>
+
+<delete id="deleteMember">
+	DELETE FROM d_diver.member WHERE id = #{id}
+</delete>
+
+
+
+
+
+
+<!-- 구매 관련 -->
+
+<select id="getCurrPackageById" resultType="string">
+	SELECT package FROM d_diver.package
+	WHERE id = #{id} AND expire_date > current_date()
+</select>
+
+<update id="updateCash">
+	UPDATE d_diver.member SET cash = #{cash} WHERE id = #{id}
+</update>
+	
+<insert id="insertPackage">
+	INSERT INTO d_diver.package (id, package, expire_date)
+	VALUES (#{id}, #{pack}, DATE_ADD(CURRENT_DATE, INTERVAL #{month} MONTH))
+</insert>
+
+<!-- 구매 관련 -->
+
+<!-- 별점 -->
+<insert id="insertScore">
+	INSERT INTO d_diver.member_movie_score (movie_cd, id, score)
+	VALUES (#{movieCd}, #{id}, #{starInput});
+</insert>
+
+<update id="updateAvg">
+	update movie 
+	set avg_score = (
+		select avg(score) as avg_score 
+		from member_movie_score 
+		where movie_cd = #{movieCd}
+		group by MOVIE_CD) 
+	where movie_cd = #{movieCd}
+</update>
+<!-- 별점 -->
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
