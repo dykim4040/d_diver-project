@@ -144,6 +144,11 @@
 					${movieInfo.showTm}분
 				</li>
 				<li>
+					<strong>개봉일</strong><br>
+					<span><fmt:formatDate value="${movieInfo.openDt}" pattern="yyyy년 MM월 dd일"/></span>
+					
+				</li>
+				<li>
 					<strong>장르</strong><br>
 					<c:forEach var="genre" items="${movieInfo.movieGenre }" varStatus="index">
 						${genre.movieGenre }
