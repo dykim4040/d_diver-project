@@ -136,6 +136,11 @@
 			<div class="summary">${movieInfo.synopsis}</div>
 			<ul id="summmary-ul">
 				<li>
+					<strong>조회수 </strong>&nbsp;&nbsp;
+					<span>${movieInfo.views}</span>
+					
+				</li>
+				<li>
 					<strong>개요</strong><br>
 					<span>${movieInfo.repGenreNm}</span>
 					<small>&nbsp;|&nbsp;</small>

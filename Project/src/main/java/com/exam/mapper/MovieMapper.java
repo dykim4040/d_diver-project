@@ -45,6 +45,6 @@ public interface MovieMapper {
 	
 	
     public MovieInfoVO getMovieInfo(int movieCd);
-    
+    public void upViews(int movieCd);
     
 }
