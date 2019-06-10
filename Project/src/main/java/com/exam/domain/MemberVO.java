@@ -1,6 +1,7 @@
 package com.exam.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,4 +24,6 @@ public class MemberVO {
 	private String gender;
 	
 	private String hint;
+	
+	private List<AuthVO> authList;
 }

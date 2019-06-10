@@ -1,5 +1,7 @@
 package com.exam.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,7 +52,12 @@ public class MemberServiceImpl implements MemberService {
 		
 		return isDup;
 	}
-
+	
+	@Override
+    public List<MemberVO> getAllMembers() {
+        return mapper.getList();
+    }
+	
 	@Override
 	public MemberVO getMember(String id) {
 		return mapper.getMemberById(id);

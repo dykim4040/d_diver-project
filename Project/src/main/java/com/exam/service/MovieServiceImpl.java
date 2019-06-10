@@ -100,9 +100,10 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	/* 내 컨텐츠 */
-   
+	@Transactional
     @Override
     public MovieInfoVO getMovieInfo(int movieCd) {
+        mapper.upViews(movieCd);
         return mapper.getMovieInfo(movieCd);
     }
 
