@@ -43,6 +43,12 @@
 	LIMIT #{amount}
 </select>
 
+<select id="gradeGetMovie" resultType="MovieVO">
+	SELECT * 
+	FROM d_diver.movie	
+	ORDER BY open_dt DESC
+	LIMIT #{amount}
+</select>
 
 
 

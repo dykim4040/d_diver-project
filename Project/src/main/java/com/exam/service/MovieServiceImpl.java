@@ -38,6 +38,10 @@ public class MovieServiceImpl implements MovieService {
     public List<MovieVO> newGetMovie(int amount) throws Exception{
         return mapper.newGetMovie(amount);
     }
+    @Override
+    public List<MovieVO> gradeGetMovie(int amount) throws Exception{
+        return mapper.newGetMovie(amount);
+    }
     
     
     
