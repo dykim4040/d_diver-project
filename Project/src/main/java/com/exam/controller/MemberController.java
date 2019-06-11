@@ -188,7 +188,7 @@ public class MemberController {
 		if (passwordEncoder.matches(password, encodedPassword)) {
 		    System.out.println("계정정보 일치");
 		    service.deleteMember(id);
-		    return "redirect:/";
+		    return "redirect:/member/logout";
 	    } else {
 	        System.out.println("계정정보 불일치");
 	        model.addAttribute("message", "비밀번호가 일치하지 않습니다.");

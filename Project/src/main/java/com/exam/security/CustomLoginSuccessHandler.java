@@ -1,7 +1,6 @@
 package com.exam.security;
 
 import java.io.IOException;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -45,7 +44,6 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
         HttpSession session = request.getSession();
         session.setAttribute("pack", pack);
 
-        // member.
         List<String> roleNames = new ArrayList<>();
         
         Collection<GrantedAuthority> collection 
