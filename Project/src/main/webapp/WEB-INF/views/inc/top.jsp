@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <header class="header-section">
 <div class="header-top">
 	<div class="user-panel">
@@ -11,7 +10,7 @@
         <a href="/member/login">Login</a>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
-			<form action="<c:url value='/member/logout'/>" method="POST">
+        	<form action="<c:url value='/member/logout'/>" method="POST">
 				<c:choose>
 					<c:when test="${pack == 'G' }">
 						<img src="/resources/img/package/gold.png" width="23px">
@@ -23,8 +22,11 @@
 						<img src="/resources/img/package/bronze.png" width="23px">
 					</c:when>
 				</c:choose>
-				<c:set var="id"><sec:authentication property="principal.member.id"/></c:set>
-				<a href="/member/myInfo?id=${id}"><b><span style="color: #FFF;">${id}</span></b></a>&nbsp;님&nbsp;
+				<c:set var="id">
+					<sec:authentication property="principal.member.id" />
+				</c:set>
+				<a href="/member/myInfo?id=${id}">
+				<b><span style="color: #FFF;">${id}</span></b></a>&nbsp;님&nbsp;
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<button class="logout">로그아웃</button>
 			</form>
@@ -34,15 +36,14 @@
 <div class="header-bottom">
 	<div class="container">
 		<a href="/" class="site-logo" style="height: 55px;">
-		<%--             <img src="/resources/img/logo.png" alt=""> --%>
-			WEBFLIX
+		<img src="/resources/img/logo.png" height="55px">
 		</a>
 		<div class="nav-switch">
 			<i class="fa fa-bars"></i>
 		</div>
-		<%--          <div class="header-search"> --%>
-		<%--             <a href="#"><i class="fa fa-search"></i></a> --%>
-		<%--          </div> --%>
+		<!--          <div class="header-search"> -->
+		<!--             <a href="#"><i class="fa fa-search"></i></a> -->
+		<!--          </div> -->
 		<div class="header-search">
 			<a href="/purchase"><i class="material-icons">local_grocery_store</i></a>
 		</div>

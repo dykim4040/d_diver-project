@@ -18,7 +18,9 @@ public interface MovieService {
     
     public List<MovieVO> gradeGetMovie(int amount) throws Exception;
     
-	List<MovieVO> viewsGetMovie(int amount) throws Exception;
+	public List<MovieVO> viewsGetMovie(int amount) throws Exception;
+	
+	public List<MovieVO> categoryGetMovie(String category , int amount ) throws Exception;
 
     
 	/* 내 컨텐츠 */

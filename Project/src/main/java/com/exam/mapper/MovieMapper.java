@@ -22,6 +22,7 @@ public interface MovieMapper {
     
     public List<MovieVO> viewsGetMovie(int amount);
     
+    public List<MovieVO> categoryGetMovie(@Param("category") String category,@Param("amount") int amount);
     
     
     /* 내 컨텐츠 */
