@@ -106,6 +106,7 @@ $(function() {
 			<h4>비밀번호 찾기</h4>
 			<p>비밀번호를 찾을 아이디를 입력하세요.</p>
 			<form action="/member/hintID" class="contact-form" name = "frm" method="POST" onsubmit="return formCheck();">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<div class="row">
 					<!-- <div class="col-md-6">
 						<input type="text" placeholder="Name">

@@ -46,6 +46,8 @@ public interface MemberMapper {
 	
 	public int insertPackage(@Param("id") String id, @Param("pack") String pack, @Param("month") int month);
 
+	public int deleteAllPackageById(String id);
+	
 	/* 구매 관련 */
 	
 	
