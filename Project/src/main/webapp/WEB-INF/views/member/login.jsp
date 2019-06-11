@@ -52,7 +52,7 @@
 	<div class="row">
 		<div class="col-lg-6" style="margin: auto;">
 		<div class="contact-form-warp">
-			<h4>아이디 와 비밀번호를 입력하세요.</h4>
+			<h4>로그인</h4>
 			<h6 style="float: right;"><c:out value="${error}"/></h6>
 			<h6 style="float: right;"><c:out value="${logout}"/></h6>
 			<form action="<c:url value="/login" />" class="contact-form" method="POST">
