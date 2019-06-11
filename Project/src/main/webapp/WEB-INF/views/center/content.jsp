@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,12 +80,15 @@
 			  수정,삭제,답글쓰기 버튼 보이게 설정
 			 --%>
 			<div id="table_search">
-			<c:if test="${sessionID eq board.name}">
+			<sec:authorize access="isAuthenticated()">
+			<c:if test="${principal.username eq board.name}">
 				<input type="button" value="글수정" class="btn" onclick="location.href='/board/modify?num=${board.num}&pageNum=${param.pageNum}';">
 				<input type="button" value="글삭제" class="btn" onclick="location.href='/board/delete?num=${board.num}&pageNum=${param.pageNum}';">
 			</c:if>
 			<input type="button" value="답글쓰기" class="btn" 
 				 onclick="location.href='/board/reply?reRef=${board.reRef}&reLev=${board.reLev}&reSeq=${board.reSeq}&pageNum=${param.pageNum}';">
+			</sec:authorize>
+				 
 			<input type="button" value="글목록" class="btn" onclick="location.href='/contact?pageNum=${param.pageNum}';">
 			</div>
 			

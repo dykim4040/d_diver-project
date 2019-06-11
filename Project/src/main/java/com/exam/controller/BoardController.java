@@ -1,5 +1,7 @@
 package com.exam.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.exam.domain.BoardVO;
+import com.exam.mapper.BoardMapper;
 import com.exam.service.BoardService;
 
 import lombok.Setter;
@@ -24,6 +27,9 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/board/*")
 @Log4j
 public class BoardController {
+    
+    @Setter(onMethod_ = @Autowired)
+    private BoardMapper boardMapper;
     
     @Setter(onMethod_ = @Autowired)
     private BoardService service;
@@ -77,71 +83,42 @@ public class BoardController {
     
     
     @GetMapping("/modify")
-    public String modify(int num, Model model, HttpSession session) {
-        BoardVO board = service.getBoard(num);
+    public String modify(int num, Model model) {
+        System.out.println("<< Modify 호출 >>");
         
+        BoardVO board = service.getBoard(num);
         model.addAttribute("board", board);
+        System.out.println("num : " + num);
         
         return "center/update";
     } //modify GET
     
     @PostMapping("/modify")
-    public ResponseEntity<String> modify(BoardVO board, String pageNum) {
-        log.info("modify() - board: " + board);
+    public String modify(Model model, BoardVO boardVO, int num, Principal principal) {
+        System.out.println("update 됬어! ");
         
-        // 글 패스워드 일치하면 글수정 후 글목록으로 이동
-        // 글 패스워드 불일치하면 이전화면으로 돌아가기
-        // boolean isSuccess == true 수정성공
-        //         isSuccess == false 수정실패
-        boolean isSuccess = service.updateBoard(board);
+        service.updateBoard(boardVO);
         
-        if (!isSuccess) { // // 글 수정 실패
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "text/html; charset=UTF-8");
-
-            StringBuilder sb = new StringBuilder();
-            sb.append("<script>");
-            sb.append("alert('글비밀번호가 틀립니다.');");
-            sb.append("history.back();");
-            sb.append("</script>");
-
-            return new ResponseEntity<String>(sb.toString(), headers, HttpStatus.OK);
-        }
-
-        
-        // 글 수정 성공 이후 글목록으로 리다이렉트
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "/contact?pageNum=" + pageNum); // redirect 경로 위치
-        return new ResponseEntity<String>(headers, HttpStatus.FOUND);
+        return "redirect:/contact";
     }// modify POST
     
     
     @GetMapping("/delete")
     public String delete() {
+        System.out.println("<< delete 호출 >>");
+        
         return "center/delete";
     }
     
     @PostMapping("/delete")
-    public ResponseEntity<String> delete(int num, String pass, String pageNum) {
+    public ResponseEntity<String> delete(Model model, int num, String pageNum, BoardVO boardVO, Principal principal) {
+        System.out.println("<< delete 호출 >>");
         
-        boolean isSuccess = service.deleteBoard(num, pass);
+        boolean isSuccess = service.deleteBoard(num);
         
-        if (!isSuccess) { // // 글 삭제 실패
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "text/html; charset=UTF-8");
-
-            StringBuilder sb = new StringBuilder();
-            sb.append("<script>");
-            sb.append("alert('글비밀번호가 틀립니다.');");
-            sb.append("history.back();");
-            sb.append("</script>");
-
-            return new ResponseEntity<String>(sb.toString(), headers, HttpStatus.OK);
-        }
-        
-        // 글 삭제 성공 이후 글목록으로 리다이렉트
+        //삭제 성공 이후 글목록으로 리다이렉트
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "/contact?pageNum=" + pageNum); // redirect 경로 위치
+        headers.add("Location", "/contact?pageNum="+ pageNum); // redirect 경로 위치
         return new ResponseEntity<String>(headers, HttpStatus.FOUND);
     } //delete POST
     

@@ -29,7 +29,7 @@ public class BoardServiceImpl implements BoardService {
     
     @Override
     public BoardVO getBoard(int num) {
-        return mapper.getBoard(num);
+        return mapper.getBoardByNum(num);
     }
 
     @Override
@@ -48,32 +48,34 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public boolean updateBoard(BoardVO board) {
-        boolean isSuccess = false;
-        
-        BoardVO dbBoard = mapper.getBoard(board.getNum());
-        
-        if (board.getPass().equals(dbBoard.getPass())) {
-            mapper.updateBoard(board);
-            isSuccess = true;
-        } else {
-            isSuccess = false;
-        }
-        return isSuccess;
+    public void updateBoard(BoardVO board) {
+//        boolean isSuccess = false;
+//        
+//        BoardVO dbBoard = mapper.getBoard(board.getNum());
+//        
+//        if (board.getPass().equals(dbBoard.getPass())) {
+//            mapper.updateBoard(board);
+//            isSuccess = true;
+//        } else {
+//            isSuccess = false;
+//        }
+//        return isSuccess;
+        mapper.updateBoard(board);
     } //updateBoard()
 
     @Override
-    public boolean deleteBoard(int num, String pass) {
+    public boolean deleteBoard(int num) {
         boolean isSuccess = false;
         
         BoardVO dbBoard = mapper.getBoard(num);
         
-        if (pass.equals(dbBoard.getPass())) {
+        if(num == dbBoard.getNum()) {
             mapper.deleteBoard(num);
             isSuccess = true;
         } else {
             isSuccess = false;
         }
+        
         return isSuccess;
     } //deleteBoard()
     

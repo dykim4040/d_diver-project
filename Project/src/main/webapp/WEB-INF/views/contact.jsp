@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,9 +139,11 @@
 		</div>
 		
 	</div>
+	<sec:authorize access="isAuthenticated()">
 	<p style="text-align: right;">
 	<input type="button" value="글쓰기" class="btn" onclick="location.href = '/board/write';">
 	</p>
+	</sec:authorize>
 	
 <!-- 	<div class="row" style="text-align: center;"> -->
 <!-- 	<h3 class="h5 text-black mb-3">Search</h3> -->

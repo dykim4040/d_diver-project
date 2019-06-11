@@ -54,20 +54,16 @@
 			<h1>Q&A 글삭제</h1>
 			
 			<form action="/board/delete" method="post" name="frm">
+			<fieldset>
+			<legend>정말 삭제하겠습니까??.</legend>
 			<input type="hidden" name="num" value="${param.num}">
-			<input type="hidden" name="pageNum" value="${param.pageNum}">
-			<table id="notice">
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="pass"></td>
-			</tr>
-			</table>
-			
+ 			<input type="hidden" name="pageNum" value="${param.pageNum}">
 			<div id="table_search">
 			<input type="submit" value="글삭제" class="btn">
-			<input type="reset" value="다시작성" class="btn">
-			<input type="button" value="글목록" class="btn" onclick="location.href='contact';">
+			<input type="button" value="글목록" class="btn" onclick="location.href='contact?pageNum=${param.pageNum}';">
 			</div>
+			</fieldset>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			</form>
 			
 		</div>
