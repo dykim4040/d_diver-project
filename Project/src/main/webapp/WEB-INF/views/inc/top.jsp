@@ -22,8 +22,8 @@
          </c:when>
          </c:choose>
          <c:set var="id"><sec:authentication property="principal.member.id"/></c:set>
-         <a href="/member/myInfo?id=${id}"><b><span style="color: #FFF;">${id}</span></b></a>&nbsp;님&nbsp;
          <form action="<c:url value='/member/logout'/>" method="POST">
+         	<a href="/member/myInfo?id=${id}"><b><span style="color: #FFF;">${id}</span></b></a>&nbsp;님&nbsp;
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             <button class="logout">로그아웃</button>
          </form>

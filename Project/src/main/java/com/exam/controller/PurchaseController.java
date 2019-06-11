@@ -1,5 +1,7 @@
 package com.exam.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +32,9 @@ public class PurchaseController {
 	}
 	
 	@PostMapping("/cash")
-	public ResponseEntity<String> cashProcess(String strCash, HttpSession session, String password) {
+	public ResponseEntity<String> cashProcess(String strCash, String password, Principal principal) {
 		System.out.println("<< cash, POST >>");
-		String id = (String) session.getAttribute("sessionID");
+		String id = principal.getName();
 		System.out.println(strCash + " : " + id + " : " + password);
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -79,9 +81,9 @@ public class PurchaseController {
 	
 	@Transactional
 	@PostMapping("/buyPackage")
-	public ResponseEntity<String> buyPackage(String price, HttpSession session) {
+	public ResponseEntity<String> buyPackage(String price, Principal principal, HttpSession session) {
 		System.out.println("<< buyPackage, POST >>");
-		String id = (String) session.getAttribute("sessionID");
+		String id = principal.getName();
 		System.out.println("buyPackage(id/price) : " + id + "/" + price);
 		
 		HttpHeaders headers = new HttpHeaders();

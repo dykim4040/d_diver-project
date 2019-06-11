@@ -1,5 +1,6 @@
 package com.exam.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -212,12 +213,17 @@ public class HomeController {
 	public final static int gold = 35000, silver = 20000, bronze = 8000;	
 
 	@GetMapping("/purchase")
-	public String purchase(HttpSession session, Model model) {
+	public String purchase(Model model, Principal principal) {
 		System.out.println("<< purchase, GET >>");
-		
-		String id = (String) session.getAttribute("sessionID");
+		if (principal == null) {
+			return "purchase/purchase";
+		}
+		String id = principal.getName();
+		System.out.println("id : " + id);
 		
 		MemberVO member = memberService.getMember(id);
+		System.out.println("id : " + id);
+		System.out.println(member);
 		
 		Map<String, Integer> packList = new HashMap<String, Integer>();
 		packList.put("gold", gold);
