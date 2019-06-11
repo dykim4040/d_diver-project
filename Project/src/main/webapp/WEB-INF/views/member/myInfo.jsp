@@ -58,11 +58,13 @@
 			<h4>내정보</h4>
 			<form action="/member/upDate" method="post" id="myInfo" name="frm"
 				class="contact-form" onsubmit="return formCheck();">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<input type="hidden" name="id" value="${member.id }">
 			<div class="row">
 				<div class="col-md-12">
 					<c:set var="member" value="${member }" />
 					<fieldset>
+					
 						<legend>"${member.id }" 회원님의 정보입니다.</legend><br>
 							
 					<%-- 	<label>Password</label>

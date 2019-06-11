@@ -61,6 +61,7 @@
 						<input type="text" placeholder="E-mail">
 					</div> -->
 					<div class="col-md-12">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<input type="hidden" name="id" value="${id }">
 						<label>Password</label> 
 						<input type="password" name="password" value="${password }" ><br>

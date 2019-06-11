@@ -214,7 +214,7 @@ public class MemberController {
 		System.out.println("<< upDate 됬어요 호출 >>");
 		service.upDateMember(memberVO);
 		
-		return "member/login";
+		return "/index";
 	}
 	
 
@@ -231,19 +231,6 @@ public class MemberController {
 		int check = service.countById(member.getId());
 		HttpHeaders headers = new HttpHeaders();
 		StringBuffer msg = new StringBuffer();
-
-		
-		/*
-		 * String message = ""; if (check != 1) { // 로그인 실패 String message = null; if
-		 * (check == -1) { message message = "아이디를 정확하게 입력해주세요."; }
-		 * headers.add("Content-Type", "text/html; charset=UTF-8");
-		 * msg.append("<script>"); msg.append("alert('" + message + "');");
-		 * msg.append("history.back();"); msg.append("</script>"); } else if (check ==
-		 * 1) { message = "아이디를 확인하였습니다."; headers.add("Content-Type",
-		 * "text/html; charset=UTF-8"); msg.append("<script>"); msg.append("alert('" +
-		 * message + "');"); msg.append("location.href = '/member/hintUser';");
-		 * msg.append("</script>"); }
-		 */
 
 		model.addAttribute("id", member.getId());
 		return "member/hintUser";
@@ -281,28 +268,7 @@ public class MemberController {
 	  
 	 return "member/hintPassword"; }
 	 
-	//아이디찾기 완료했을때 힌트로넘어감
-	/*
-	 * @GetMapping("/hintUser") public String hintUser() {
-	 * System.out.println("<< hintUser 호출 >>"); return "member/hintUser"; }
-	 * 
-	 * @PostMapping("/hintUser") public ResponseEntity<String> hintUser(MemberVO
-	 * member, HttpSession session) { System.out.println("<< hintUser, POST >>");
-	 * int check = service.countByhint(member.getHint()); HttpHeaders headers = new
-	 * HttpHeaders(); StringBuffer msg = new StringBuffer();
-	 * 
-	 * String message = ""; if (check != 1) { // message = "해당하는 힌트가 없습니다.";
-	 * headers.add("Content-Type", "text/html; charset=UTF-8");
-	 * msg.append("<script>"); msg.append("alert('" + message + "');");
-	 * msg.append("history.back();"); msg.append("</script>"); } else if (check ==
-	 * 1) { message = "비밀번호확인"; headers.add("Content-Type",
-	 * "text/html; charset=UTF-8"); msg.append("<script>"); msg.append("alert('" +
-	 * message + "');"); msg.append("location.href = '/member/hintUser';");
-	 * msg.append("</script>"); } return new ResponseEntity<>(msg.toString(),
-	 * headers, HttpStatus.OK);
-	 * 
-	 * }
-	 */
+	
 	
 	
 	@GetMapping("/hintPassword")
@@ -314,21 +280,13 @@ public class MemberController {
 	public String hintPassword(MemberVO member, Model model) {
 		System.out.println("<< hintPassword, POST >>"); 
 		System.out.println(member);
+		String encodedPassword = passwordEncoder.encode(member.getPassword());
+		member.setPassword(encodedPassword);
 		int check = service.updatePassword(member.getId() , member.getPassword());
 		HttpHeaders headers = new HttpHeaders();
 		StringBuffer msg = new StringBuffer();
 		
 
-		/*
-		 * String message = ""; if (!id.equals(member.getHint())) { message = "비밀번호 실패";
-		 * headers.add("Content-Type", "text/html; charset=UTF-8");
-		 * msg.append("<script>"); msg.append("alert('" + message + "');");
-		 * msg.append("history.back();"); msg.append("</script>"); } else { message =
-		 * "비밀번호 수정"; headers.add("Content-Type", "text/html; charset=UTF-8");
-		 * msg.append("<script>"); msg.append("alert('" + message + "');");
-		 * msg.append("location.href = '/member/hintPassword';");
-		 * msg.append("</script>"); }
-		 */
 		model.addAttribute("id", member.getId());
 	
 		return "member/login";
