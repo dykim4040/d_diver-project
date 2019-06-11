@@ -1,17 +1,12 @@
 package com.exam.controller;
 
-<<<<<<< HEAD
-=======
+
 import java.io.PrintWriter;
->>>>>>> branch 'master' of https://github.com/dykim4040/d_diver-project.git
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,9 +43,7 @@ public class HomeController {
 		
 		List<MovieVO> list = movieService.newGetMovie(6);
 		model.addAttribute("list", list);
-		
-<<<<<<< HEAD
-=======
+
 		List<MovieVO> grade = movieService.gradeGetMovie(5);
 		model.addAttribute("grade",grade);
 		
@@ -62,7 +55,6 @@ public class HomeController {
 		model.addAttribute("catelist",catelist);
 		model.addAttribute("category",category);
 		
->>>>>>> branch 'master' of https://github.com/dykim4040/d_diver-project.git
 		return "index";
 	}//main()
 	
@@ -231,27 +223,16 @@ public class HomeController {
 	
 	@GetMapping("/movieDetailJson")
 	@ResponseBody
-<<<<<<< HEAD
-	public void detail(int starInput, int movieCd, Principal principal ) {
-=======
-	public void detail(int starInput, int movieCd, Principal principal) {
->>>>>>> branch 'master' of https://github.com/dykim4040/d_diver-project.git
-		System.out.println("<< movieStar >>");
-<<<<<<< HEAD
-		
-		System.out.println("starInput : " + starInput);
-		System.out.println("movieCd : " + movieCd);
-		memberService.insertScore(principal.getName(), starInput, movieCd);
-		
 
+	public void detail(int starInput, int movieCd, Principal principal) {
+		System.out.println("<< movieStar >>");
 		
-=======
+		
 		if (principal == null) {
 			return;
 		}
 		String id = principal.getName();
 		memberService.insertScore(id, starInput, movieCd);
->>>>>>> branch 'master' of https://github.com/dykim4040/d_diver-project.git
 	}
 	
 	@GetMapping("/wishList")

@@ -102,7 +102,9 @@
 <!-- 별점 -->
 <insert id="insertScore">
 	INSERT INTO d_diver.member_movie_score (movie_cd, id, score)
-	VALUES (#{movieCd}, #{id}, #{starInput});
+	VALUES (#{movieCd}, #{id}, #{starInput})
+	ON DUPLICATE KEY UPDATE SCORE = values(score)
+	
 </insert>
 
 <update id="updateAvg">
