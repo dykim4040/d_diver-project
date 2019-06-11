@@ -384,7 +384,7 @@ $(document).ready(function(){
 			},
 			
 			success : function(){
-				alert("성공입니다.");
+				alert("별점이 들어갔습니다.");
 				location.reload();
 			}
 			
@@ -408,7 +408,7 @@ $(document).ready(function(){
 				movieCd : movieCd
 			},
 			success: function() {
-				console.log('즐겨찾기');
+				console.log('★즐겨찾기★');
 			}
 		});
 	});

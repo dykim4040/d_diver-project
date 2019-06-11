@@ -68,8 +68,8 @@
 					<fieldset>
 						<legend>"${member.id }" 회원님의 정보입니다.</legend><br>
 							
-						<label>Password</label>
-						<input type="password"  name="password" id="password" value = "${member.password }" disabled="disabled" required><br>
+					<%-- 	<label>Password</label>
+						<input type="password"  name="password" id="password" value = "${member.password }" disabled="disabled" required><br> --%>
 						
 						<label>E-Mail</label>
 						<input type="email" name="email" disabled="disabled"
