@@ -1,5 +1,6 @@
 package com.exam.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,12 +42,6 @@ public class HomeController {
 		
 		List<MovieVO> list = movieService.newGetMovie(6);
 		model.addAttribute("list", list);
-		
-		List<MovieVO> grade = movieService.gradeGetMovie(6);
-		model.addAttribute("grade",grade);
-		
-		List<MovieVO> views = movieService.viewsGetMovie(6);
-		model.addAttribute("views",views);
 		
 		return "index";
 	}//main()
@@ -198,10 +193,12 @@ public class HomeController {
 	
 	@GetMapping("/movieDetailJson")
 	@ResponseBody
-	public void detail(String id, int starInput, int movieCd) {
+	public void detail(int starInput, int movieCd, Principal principal ) {
 		System.out.println("<< movieStar >>");
 		
-		memberService.insertScore(id, starInput, movieCd);
+		System.out.println("starInput : " + starInput);
+		System.out.println("movieCd : " + movieCd);
+		memberService.insertScore(principal.getName(), starInput, movieCd);
 		
 
 		
@@ -212,7 +209,6 @@ public class HomeController {
 		System.out.println("<< wishList, GET >>");
 		movieService.wishListProcess(id, movieCd);
 	}
-	
 	
 
 	// 각각 패키지 금액

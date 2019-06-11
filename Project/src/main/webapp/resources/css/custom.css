@@ -95,8 +95,8 @@
 
 /* movieDetail */
 
-.movie-details-section {
-	margin-top: 70px;
+.movie-detail {
+	margin-top: 50px;
 }
 
 .starInput>.input, .starInput>.input>label:hover, .starInput>.input>input:focus+label,

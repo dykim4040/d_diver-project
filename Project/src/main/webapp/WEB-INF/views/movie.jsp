@@ -44,16 +44,14 @@ $(function() {
 </script>
 <style>
  .ratt{
-	background-image: url('/resources/img/grade_img.png');
-            background-repeat: no-repeat;
-            vertical-align: middle;
-        
+		background-image: url('/resources/img/grade_img.png');
+        background-repeat: no-repeat;
+        vertical-align: middle;
         display: inline-block;
         width: 80px;
         height: 16px;
         background-size: 80px 32px;
         white-space: nowrap;
-      
         position: relative;
        
    }
@@ -62,12 +60,10 @@ $(function() {
        background-size: 80px 32px;
        background-position: 0 bottom;
        height: 16px;
-	   /* width: 15px;
-       z-index: 4; */
        position: absolute;
        background-image: url('/resources/img/grade_img.png');
-            background-repeat: no-repeat;
-            vertical-align: middle;
+       background-repeat: no-repeat;
+       vertical-align: middle;
        
    }
 </style>
