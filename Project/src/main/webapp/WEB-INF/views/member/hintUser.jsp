@@ -77,6 +77,7 @@ function formCheck() {
 						<input type="text" placeholder="E-mail">
 					</div> -->
 					<div class="col-md-12">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<input type="hidden" name="id" value="${id }">
 						<span id="dupCheck" style="float: right;"></span>
 						<input type="text" name="hint" class = "hint" placeholder="힌트">

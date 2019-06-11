@@ -64,7 +64,7 @@
 					<input type="hidden" name="id" value="${id }">
 						<label>Password</label> 
 						<input type="password" name="password" value="${password }" ><br>
-											
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">					
 						<button class="site-btn" style="float: right;">비밀번호수정 </button>
 					</div>
 				</div>

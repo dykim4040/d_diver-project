@@ -68,9 +68,11 @@ public class MemberServiceImpl implements MemberService {
 		mapper.upDateMember(member);
 	}
 	
+	@Transactional
 	@Override
 	public void deleteMember(String id) {
 		mapper.deleteMember(id);
+		mapper.deleteAllPackageById(id);
 	}
 	
 	

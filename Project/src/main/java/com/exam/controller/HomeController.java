@@ -55,6 +55,7 @@ public class HomeController {
 		System.out.println("<< myContents 호출 >>");
 		
 		if (principal == null) {
+			
 			return "/member/login";
 		}
 		String id = principal.getName();
