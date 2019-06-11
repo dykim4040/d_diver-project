@@ -19,6 +19,7 @@ public interface MovieMapper {
     
     public List<MovieVO> gradeGetMovie(int amount);
     
+    public List<MovieVO> viewsGetMovie(int amount);
     
     
     
@@ -48,5 +49,7 @@ public interface MovieMapper {
 	
     public MovieInfoVO getMovieInfo(int movieCd);
     public void upViews(int movieCd);
+
+	
     
 }

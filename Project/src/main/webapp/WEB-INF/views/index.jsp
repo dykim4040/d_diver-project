@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Food Blog - Web Template</title>
+<title>WEB MOVIE</title>
 <meta charset="UTF-8">
 <meta name="description" content="Food Blog Web Template">
 <meta name="keywords" content="food, unica, creative, html">
@@ -108,10 +108,10 @@
       </div>
       <ul class="sp-recipes-list">
       <li>
-      <c:if test="${not empty list}">
-   <c:forEach var="movie" items="${list}">
+      <c:if test="${not empty grade}">
+   <c:forEach var="movie" items="${grade}">
          <li>
-         <a href="/movieDetail?movieCd=${movie.movieCd}"><img src="${movie.covThUrl}" width="300px" height="250px"></a>
+         <a href="/movieDetail?movieCd=${movie.movieCd}"><img src="${movie.covThUrl}" width="200px" height="250px"></a>
             <div class="rl-thumb set-bg"></div>
             <div class="rl-info">
                <h6>${movie.movieNm}</h6>
@@ -137,11 +137,11 @@
       <ul class="sp-recipes-list">
 		<li>
       
-      <c:if test="${not empty list}">
-   <c:forEach var="movie" items="${list}">
+      <c:if test="${not empty views}">
+   <c:forEach var="movie" items="${views}">
       
          <li>
-         <a href="/movieDetail?movieCd=${movie.movieCd}"><img src="${movie.covThUrl}" width="300px" height="250px"></a>
+         <a href="/movieDetail?movieCd=${movie.movieCd}"><img src="${movie.covThUrl}" width="200px" height="250px"></a>
             <div class="rl-thumb set-bg"></div>
             <div class="rl-info">
                <h6>${movie.movieNm}</h6>
