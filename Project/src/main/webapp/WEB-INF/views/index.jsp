@@ -192,89 +192,85 @@
 <div class="container">
 <div class="row">
 
-   <div class="col-lg-4 col-md-6 ftw-warp"
-       style="max-width: 33%; flex: auto;">
-      <div class="section-title">
-         <h3> 평점 TOP 5 </h3>
-      </div>
-      <ul class="sp-recipes-list">
-      <li>
-      <c:if test="${not empty grade}">
-   <c:forEach var="movie" items="${grade}">
-         <li>
-         
-         <a href="/movieDetail?movieCd=${movie.movieCd}"><img src="${movie.covThUrl}" width="200px" height="250px"></a>
-            <div class="rl-thumb set-bg"></div>
-            <div class="rl-info">
-			<h6>${movie.movieNm}</h6>
-				<c:choose>
-					<c:when test="${movie.avgScore == null}">
-					<div class="ratt"></div>
-					</c:when>
-					<c:when test="${movie.avgScore > 0 &&  movie.avgScore <= 1}">
-					<div class="ratt">
+<div class="col-lg-4 col-md-6 ftw-warp" style="max-width: 33%; flex: auto;">
+    <div class="section-title">
+    	<h3> 평점 TOP 5 </h3>
+    </div>
+    <ul class="sp-recipes-list">
+  	<c:if test="${not empty grade}">
+		<c:forEach var="movie" items="${grade}">
+		<li>
+		<a href="/movieDetail?movieCd=${movie.movieCd}"><img src="${movie.covThUrl}" width="200px" height="250px"></a>
+		<div class="rl-thumb set-bg"></div>
+		<div class="rl-info">
+		<h6>${movie.movieNm}</h6>
+		<c:choose>
+			<c:when test="${movie.avgScore == null}">
+				<div class="ratt"></div>
+			</c:when>
+			<c:when test="${movie.avgScore > 0 &&  movie.avgScore <= 1}">
+				<div class="ratt">
 					<div class="rat" style="width: 8px; z-index: 10;"></div>
-					</div>
-					</c:when>
-					<c:when test="${movie.avgScore > 1 &&  movie.avgScore <= 2}">
-					<div class="ratt">
+				</div>
+			</c:when>
+			<c:when test="${movie.avgScore > 1 &&  movie.avgScore <= 2}">
+				<div class="ratt">
 					<div class="rat" style="width: 16px; z-index: 9;"></div>
-					</div>
-					</c:when>
-					<c:when test="${movie.avgScore > 2 &&  movie.avgScore <= 3}">
-					<div class="ratt">
+				</div>
+			</c:when>
+			<c:when test="${movie.avgScore > 2 &&  movie.avgScore <= 3}">
+				<div class="ratt">
 					<div class="rat" style="width: 24px; z-index: 8;"></div>
-					</div>
-					</c:when>
-					<c:when test="${movie.avgScore > 3 &&  movie.avgScore <= 4}">
-					<div class="ratt">
+				</div>
+			</c:when>
+			<c:when test="${movie.avgScore > 3 &&  movie.avgScore <= 4}">
+				<div class="ratt">
 					<div class="rat" style="width: 32px; z-index: 7;"></div>
-					</div>
-					</c:when>
-					<c:when test="${movie.avgScore > 4 &&  movie.avgScore <= 5}">
-					<div class="ratt">
+				</div>
+			</c:when>
+			<c:when test="${movie.avgScore > 4 &&  movie.avgScore <= 5}">
+				<div class="ratt">
 					<div class="rat" style="width: 40px; z-index: 6;"></div>
-					</div>
-					</c:when>
-					<c:when test="${movie.avgScore > 5 &&  movie.avgScore <= 6}">
-					<div class="ratt">
+				</div>
+			</c:when>
+			<c:when test="${movie.avgScore > 5 &&  movie.avgScore <= 6}">
+				<div class="ratt">
 					<div class="rat" style="width: 48px; z-index: 5;"></div>
-					</div>
-					</c:when>
-					<c:when test="${movie.avgScore > 6 &&  movie.avgScore <= 7}">
-					<div class="ratt">
+				</div>
+			</c:when>
+			<c:when test="${movie.avgScore > 6 &&  movie.avgScore <= 7}">
+				<div class="ratt">
 					<div class="rat" style="width: 56px; z-index: 4;"></div>
-					</div>
-					</c:when>
-					<c:when test="${movie.avgScore > 7 &&  movie.avgScore <= 8}">
-					<div class="ratt">
+				</div>
+			</c:when>
+			<c:when test="${movie.avgScore > 7 &&  movie.avgScore <= 8}">
+				<div class="ratt">
 					<div class="rat" style="width: 64px; z-index: 3;"></div>
-					</div>
-					</c:when>
-					<c:when test="${movie.avgScore > 8 &&  movie.avgScore <= 9}">
-					<div class="ratt">
+				</div>
+			</c:when>
+			<c:when test="${movie.avgScore > 8 &&  movie.avgScore <= 9}">
+				<div class="ratt">
 					<div class="rat" style="width: 72px; z-index: 2;"></div>
-					</div>
-					</c:when>
-					<c:when test="${movie.avgScore > 9 &&  movie.avgScore <= 10}">
-					<div class="ratt">
+				</div>
+			</c:when>
+			<c:when test="${movie.avgScore > 9 &&  movie.avgScore <= 10}">
+				<div class="ratt">
 					<div class="rat" style="width: 80px; z-index: 1;"></div>
-					</div>
-					</c:when>
-				</c:choose>     
-            </div>
-        </li>    
+				</div>
+			</c:when>
+		</c:choose>     
+		</div>
+		</li>    
 		</c:forEach>
 	</c:if>
 	</ul>
 </div>
 <!--  평점! -->
 <div class="col-lg-4 col-md-6 ftw-warp" style="max-width: 33%; flex: auto;">
-      <div class="section-title">
-         <h3> 조회수 TOP 5 </h3>
-      </div>
-      <ul class="sp-recipes-list">
-		<li>
+	<div class="section-title">
+		<h3> 조회수 TOP 5 </h3>
+	</div>
+    <ul class="sp-recipes-list">
       
       <c:if test="${not empty views}">
    		<c:forEach var="movie" items="${views}">
@@ -342,7 +338,7 @@
             </div>
          </li>    
          </c:forEach>
-   </c:if>
+  		 </c:if>
       </ul>
    
    

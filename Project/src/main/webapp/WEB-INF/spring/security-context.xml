@@ -24,7 +24,6 @@
 	 -->
 	<bean id="customLoginSuccessHandler" class="com.exam.security.CustomLoginSuccessHandler"/>
 	
-	
 	<!-- 
 		컨트롤러에서 시큐리티 애노테이션인 @PreAuthorize("hasAnyRole('ROLE_MEMBER')") 등으로
 		해당 권한 없이 접근할때 수행될 객체
@@ -32,14 +31,12 @@
 	<bean id="customAccessDeniedHandler" class="com.exam.security.CustomAccessDeniedHandler"/>
 	
 	
-	
-	
 	<security:http>
 		<security:access-denied-handler ref="customAccessDeniedHandler"/>
 		
 		<!-- 로그인 GET 요청 URL을 login-page 속성값으로 설정 -->
 		<security:form-login login-page="/member/login" authentication-success-handler-ref="customLoginSuccessHandler" />
-
+		
 		<!-- 로그아웃 POST 요청 URL을 logout-url 속성값으로 설정 -->
 		<security:logout logout-url="/member/logout" invalidate-session="true" logout-success-url="/" delete-cookies="remember-me,JSESSION_ID"/>
 		
