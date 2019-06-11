@@ -189,6 +189,10 @@
 <update id="upViews">
 	UPDATE movie  SET views = IFNULL(views, 0) + 1 WHERE movie_cd = #{movieCd} 
 </update>
+
+<select id="getMemberScore" resultType="Integer">
+	select score from member_movie_score where MOVIE_CD = #{movieCd} and id = #{id}
+</select>
 	
 	
 </mapper>  

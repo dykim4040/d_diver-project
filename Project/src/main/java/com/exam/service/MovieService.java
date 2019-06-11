@@ -2,6 +2,7 @@ package com.exam.service;
 
 import java.util.List;
 
+import com.exam.domain.GetMemberScoreDTO;
 import com.exam.domain.MovieInfoVO;
 import com.exam.domain.MovieVO;
 
@@ -38,7 +39,7 @@ public interface MovieService {
     
     public MovieInfoVO getMovieInfo(int movieCd);
 
-
+    public Integer getMemberScore(GetMemberScoreDTO getMemberScoreDTO);
     
 }
 

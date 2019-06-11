@@ -116,7 +116,8 @@ $(function() {
 					</div> -->
 					<div class="col-md-12">
 						<label>User ID</label><span id="dupCheck" style="float: right;"></span>
-						<input type="text" name="id" class="id" required><br>
+					<input type="text" name="id" class="id" required><br>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					
 						<!-- <a href="/member/hintUser"> -->
 						<button class="site-btn" style="float: right;">다음</button>
