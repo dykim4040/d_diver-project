@@ -47,7 +47,9 @@ public class MovieServiceImpl implements MovieService {
         return mapper.viewsGetMovie(amount);
     }
     
-    
+    public List<MovieVO> categoryGetMovie(String category , int amount ) throws Exception {
+    	return mapper.categoryGetMovie(category,amount);
+    }
     
     
     

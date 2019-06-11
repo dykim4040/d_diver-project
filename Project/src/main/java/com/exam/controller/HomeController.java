@@ -42,11 +42,16 @@ public class HomeController {
 		List<MovieVO> list = movieService.newGetMovie(6);
 		model.addAttribute("list", list);
 		
-		List<MovieVO> grade = movieService.gradeGetMovie(6);
+		List<MovieVO> grade = movieService.gradeGetMovie(5);
 		model.addAttribute("grade",grade);
 		
-		List<MovieVO> views = movieService.viewsGetMovie(6);
+		List<MovieVO> views = movieService.viewsGetMovie(5);
 		model.addAttribute("views",views);
+		
+		String category = "애니메이션";
+		List<MovieVO> catelist = movieService.categoryGetMovie(category, 5);
+		model.addAttribute("catelist",catelist);
+		model.addAttribute("category",category);
 		
 		return "index";
 	}//main()

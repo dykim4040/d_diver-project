@@ -32,9 +32,8 @@
    </div>
    <div class="header-bottom">
       <div class="container">
-         <a href="/" class="site-logo" style="height: 55px;">
-<!--             <img src="/resources/img/logo.png" alt=""> -->
-            WEBFLIX
+         <a href="/" class="site-logo" style="height: 100px;" >
+              <img src="/resources/img/logo.png" alt=""> 
          </a>
          <div class="nav-switch">
             <i class="fa fa-bars"></i>
