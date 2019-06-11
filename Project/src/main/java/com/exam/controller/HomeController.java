@@ -176,13 +176,13 @@ public class HomeController {
 	}//movie()
 	
 	@GetMapping("/movieDetail")
-	public String detail(int movieCd, Model model, HttpSession session){
+	public String detail(int movieCd, Model model, Principal principal){
 		System.out.println("<< movieDetail >>");
 		
 		MovieInfoVO movieInfo = movieService.getMovieInfo(movieCd);
 		model.addAttribute("movieInfo", movieInfo);
 		
-		String id = (String) session.getAttribute("sessionID");
+		String id = principal.getName();
 		if (!(id == null || "".equals(id))) {
 			movieService.insertWatchList(id, movieCd);
 			System.out.println(id + " 시청 목록에 " + movieCd + " 영화 추가!");
