@@ -68,21 +68,25 @@ public class MemberServiceImpl implements MemberService {
 		mapper.upDateMember(member);
 	}
 	
+	@Transactional
 	@Override
 	public void deleteMember(String id) {
 		mapper.deleteMember(id);
+		mapper.deleteAllPackageById(id);
 	}
-
+	
+	
 	@Override
-	public boolean checkPw(String id, String password) {
-		boolean result = false;
-		
-		if(password.equals(mapper.checkPw(id))) {
-			result = true;
-		} 
-		
-		return result;
+    public boolean checkPw(String id, String password) {
+	    boolean result = false;
+	      
+	    if(password.equals(mapper.checkPw(id))) {
+             result = true;
+          } 
+	      
+	    return result;
 	}
+	
 	@Override
 	public void hintID(String id) {
 		mapper.hintID(id);

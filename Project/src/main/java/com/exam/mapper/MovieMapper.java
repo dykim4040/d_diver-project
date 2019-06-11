@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.exam.domain.GetMemberScoreDTO;
 import com.exam.domain.MovieInfoVO;
 import com.exam.domain.MovieVO;
 
@@ -21,6 +22,7 @@ public interface MovieMapper {
     
     public List<MovieVO> viewsGetMovie(int amount);
     
+    public List<MovieVO> categoryGetMovie(@Param("category") String category,@Param("amount") int amount);
     
     
     /* 내 컨텐츠 */
@@ -49,7 +51,7 @@ public interface MovieMapper {
 	
     public MovieInfoVO getMovieInfo(int movieCd);
     public void upViews(int movieCd);
-
+    public Integer getMemberScore(GetMemberScoreDTO getMemberScoreDTO);
 	
     
 }

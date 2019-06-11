@@ -76,9 +76,6 @@
 
 
 
-
-
-
 <!-- 구매 관련 -->
 
 <select id="getCurrPackageById" resultType="string">
@@ -92,8 +89,13 @@
 	
 <insert id="insertPackage">
 	INSERT INTO d_diver.package (id, package, expire_date)
-	VALUES (#{id}, #{pack}, DATE_ADD(CURRENT_DATE, INTERVAL #{month} MONTH))
+	VALUES (#{id}, #{pack}, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL #{month} MONTH))
 </insert>
+
+<delete id="deleteAllPackageById">
+	DELETE FROM d_diver.package
+	WHERE id = #{id}
+</delete>
 
 <!-- 구매 관련 -->
 

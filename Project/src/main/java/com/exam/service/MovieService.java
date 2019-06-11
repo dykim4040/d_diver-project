@@ -2,6 +2,7 @@ package com.exam.service;
 
 import java.util.List;
 
+import com.exam.domain.GetMemberScoreDTO;
 import com.exam.domain.MovieInfoVO;
 import com.exam.domain.MovieVO;
 
@@ -17,7 +18,9 @@ public interface MovieService {
     
     public List<MovieVO> gradeGetMovie(int amount) throws Exception;
     
-	List<MovieVO> viewsGetMovie(int amount) throws Exception;
+	public List<MovieVO> viewsGetMovie(int amount) throws Exception;
+	
+	public List<MovieVO> categoryGetMovie(String category , int amount ) throws Exception;
 
     
 	/* 내 컨텐츠 */
@@ -36,7 +39,7 @@ public interface MovieService {
     
     public MovieInfoVO getMovieInfo(int movieCd);
 
-
+    public Integer getMemberScore(GetMemberScoreDTO getMemberScoreDTO);
     
 }
 

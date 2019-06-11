@@ -15,12 +15,9 @@
 <link href="/resources/img/w.png" rel="shortcut icon" />
 
 <!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!-- Stylesheets -->
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css" />
@@ -61,11 +58,13 @@
 			<h4>내정보</h4>
 			<form action="/member/upDate" method="post" id="myInfo" name="frm"
 				class="contact-form" onsubmit="return formCheck();">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<input type="hidden" name="id" value="${member.id }">
 			<div class="row">
 				<div class="col-md-12">
 					<c:set var="member" value="${member }" />
 					<fieldset>
+					
 						<legend>"${member.id }" 회원님의 정보입니다.</legend><br>
 							
 					<%-- 	<label>Password</label>
@@ -99,7 +98,7 @@
 							
 						
 						<button class="site-btn" id="upDate">수정하기</button>
-						<button class="site-btn" id="delete" style="float: right;" onclick = "location.href = '/member/memberDelete'">탈퇴하기</button>
+						<button type="button" class="site-btn" id="delete" style="float: right;" onclick = "location.href = '/member/memberDelete'">탈퇴하기</button>
 							
 					</fieldset>
 				</div>

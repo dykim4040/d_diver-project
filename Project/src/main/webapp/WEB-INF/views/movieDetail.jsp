@@ -28,6 +28,7 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <link rel="stylesheet" href="/resources/css/custom.css" />
 <style>
+<<<<<<< HEAD
 
  .ratt{
 
@@ -55,6 +56,33 @@
        
    }
 
+=======
+
+.ratt {
+	background-image: url('/resources/img/grade_img.png');
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    display: inline-block;
+    width: 80px;
+    height: 16px;
+    background-size: 80px 32px;
+    white-space: nowrap;
+    position: relative;
+}
+.rat{
+    display: inline-block;
+    background-size: 80px 32px;
+    background-position: 0 bottom;
+    height: 16px;
+ /* width: 15px;
+    z-index: 4; */
+    position: absolute;
+    background-image: url('/resources/img/grade_img.png');
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    
+}
+>>>>>>> branch 'master' of https://github.com/dykim4040/d_diver-project.git
 
 
 /*slide-container*/
@@ -202,6 +230,7 @@
 		<!-- 	</div> -->
 		<h2>${movieInfo.movieNm}</h2>
 		관객 평점 : 
+<<<<<<< HEAD
 		<div class="ratt">
 			<c:choose>
 				<c:when test="${movie.avgScore > 0 &&  movie.avgScore <= 1}">
@@ -236,6 +265,64 @@
 				</c:when>
 			</c:choose>
 		</div>
+=======
+		<c:choose>
+			<c:when test="${movieInfo.avgScore == null}">
+			<div class="ratt"></div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 0 &&  movieInfo.avgScore <= 1}">
+			<div class="ratt">
+			<div class="rat" style="width: 8px; z-index: 10;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 1 &&  movieInfo.avgScore <= 2}">
+			<div class="ratt">
+			<div class="rat" style="width: 16px; z-index: 9;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 2 &&  movieInfo.avgScore <= 3}">
+			<div class="ratt">
+			<div class="rat" style="width: 24px; z-index: 8;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 3 &&  movieInfo.avgScore <= 4}">
+			<div class="ratt">
+			<div class="rat" style="width: 32px; z-index: 7;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 4 &&  movieInfo.avgScore <= 5}">
+			<div class="ratt">
+			<div class="rat" style="width: 40px; z-index: 6;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 5 &&  movieInfo.avgScore <= 6}">
+			<div class="ratt">
+			<div class="rat" style="width: 48px; z-index: 5;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 6 &&  movieInfo.avgScore <= 7}">
+			<div class="ratt">
+			<div class="rat" style="width: 56px; z-index: 4;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 7 &&  movieInfo.avgScore <= 8}">
+			<div class="ratt">
+			<div class="rat" style="width: 64px; z-index: 3;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 8 &&  movieInfo.avgScore <= 9}">
+			<div class="ratt">
+			<div class="rat" style="width: 72px; z-index: 2;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 9 &&  movieInfo.avgScore <= 10}">
+			<div class="ratt">
+			<div class="rat" style="width: 80px; z-index: 1;"></div>
+			</div>
+			</c:when>
+		</c:choose>
+		
+>>>>>>> branch 'master' of https://github.com/dykim4040/d_diver-project.git
 	</div>
 </div>
 </section>
@@ -255,7 +342,9 @@
 				<li>
 					<strong>조회수 </strong>&nbsp;&nbsp;
 					<span>${movieInfo.views}</span>
-					
+					<br>
+					<strong>관객 평점 </strong>&nbsp;&nbsp;
+					<span>${movieInfo.avgScore}</span>
 				</li>
 				<li>
 					<strong>개요</strong><br>
@@ -307,7 +396,16 @@
 </div>
 </section>
 <!-- Recipe details section end -->
+<%
+int score = 0;
+Integer test = (Integer)request.getAttribute("memberScore");
+if(test != null){
+    score = test;
+}
 
+
+
+%>
 
 <!-- Comment section -->
 <section class="comment-section spad pt-0">
@@ -323,32 +421,41 @@
 			<span class="starInput">
 	 
 			<span class="input">
-			<input type="radio" name="starInput"  value="1" id="p1"> 
+			<input type="radio" name="starInput" <%if(score == 1){out.print("checked");} %> value="1" id="p1"> 
 			<label for="p1">1</label> 
-			<input type="radio" name="starInput"  value="2" id="p2"> 
+			<input type="radio" name="starInput" <%if(score == 2){out.print("checked");} %> value="2" id="p2"> 
 			<label for="p2">2</label> 
-			<input type="radio" name="starInput"  value="3" id="p3"> 
+			<input type="radio" name="starInput" <%if(score == 3){out.print("checked");} %>  value="3" id="p3"> 
 			<label for="p3">3</label>
-			<input type="radio" name="starInput"  value="4" id="p4"> 
+			<input type="radio" name="starInput" <%if(score == 4){out.print("checked");} %>  value="4" id="p4"> 
 			<label for="p4">4</label> 
-			<input type="radio" name="starInput"  value="5" id="p5"> 
+			<input type="radio" name="starInput" <%if(score == 5){out.print("checked");} %>  value="5" id="p5"> 
 			<label for="p5">5</label> 
-			<input type="radio" name="starInput"  value="6" id="p6"> 
+			<input type="radio" name="starInput" <%if(score == 6){out.print("checked");} %>  value="6" id="p6"> 
 			<label for="p6">6</label> 
-			<input type="radio" name="starInput"  value="7" id="p7"> 
+			<input type="radio" name="starInput" <%if(score == 7){out.print("checked");} %>  value="7" id="p7"> 
 			<label for="p7">7</label> 
-			<input type="radio" name="starInput"  value="8" id="p8"> 
+			<input type="radio" name="starInput" <%if(score == 8){out.print("checked");} %>  value="8" id="p8"> 
 			<label for="p8">8</label> 
-			<input type="radio" name="starInput"  value="9" id="p9"> 
+			<input type="radio" name="starInput" <%if(score == 9){out.print("checked");} %>  value="9" id="p9"> 
 			<label for="p9">9</label> 
-			<input type="radio" name="starInput"  value="10" id="p10"> 
+			<input type="radio" name="starInput" <%if(score == 10){out.print("checked");} %>  value="10" id="p10"> 
 			<label for="p10">10</label>
 			</span>
 			
+<<<<<<< HEAD
 <%-- 			<input type="hidden" name="id" value="${sessionID}"> --%>
+=======
+>>>>>>> branch 'master' of https://github.com/dykim4040/d_diver-project.git
 			<input type="hidden" name="movieCd" value="${movie.movieCd}"> 
 			<output for="starInput">
-				<b>0</b>점
+			<c:if test="${memberScore ne null }">
+				<b>${memberScore }</b>&nbsp;점
+			</c:if>
+			<c:if test="${memberScore eq null }">
+				<b>0</b>&nbsp;점
+			</c:if>	
+				
 			</output>
 			</span>
 			<button class="btn" type="submit">별</button>
@@ -468,7 +575,10 @@ $(document).ready(function(){
 		$.ajax({
 			url : '/movieDetailJson',
 			data :{
+<<<<<<< HEAD
 // 				id : id,
+=======
+>>>>>>> branch 'master' of https://github.com/dykim4040/d_diver-project.git
 				movieCd : movieCd,
 				starInput : starInput
 			},
@@ -485,16 +595,16 @@ $(document).ready(function(){
 	
 	$('.wish-list').on('click', function() {
 		$(this).toggleClass('selected');
-		var id = $('input[name=id]').val();
+// 		var id = $('input[name=id]').val();
 		var movieCd = $('input[name=movieCd]').val();
-		console.log('id: ' + id);
+// 		console.log('id: ' + id);
 		console.log('movieCd: ' + movieCd);
 		
 		$.ajax({
 			
 			url: '/wishList',
 			data :{
-				id : id,
+// 				id : id,
 				movieCd : movieCd
 			},
 			success: function() {

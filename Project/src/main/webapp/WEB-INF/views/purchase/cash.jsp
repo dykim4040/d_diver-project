@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,12 +27,12 @@
 <link rel="stylesheet" href="/resources/css/custom.css" />
 </head>
 <body>
-<c:if test="${sessionID == null }">
+<sec:authorize access="isAnonymous()">
 <script>
 alert('로그인이 필요합니다.');
 location.href="/member/login";
 </script>
-</c:if>
+</sec:authorize>
 <!-- Page Preloder -->
 <div id="preloder">
 	<div class="loader"></div>
@@ -64,6 +65,7 @@ location.href="/member/login";
 						<input type="text" name="strCash" placeholder="0">
 						<label>비밀번호</label>
 						<input type="password" name="password" placeholder="Password">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<button class="site-btn">충전</button>
 						<button type="reset" class="site-btn" style="float: right;">취소</button>
 					</div>
@@ -77,14 +79,14 @@ location.href="/member/login";
 
 <!-- Gallery section -->
 <div class="gallery">
-	<div class="gallery-slider owl-carousel">
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/1.jpg"></div>
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/2.jpg"></div>
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/3.jpg"></div>
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/4.jpg"></div>
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/5.jpg"></div>
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/6.jpg"></div>
-	</div>
+<div class="gallery-slider owl-carousel">
+	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/1.jpg"></div>
+	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/2.jpg"></div>
+	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/3.jpg"></div>
+	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/4.jpg"></div>
+	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/5.jpg"></div>
+	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/6.jpg"></div>
+</div>
 </div>
 <!-- Gallery section end -->
 

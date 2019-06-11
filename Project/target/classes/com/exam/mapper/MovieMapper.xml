@@ -49,6 +49,7 @@
 	ORDER BY AVG_SCORE DESC 
 	limit #{amount}
 </select>
+<!-- 평점 순위 -->
 
 <select id="viewsGetMovie" resultType="MovieVO">
 	SELECT * 
@@ -56,6 +57,15 @@
 	ORDER BY views DESC 
 	limit #{amount}
 </select>
+<!-- 조회수 순위 -->
+<select id="categoryGetMovie" resultType="MovieVO">
+	SELECT * FROM d_diver.movie
+	WHERE REP_GENRE_NM = #{category}
+	ORDER BY views DESC 
+	limit #{amount}
+</select>
+
+
 
 
 
@@ -179,6 +189,10 @@
 <update id="upViews">
 	UPDATE movie  SET views = IFNULL(views, 0) + 1 WHERE movie_cd = #{movieCd} 
 </update>
+
+<select id="getMemberScore" resultType="Integer">
+	select score from member_movie_score where MOVIE_CD = #{movieCd} and id = #{id}
+</select>
 	
 	
 </mapper>  

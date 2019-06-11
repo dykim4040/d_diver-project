@@ -67,9 +67,11 @@
 				<div class="col-md-12">
 					<c:set var="member" value="${member }"></c:set>
 					<fieldset>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<input type="hidden" name="id" value="${member.id }"><br>
 				
-						<label>Password</label><input type="password" name="password" value="${member.password }" ><br>
+						<label>Password</label>
+						<input type="hidden" name="password" value="${member.password }" ><br>
 																		
 						<label>E-Mail</label>
 						<input type="email" name="email" value="${member.email }" ><br>	

@@ -33,15 +33,15 @@
    <div class="header-bottom">
       <div class="container">
          <a href="/" class="site-logo" style="height: 55px;">
-<!--             <img src="/resources/img/logo.png" alt=""> -->
+<%--             <img src="/resources/img/logo.png" alt=""> --%>
             WEBFLIX
          </a>
          <div class="nav-switch">
             <i class="fa fa-bars"></i>
          </div>
-<!--          <div class="header-search"> -->
-<!--             <a href="#"><i class="fa fa-search"></i></a> -->
-<!--          </div> -->
+<%--          <div class="header-search"> --%>
+<%--             <a href="#"><i class="fa fa-search"></i></a> --%>
+<%--          </div> --%>
          <div class="header-search">
             <a href="/purchase"><i class="material-icons">local_grocery_store</i></a>
          </div>
