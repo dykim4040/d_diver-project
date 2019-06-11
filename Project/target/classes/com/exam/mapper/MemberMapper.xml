@@ -14,6 +14,30 @@
 	SELECT * FROM d_diver.member WHERE id = #{id}
 </select>
 
+<resultMap type="memberVO" id="collectionResultMap">
+	<id column="id" property="id" />
+	<result column="user_id" property="userId" />
+	<result column="password" property="password" />
+	<result column="reg_date" property="regDate" />
+	<result column="cash" property="cash" />
+	<result column="mileage" property="mileage" />
+	<result column="email" property="email" />
+	<result column="birthday" property="birthday" />
+	<result column="gender" property="gender" />
+	<result column="hint" property="hint" />
+	<collection property="authList" ofType="authVO">
+		<result column="id" property="id"/>
+		<result column="auth" property="auth"/>
+	</collection>
+</resultMap>
+<select id="getMemberAndAuthById" resultMap="collectionResultMap">
+	SELECT m.id, m.password, m.reg_date, m.cash, m.mileage, m.email, 
+	       m.birthday, m.gender, m.hint, a.auth
+	FROM member m LEFT JOIN MEMBER_AUTH a
+	ON m.id = a.id
+	WHERE m.id = #{id};
+</select>
+
 <select id="countById" resultType="_int">
 	SELECT COUNT(*) FROM d_diver.member WHERE id = #{id}
 </select>

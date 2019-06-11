@@ -39,8 +39,8 @@
 <!-- Hero section -->
 <section class="page-top-section set-bg" data-setbg="/resources/img/page-top-bg.jpg">
 	<div class="container">
-		<h2>로그인</h2>
-		
+		<h2>로그아웃</h2>
+
 	</div>
 </section>
 <!-- Hero section end -->
@@ -51,19 +51,12 @@
 	<div class="row">
 		<div class="col-lg-6" style="margin: auto;">
 		<div class="contact-form-warp">
-			<h4>로그인</h4>
-			<h6 style="float: right;"><c:out value="${error}"/></h6>
-			<h6 style="float: right;"><c:out value="${logout}"/></h6>
-			<form action="<c:url value="/login" />" class="contact-form" method="POST">
-				<div class="row" style="clear: both;">
-					<div class="col-md-12">
-						<input type="text" name="username" placeholder="ID">
-						<input type="password" name="password" placeholder="Password">
-						<button class="site-btn">로그인</button>
-						<a href="/member/hintID"><button type="button" class="site-btn" style="float: right;">비밀번호 찾기</button></a>
-					</div>
-				</div>
+			
+			<form action="/member/logout" class="contact-form" method="POST">
+				<div id="buttons">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+				<input type="submit" value="로그아웃하기" class="submit">
+				</div>
 			</form>
 		</div>
 		</div>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,55 +24,69 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequestMapping("/member/*")
 public class MemberController {
+    
+    @Setter(onMethod_ = @Autowired)
+    private PasswordEncoder passwordEncoder;
+    
 	@Setter(onMethod_ = @Autowired)
 	private MemberService service;
 
 	@GetMapping("/login")
-	public String login() {
+	public String login(String error, String logout, Model model) {
 		System.out.println("<< login 호출 >>");
+		
+		if (error != null) {
+            model.addAttribute("error", "아이디 또는 비밀번호가 맞지 않습니다.");
+        }
+        
+        if (logout != null) {
+            model.addAttribute("logout", "로그아웃 완료!");
+        }
+        
 		return "member/login";
 	}
 
-	@PostMapping("/login")
-	public ResponseEntity<String> login(MemberVO member, HttpSession session) {
-		System.out.println("<< login, POST >>");
-		int check = service.loginCheck(member.getId(), member.getPassword());
-
-		if (check != 1) { // 로그인 실패
-			String message = null;
-			if (check == -1) {
-				message = "해당하는 아이디가 없습니다.";
-			} else if (check == 0) {
-				message = "비밀번호가 다릅니다.";
-			} else {
-				message = "로그인 에러 발생, 다시 입력해주세요.";
-			}
-			HttpHeaders headers = new HttpHeaders();
-			headers.add("Content-Type", "text/html; charset=UTF-8");
-
-			StringBuffer msg = new StringBuffer();
-			msg.append("<script>");
-			msg.append("alert('" + message + "');");
-			msg.append("history.back();");
-			msg.append("</script>");
-
-			return new ResponseEntity<>(msg.toString(), headers, HttpStatus.OK);
-		}
-		session.setAttribute("sessionID", member.getId());
-		String pack = service.getCurrPackage(member.getId());
-		session.setAttribute("pack", pack);
-
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Location", "/"); // redirect 경로 위치
-		return new ResponseEntity<String>(headers, HttpStatus.FOUND);
-	}
+//	@PostMapping("/login")
+//	public ResponseEntity<String> login(MemberVO member, HttpSession session) {
+//		System.out.println("<< login, POST >>");
+//		int check = service.loginCheck(member.getId(), member.getPassword());
+//
+//		if (check != 1) { // 로그인 실패
+//			String message = null;
+//			if (check == -1) {
+//				message = "해당하는 아이디가 없습니다.";
+//			} else if (check == 0) {
+//				message = "비밀번호가 다릅니다.";
+//			} else {
+//				message = "로그인 에러 발생, 다시 입력해주세요.";
+//			}
+//			HttpHeaders headers = new HttpHeaders();
+//			headers.add("Content-Type", "text/html; charset=UTF-8");
+//
+//			StringBuffer msg = new StringBuffer();
+//			msg.append("<script>");
+//			msg.append("alert('" + message + "');");
+//			msg.append("history.back();");
+//			msg.append("</script>");
+//
+//			return new ResponseEntity<>(msg.toString(), headers, HttpStatus.OK);
+//		}
+//		session.setAttribute("sessionID", member.getId());
+//		String pack = service.getCurrPackage(member.getId());
+//		session.setAttribute("pack", pack);
+//
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.add("Location", "/"); // redirect 경로 위치
+//		return new ResponseEntity<String>(headers, HttpStatus.FOUND);
+//	}
 
 	@GetMapping("/logout")
-	public String logout(HttpSession session) {
+	public String logout() {
 		System.out.println("<< logout, GET >>");
-		session.invalidate();
+//		HttpSession session
+//		session.invalidate();
 
-		return "index";
+		return "member/logout";
 	}
 
 	@GetMapping("/join")
@@ -81,10 +96,14 @@ public class MemberController {
 	}
 
 	@PostMapping("/join")
-	public ResponseEntity<String> join(MemberVO member) {
+	public ResponseEntity<String> join(MemberVO memberVO) {
 		System.out.println("<< joinProcess 호출 >>");
-
-		service.join(member);
+		
+		String encodedPassword = passwordEncoder.encode(memberVO.getPassword());
+        memberVO.setPassword(encodedPassword);
+        log.info(memberVO);
+		
+		service.join(memberVO);
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "text/html; charset=UTF-8");

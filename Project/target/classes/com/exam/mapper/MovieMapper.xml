@@ -43,6 +43,12 @@
 	LIMIT #{amount}
 </select>
 
+<select id="gradeGetMovie" resultType="MovieVO">
+	SELECT * 
+	FROM d_diver.movie	
+	ORDER BY open_dt DESC
+	LIMIT #{amount}
+</select>
 
 
 
@@ -162,6 +168,10 @@
 <select id="getMovieInfo" resultMap="collectionResultMap">
 	select * from movie_info where movie_cd = #{movieCd}
 </select>
+
+<update id="upViews">
+	UPDATE movie  SET views = IFNULL(views, 0) + 1 WHERE movie_cd = #{movieCd} 
+</update>
 	
 	
 </mapper>  

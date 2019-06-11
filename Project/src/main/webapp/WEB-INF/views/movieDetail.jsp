@@ -27,8 +27,11 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <link rel="stylesheet" href="/resources/css/custom.css" />
 <style>
+
  .ratt{
+
 	background-image: url('/resources/img/grade_img.png');
+
             background-repeat: no-repeat;
             vertical-align: middle;
         
@@ -54,6 +57,9 @@
             vertical-align: middle;
        
    }
+
+
+
 </style>
 
 </head>
@@ -175,12 +181,22 @@
 			<div class="summary">${movieInfo.synopsis}</div>
 			<ul id="summmary-ul">
 				<li>
+					<strong>조회수 </strong>&nbsp;&nbsp;
+					<span>${movieInfo.views}</span>
+					
+				</li>
+				<li>
 					<strong>개요</strong><br>
 					<span>${movieInfo.repGenreNm}</span>
 					<small>&nbsp;|&nbsp;</small>
 					${movieInfo.watchGradeNm}
 					<small>&nbsp;|&nbsp;</small>
 					${movieInfo.showTm}분
+				</li>
+				<li>
+					<strong>개봉일</strong><br>
+					<span><fmt:formatDate value="${movieInfo.openDt}" pattern="yyyy년 MM월 dd일"/></span>
+					
 				</li>
 				<li>
 					<strong>장르</strong><br>
@@ -274,7 +290,7 @@
 	<b>스틸컷</b>
 	<c:forEach var="stillCut" items="${movieInfo.movieStillCut }" varStatus="index">
 		<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<img src="${stillCut.stillCutUrl }">
+		<img class="lazy" data-original="${stillCut.stillCutUrl }" >
 	</c:forEach>
 </div>
 </section>
@@ -403,5 +419,18 @@ $(document).ready(function(){
 	
 });
 </script>
+
+<!-- jquery CDN-->
+<script src="//code.jquery.com/jquery.min.js"></script>
+<!-- lazyload 1.9.1 CDN -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+<script>
+$("img.lazy").lazyload({
+    threshold : 300,        //뷰포트에 보이기 300px 전에 미리 로딩
+    effect : "fadeIn"       //효과
+});
+</script>
+
+
 </body>
 </html>
