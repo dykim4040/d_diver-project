@@ -275,7 +275,6 @@
 			<label for="p10">10</label>
 			</span>
 			
-			<input type="hidden" name="id" value="${sessionID}">
 			<input type="hidden" name="movieCd" value="${movie.movieCd}"> 
 			<output for="starInput">
 				<b>0</b>점
@@ -380,7 +379,6 @@ $(document).ready(function(){
 		$.ajax({
 			url : '/movieDetailJson',
 			data :{
-				id : id,
 				movieCd : movieCd,
 				starInput : starInput
 			},

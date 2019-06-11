@@ -1,11 +1,16 @@
 package com.exam.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -192,9 +197,9 @@ public class HomeController {
 	
 	@GetMapping("/movieDetailJson")
 	@ResponseBody
-	public void detail(String id, int starInput, int movieCd) {
+	public void detail(int starInput, int movieCd, Principal principal) {
 		System.out.println("<< movieStar >>");
-		
+		String id = principal.getName();
 		memberService.insertScore(id, starInput, movieCd);
 		
 //		memberService.updateAvg(movieCd);
