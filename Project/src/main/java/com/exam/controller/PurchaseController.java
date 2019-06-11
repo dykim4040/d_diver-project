@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.exam.domain.MemberVO;
 import com.exam.service.MemberService;
 
 import lombok.Setter;
@@ -21,6 +23,9 @@ import lombok.Setter;
 @Controller
 @RequestMapping("/purchase/*")
 public class PurchaseController {
+	
+	@Setter(onMethod_ = @Autowired)
+    private PasswordEncoder passwordEncoder;
 	
 	@Setter(onMethod_ = @Autowired)
 	private MemberService memberService;
@@ -56,19 +61,11 @@ public class PurchaseController {
 			
 			return new ResponseEntity<>(msg.toString(), headers, HttpStatus.OK);
 		}
+		MemberVO member = memberService.getMember(id);
+		boolean check = passwordEncoder.matches(password, member.getPassword());
 		
-		int check = memberService.loginCheck(id, password);
-		
-		if (check != 1) { // 아이디와 비밀번호 일치 여부
-			String message = null;
-			if (check == -1) {
-				message = "잘못된 요청입니다."; // 아이디가 다른 경우
-			} else if (check == 0) {
-				message = "비밀번호가 다릅니다.";
-			} else {
-				message = "에러 발생, 다시 입력해주세요.";
-			}
-			msg.append(alertMsg(message, null));
+		if (!check) { // 아이디와 비밀번호 불일치
+			msg.append(alertMsg("비밀번호가 다릅니다.", null));
 			
 			return new ResponseEntity<>(msg.toString(), headers, HttpStatus.OK);
 		}
@@ -83,13 +80,19 @@ public class PurchaseController {
 	@PostMapping("/buyPackage")
 	public ResponseEntity<String> buyPackage(String price, Principal principal, HttpSession session) {
 		System.out.println("<< buyPackage, POST >>");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "text/html; charset=UTF-8");
+		StringBuffer msg = new StringBuffer();
+
+		if (principal == null) {
+			msg.append(alertMsg("로그인이 필요합니다.", "/login"));
+			return new ResponseEntity<>(msg.toString(), headers, HttpStatus.OK);
+		}
 		String id = principal.getName();
 		System.out.println("buyPackage(id/price) : " + id + "/" + price);
 		
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Type", "text/html; charset=UTF-8");
 		
-		StringBuffer msg = new StringBuffer();
+		
 		
 		if (id == null || "".equals(id)) {
 			msg.append(alertMsg("세션이 만료되어 로그아웃되었습니다.", "/login"));

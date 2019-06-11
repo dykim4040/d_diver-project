@@ -28,36 +28,30 @@
 <link rel="stylesheet" href="/resources/css/custom.css" />
 <style>
 
- .ratt{
-
+.ratt {
 	background-image: url('/resources/img/grade_img.png');
-
-            background-repeat: no-repeat;
-            vertical-align: middle;
-        
-        display: inline-block;
-        width: 80px;
-        height: 16px;
-        background-size: 80px 32px;
-        white-space: nowrap;
-      
-        position: relative;
-       
-   }
-   .rat{
-       display: inline-block;
-       background-size: 80px 32px;
-       background-position: 0 bottom;
-       height: 16px;
-	   /* width: 15px;
-       z-index: 4; */
-       position: absolute;
-       background-image: url('/resources/img/grade_img.png');
-            background-repeat: no-repeat;
-            vertical-align: middle;
-       
-   }
-
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    display: inline-block;
+    width: 80px;
+    height: 16px;
+    background-size: 80px 32px;
+    white-space: nowrap;
+    position: relative;
+}
+.rat{
+    display: inline-block;
+    background-size: 80px 32px;
+    background-position: 0 bottom;
+    height: 16px;
+ /* width: 15px;
+    z-index: 4; */
+    position: absolute;
+    background-image: url('/resources/img/grade_img.png');
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    
+}
 
 
 </style>
@@ -107,63 +101,61 @@
 		<h2>${movieInfo.movieNm}</h2>
 		관객 평점 : 
 		<c:choose>
-							<c:when test="${movieInfo.avgScore == null}">
-							<div class="ratt"></div>
-							</c:when>
-							<c:when test="${movieInfo.avgScore > 0 &&  movieInfo.avgScore <= 1}">
-							<div class="ratt">
-							<div class="rat" style="width: 8px; z-index: 10;"></div>
-							</div>
-							</c:when>
-							<c:when test="${movieInfo.avgScore > 1 &&  movieInfo.avgScore <= 2}">
-							<div class="ratt">
-							<div class="rat" style="width: 16px; z-index: 9;"></div>
-							</div>
-							</c:when>
-							<c:when test="${movieInfo.avgScore > 2 &&  movieInfo.avgScore <= 3}">
-							<div class="ratt">
-							<div class="rat" style="width: 24px; z-index: 8;"></div>
-							</div>
-							</c:when>
-							<c:when test="${movieInfo.avgScore > 3 &&  movieInfo.avgScore <= 4}">
-							<div class="ratt">
-							<div class="rat" style="width: 32px; z-index: 7;"></div>
-							</div>
-							</c:when>
-							<c:when test="${movieInfo.avgScore > 4 &&  movieInfo.avgScore <= 5}">
-							<div class="ratt">
-							<div class="rat" style="width: 40px; z-index: 6;"></div>
-							</div>
-							</c:when>
-							<c:when test="${movieInfo.avgScore > 5 &&  movieInfo.avgScore <= 6}">
-							<div class="ratt">
-							<div class="rat" style="width: 48px; z-index: 5;"></div>
-							</div>
-							</c:when>
-							<c:when test="${movieInfo.avgScore > 6 &&  movieInfo.avgScore <= 7}">
-							<div class="ratt">
-							<div class="rat" style="width: 56px; z-index: 4;"></div>
-							</div>
-							</c:when>
-							<c:when test="${movieInfo.avgScore > 7 &&  movieInfo.avgScore <= 8}">
-							<div class="ratt">
-							<div class="rat" style="width: 64px; z-index: 3;"></div>
-							</div>
-							</c:when>
-							<c:when test="${movieInfo.avgScore > 8 &&  movieInfo.avgScore <= 9}">
-							<div class="ratt">
-							<div class="rat" style="width: 72px; z-index: 2;"></div>
-							</div>
-							</c:when>
-							<c:when test="${movieInfo.avgScore > 9 &&  movieInfo.avgScore <= 10}">
-							<div class="ratt">
-							<div class="rat" style="width: 80px; z-index: 1;"></div>
-							</div>
-							</c:when>
-						</c:choose>
+			<c:when test="${movieInfo.avgScore == null}">
+			<div class="ratt"></div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 0 &&  movieInfo.avgScore <= 1}">
+			<div class="ratt">
+			<div class="rat" style="width: 8px; z-index: 10;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 1 &&  movieInfo.avgScore <= 2}">
+			<div class="ratt">
+			<div class="rat" style="width: 16px; z-index: 9;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 2 &&  movieInfo.avgScore <= 3}">
+			<div class="ratt">
+			<div class="rat" style="width: 24px; z-index: 8;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 3 &&  movieInfo.avgScore <= 4}">
+			<div class="ratt">
+			<div class="rat" style="width: 32px; z-index: 7;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 4 &&  movieInfo.avgScore <= 5}">
+			<div class="ratt">
+			<div class="rat" style="width: 40px; z-index: 6;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 5 &&  movieInfo.avgScore <= 6}">
+			<div class="ratt">
+			<div class="rat" style="width: 48px; z-index: 5;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 6 &&  movieInfo.avgScore <= 7}">
+			<div class="ratt">
+			<div class="rat" style="width: 56px; z-index: 4;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 7 &&  movieInfo.avgScore <= 8}">
+			<div class="ratt">
+			<div class="rat" style="width: 64px; z-index: 3;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 8 &&  movieInfo.avgScore <= 9}">
+			<div class="ratt">
+			<div class="rat" style="width: 72px; z-index: 2;"></div>
+			</div>
+			</c:when>
+			<c:when test="${movieInfo.avgScore > 9 &&  movieInfo.avgScore <= 10}">
+			<div class="ratt">
+			<div class="rat" style="width: 80px; z-index: 1;"></div>
+			</div>
+			</c:when>
+		</c:choose>
 		
-
-
 	</div>
 </div>
 </section>
@@ -369,10 +361,10 @@ $(document).ready(function(){
 	}
 	
 	$('#frmStar').submit(function(){
-		var id = $('input[name=id]').val();
+// 		var id = $('input[name=id]').val();
 		var movieCd = $('input[name=movieCd]').val();
 		var starInput = $('input:radio[name="starInput"]:checked').val();
-		console.log('id: ' + id);
+// 		console.log('id: ' + id);
 		console.log('movieCd: ' + movieCd);
 		console.log('score: ' + starInput);
 		
@@ -395,16 +387,16 @@ $(document).ready(function(){
 	
 	$('.wish-list').on('click', function() {
 		$(this).toggleClass('selected');
-		var id = $('input[name=id]').val();
+// 		var id = $('input[name=id]').val();
 		var movieCd = $('input[name=movieCd]').val();
-		console.log('id: ' + id);
+// 		console.log('id: ' + id);
 		console.log('movieCd: ' + movieCd);
 		
 		$.ajax({
 			
 			url: '/wishList',
 			data :{
-				id : id,
+// 				id : id,
 				movieCd : movieCd
 			},
 			success: function() {

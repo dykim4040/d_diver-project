@@ -80,6 +80,7 @@ location.href="/member/login";
 			<p>6달 동안 시청 가능한 패키지</p>
 			<h4>￦${packList.gold }</h4><br>
 			<form action="/purchase/buyPackage" method="POST">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<input type="hidden" name="price" value="${packList.gold }">
 				<button class="site-btn">구매하기</button>
 			</form>
@@ -92,6 +93,7 @@ location.href="/member/login";
 			<p>3달 동안 시청 가능한 패키지</p>
 			<h4>￦${packList.silver }</h4><br>
 			<form action="/purchase/buyPackage" method="POST">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<input type="hidden" name="price" value="${packList.silver }">
 				<button class="site-btn">구매하기</button>
 			</form>
@@ -104,6 +106,7 @@ location.href="/member/login";
 			<p>1달 동안 시청 가능한 패키지</p>
 			<h4>￦${packList.bronze }</h4><br>
 			<form action="/purchase/buyPackage" method="POST">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<input type="hidden" name="price" value="${packList.bronze }">
 				<button class="site-btn">구매하기</button>
 			</form>
