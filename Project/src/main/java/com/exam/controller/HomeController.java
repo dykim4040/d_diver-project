@@ -1,9 +1,13 @@
 package com.exam.controller;
 
+import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,11 +45,16 @@ public class HomeController {
 		List<MovieVO> list = movieService.newGetMovie(6);
 		model.addAttribute("list", list);
 		
-		List<MovieVO> grade = movieService.gradeGetMovie(6);
+		List<MovieVO> grade = movieService.gradeGetMovie(5);
 		model.addAttribute("grade",grade);
 		
-		List<MovieVO> views = movieService.viewsGetMovie(6);
+		List<MovieVO> views = movieService.viewsGetMovie(5);
 		model.addAttribute("views",views);
+		
+		String category = "애니메이션";
+		List<MovieVO> catelist = movieService.categoryGetMovie(category, 5);
+		model.addAttribute("catelist",catelist);
+		model.addAttribute("category",category);
 		
 		return "index";
 	}//main()
@@ -178,14 +187,21 @@ public class HomeController {
 	}//movie()
 	
 	@GetMapping("/movieDetail")
-	public String detail(int movieCd, Model model, Principal principal){
+	public String detail(int movieCd, Model model, Principal principal, HttpServletResponse response) throws Exception{
 		System.out.println("<< movieDetail >>");
 		
 		MovieInfoVO movieInfo = movieService.getMovieInfo(movieCd);
 		model.addAttribute("movieInfo", movieInfo);
-		
-		if (principal == null) {
-			return "/member/login";
+
+		if(principal == null) {
+		    response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            out.println("alert('로그인 후 이용해 주세요');");
+            out.println("location.href='member/login'");
+            out.println("</script>");
+            out.close();
+            return null;
 		}
 		String id = principal.getName();
 		if (!(id == null || "".equals(id))) {
