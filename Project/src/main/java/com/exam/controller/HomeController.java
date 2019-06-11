@@ -192,9 +192,10 @@ public class HomeController {
             PrintWriter out = response.getWriter();
             out.println("<script>");
             out.println("alert('로그인 후 이용해 주세요');");
+            out.println("location.href='member/login'");
             out.println("</script>");
             out.close();
-            return "/member/login";
+            return null;
 		}
 		String id = principal.getName();
 		if (!(id == null || "".equals(id))) {
