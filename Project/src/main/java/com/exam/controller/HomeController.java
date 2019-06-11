@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exam.domain.BoardVO;
+import com.exam.domain.GetMemberScoreDTO;
 import com.exam.domain.MemberVO;
 import com.exam.domain.MovieInfoVO;
 import com.exam.domain.MovieVO;
@@ -185,7 +186,7 @@ public class HomeController {
 		System.out.println("<< movieDetail >>");
 		
 		MovieInfoVO movieInfo = movieService.getMovieInfo(movieCd);
-		model.addAttribute("movieInfo", movieInfo);
+//		model.addAttribute("movieInfo", movieInfo);
 
 		if(principal == null) {
 		    response.setContentType("text/html; charset=UTF-8");
@@ -207,6 +208,10 @@ public class HomeController {
 				model.addAttribute("wishList", "selected");
 			}
 		}
+		GetMemberScoreDTO getMemberScoreDTO = new GetMemberScoreDTO();
+		getMemberScoreDTO.setId(id);
+		getMemberScoreDTO.setMovieCd(movieCd);
+		model.addAttribute("memberScore", movieService.getMemberScore(getMemberScoreDTO));
 		model.addAttribute("movieInfo", movieInfo);
 		
 	    return "movieDetail";

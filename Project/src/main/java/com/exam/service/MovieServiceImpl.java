@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.exam.domain.GetMemberScoreDTO;
 import com.exam.domain.MovieInfoVO;
 import com.exam.domain.MovieVO;
 import com.exam.mapper.MovieMapper;
@@ -111,7 +112,10 @@ public class MovieServiceImpl implements MovieService {
         return mapper.getMovieInfo(movieCd);
     }
 
-	
+	@Override
+	public Integer getMemberScore(GetMemberScoreDTO getMemberScoreDTO) {
+	    return mapper.getMemberScore(getMemberScoreDTO);
+	}
 
 
 }

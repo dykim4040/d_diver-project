@@ -229,7 +229,16 @@
 </div>
 </section>
 <!-- Recipe details section end -->
+<%
+int score = 0;
+Integer test = (Integer)request.getAttribute("memberScore");
+if(test != null){
+    score = test;
+}
 
+
+
+%>
 
 <!-- Comment section -->
 <section class="comment-section spad pt-0">
@@ -245,31 +254,37 @@
 			<span class="starInput">
 	 
 			<span class="input">
-			<input type="radio" name="starInput"  value="1" id="p1"> 
+			<input type="radio" name="starInput" <%if(score == 1){out.print("checked");} %> value="1" id="p1"> 
 			<label for="p1">1</label> 
-			<input type="radio" name="starInput"  value="2" id="p2"> 
+			<input type="radio" name="starInput" <%if(score == 2){out.print("checked");} %> value="2" id="p2"> 
 			<label for="p2">2</label> 
-			<input type="radio" name="starInput"  value="3" id="p3"> 
+			<input type="radio" name="starInput" <%if(score == 3){out.print("checked");} %>  value="3" id="p3"> 
 			<label for="p3">3</label>
-			<input type="radio" name="starInput"  value="4" id="p4"> 
+			<input type="radio" name="starInput" <%if(score == 4){out.print("checked");} %>  value="4" id="p4"> 
 			<label for="p4">4</label> 
-			<input type="radio" name="starInput"  value="5" id="p5"> 
+			<input type="radio" name="starInput" <%if(score == 5){out.print("checked");} %>  value="5" id="p5"> 
 			<label for="p5">5</label> 
-			<input type="radio" name="starInput"  value="6" id="p6"> 
+			<input type="radio" name="starInput" <%if(score == 6){out.print("checked");} %>  value="6" id="p6"> 
 			<label for="p6">6</label> 
-			<input type="radio" name="starInput"  value="7" id="p7"> 
+			<input type="radio" name="starInput" <%if(score == 7){out.print("checked");} %>  value="7" id="p7"> 
 			<label for="p7">7</label> 
-			<input type="radio" name="starInput"  value="8" id="p8"> 
+			<input type="radio" name="starInput" <%if(score == 8){out.print("checked");} %>  value="8" id="p8"> 
 			<label for="p8">8</label> 
-			<input type="radio" name="starInput"  value="9" id="p9"> 
+			<input type="radio" name="starInput" <%if(score == 9){out.print("checked");} %>  value="9" id="p9"> 
 			<label for="p9">9</label> 
-			<input type="radio" name="starInput"  value="10" id="p10"> 
+			<input type="radio" name="starInput" <%if(score == 10){out.print("checked");} %>  value="10" id="p10"> 
 			<label for="p10">10</label>
 			</span>
 			
 			<input type="hidden" name="movieCd" value="${movie.movieCd}"> 
 			<output for="starInput">
-				<b>0</b>점
+			<c:if test="${memberScore ne null }">
+				<b>${memberScore }</b>&nbsp;점
+			</c:if>
+			<c:if test="${memberScore eq null }">
+				<b>0</b>&nbsp;점
+			</c:if>	
+				
 			</output>
 			</span>
 			<button class="btn" type="submit">별</button>
