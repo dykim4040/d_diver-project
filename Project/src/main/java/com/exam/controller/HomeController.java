@@ -1,5 +1,6 @@
 package com.exam.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,12 @@ public class HomeController {
 		
 		List<MovieVO> list = movieService.newGetMovie(6);
 		model.addAttribute("list", list);
+		
+		List<MovieVO> grade = movieService.gradeGetMovie(6);
+		model.addAttribute("grade",grade);
+		
+		List<MovieVO> views = movieService.viewsGetMovie(6);
+		model.addAttribute("views",views);
 		
 		return "index";
 	}//main()
@@ -169,13 +176,13 @@ public class HomeController {
 	}//movie()
 	
 	@GetMapping("/movieDetail")
-	public String detail(int movieCd, Model model, HttpSession session){
+	public String detail(int movieCd, Model model, Principal principal){
 		System.out.println("<< movieDetail >>");
 		
 		MovieInfoVO movieInfo = movieService.getMovieInfo(movieCd);
 		model.addAttribute("movieInfo", movieInfo);
 		
-		String id = (String) session.getAttribute("sessionID");
+		String id = principal.getName();
 		if (!(id == null || "".equals(id))) {
 			movieService.insertWatchList(id, movieCd);
 			System.out.println(id + " 시청 목록에 " + movieCd + " 영화 추가!");
@@ -192,12 +199,12 @@ public class HomeController {
 	
 	@GetMapping("/movieDetailJson")
 	@ResponseBody
-	public void detail(String id, int starInput, int movieCd) {
+	public void detail(int starInput, int movieCd, Principal principal) {
 		System.out.println("<< movieStar >>");
-		
+		String id = principal.getName();
 		memberService.insertScore(id, starInput, movieCd);
 		
-//		memberService.updateAvg(movieCd);
+
 		
 	}
 	
@@ -207,17 +214,23 @@ public class HomeController {
 		movieService.wishListProcess(id, movieCd);
 	}
 	
+	
 
 	// 각각 패키지 금액
 	public final static int gold = 35000, silver = 20000, bronze = 8000;	
 
 	@GetMapping("/purchase")
-	public String purchase(HttpSession session, Model model) {
+	public String purchase(Model model, Principal principal) {
 		System.out.println("<< purchase, GET >>");
-		
-		String id = (String) session.getAttribute("sessionID");
+		if (principal == null) {
+			return "purchase/purchase";
+		}
+		String id = principal.getName();
+		System.out.println("id : " + id);
 		
 		MemberVO member = memberService.getMember(id);
+		System.out.println("id : " + id);
+		System.out.println(member);
 		
 		Map<String, Integer> packList = new HashMap<String, Integer>();
 		packList.put("gold", gold);

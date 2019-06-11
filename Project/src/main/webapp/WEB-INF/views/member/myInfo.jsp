@@ -15,12 +15,9 @@
 <link href="/resources/img/w.png" rel="shortcut icon" />
 
 <!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!-- Stylesheets -->
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css" />
@@ -68,8 +65,8 @@
 					<fieldset>
 						<legend>"${member.id }" 회원님의 정보입니다.</legend><br>
 							
-						<label>Password</label>
-						<input type="password"  name="password" id="password" value = "${member.password }" disabled="disabled" required><br>
+					<%-- 	<label>Password</label>
+						<input type="password"  name="password" id="password" value = "${member.password }" disabled="disabled" required><br> --%>
 						
 						<label>E-Mail</label>
 						<input type="email" name="email" disabled="disabled"

@@ -44,7 +44,9 @@
 		<security:logout logout-url="/member/logout" invalidate-session="true" logout-success-url="/" delete-cookies="remember-me,JSESSION_ID"/>
 		
 <!-- 		<security:csrf disabled="true"/> -->
-
+		<security:session-management invalid-session-url="/"><!-- 세션이 끊어졌을 때 '/' 로 이동 -->
+			<security:concurrency-control max-sessions="1" expired-url="/"/><!-- 중복 로그인 방지 -->
+		</security:session-management>
 		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
 	</security:http>
 	

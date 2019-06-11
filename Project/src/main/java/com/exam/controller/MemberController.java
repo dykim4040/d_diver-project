@@ -95,14 +95,12 @@ public class MemberController {
 //		return new ResponseEntity<String>(headers, HttpStatus.FOUND);
 //	}
 
-	@GetMapping("/logout")
-	public String logout() {
-		System.out.println("<< logout, GET >>");
-//		HttpSession session
-//		session.invalidate();
-
-		return "member/logout";
-	}
+//	@GetMapping("/logout")
+//	public String logout() {
+//		System.out.println("<< logout, GET >>");
+//
+//		return "member/logout";
+//	}
 
 	@GetMapping("/join")
 	public String join() {
@@ -155,6 +153,8 @@ public class MemberController {
 			pack += "ilver";
 		} else if ("B".equals(pack)) {
 			pack += "ronze";
+		} else if (pack != null) {
+			pack = "없음";
 		}
 
 		model.addAttribute("pack", pack);

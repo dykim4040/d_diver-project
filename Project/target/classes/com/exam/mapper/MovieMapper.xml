@@ -45,9 +45,16 @@
 
 <select id="gradeGetMovie" resultType="MovieVO">
 	SELECT * 
-	FROM d_diver.movie	
-	ORDER BY open_dt DESC
-	LIMIT #{amount}
+	FROM d_diver.movie 
+	ORDER BY AVG_SCORE DESC 
+	limit #{amount}
+</select>
+
+<select id="viewsGetMovie" resultType="MovieVO">
+	SELECT * 
+	FROM d_diver.movie 
+	ORDER BY views DESC 
+	limit #{amount}
 </select>
 
 
