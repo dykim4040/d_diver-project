@@ -197,7 +197,7 @@ public class HomeController {
 		
 		memberService.insertScore(id, starInput, movieCd);
 		
-//		memberService.updateAvg(movieCd);
+
 		
 	}
 	
