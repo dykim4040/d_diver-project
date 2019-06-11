@@ -1,10 +1,12 @@
 package com.exam.controller;
 
+import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -176,12 +178,21 @@ public class HomeController {
 	}//movie()
 	
 	@GetMapping("/movieDetail")
-	public String detail(int movieCd, Model model, Principal principal){
+	public String detail(int movieCd, Model model, Principal principal, HttpServletResponse response) throws Exception{
 		System.out.println("<< movieDetail >>");
 		
 		MovieInfoVO movieInfo = movieService.getMovieInfo(movieCd);
 		model.addAttribute("movieInfo", movieInfo);
-		
+		if(principal == null) {
+		    response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            out.println("alert('로그인 후 이용해 주세요');");
+            out.println("history.back();");
+            out.println("</script>");
+            out.close();
+            return null;
+		}
 		String id = principal.getName();
 		if (!(id == null || "".equals(id))) {
 			movieService.insertWatchList(id, movieCd);
