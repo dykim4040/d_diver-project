@@ -76,9 +76,6 @@
 
 
 
-
-
-
 <!-- 구매 관련 -->
 
 <select id="getCurrPackageById" resultType="string">

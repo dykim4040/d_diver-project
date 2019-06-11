@@ -99,7 +99,7 @@
 							
 						
 						<button class="site-btn" id="upDate">수정하기</button>
-						<button class="site-btn" id="delete" style="float: right;" onclick = "location.href = '/member/memberDelete'">탈퇴하기</button>
+						<button type="button" class="site-btn" id="delete" style="float: right;" onclick = "location.href = '/member/memberDelete'">탈퇴하기</button>
 							
 					</fieldset>
 				</div>
