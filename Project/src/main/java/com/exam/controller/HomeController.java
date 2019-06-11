@@ -1,14 +1,12 @@
 package com.exam.controller;
 
+
 import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +43,7 @@ public class HomeController {
 		
 		List<MovieVO> list = movieService.newGetMovie(6);
 		model.addAttribute("list", list);
-		
+
 		List<MovieVO> grade = movieService.gradeGetMovie(5);
 		model.addAttribute("grade",grade);
 		
@@ -225,8 +223,11 @@ public class HomeController {
 	
 	@GetMapping("/movieDetailJson")
 	@ResponseBody
+
 	public void detail(int starInput, int movieCd, Principal principal) {
 		System.out.println("<< movieStar >>");
+		
+		
 		if (principal == null) {
 			return;
 		}
@@ -242,7 +243,6 @@ public class HomeController {
 		}
 		movieService.wishListProcess(principal.getName(), movieCd);
 	}
-	
 	
 
 	// 각각 패키지 금액

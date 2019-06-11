@@ -57,8 +57,8 @@
 			<input type="hidden" name="num" value="${param.num}">
 			<input type="hidden" name="pageNum" value="${param.pageNum}">
 			<table id="notice">
-			<tr><th>작성자명</th><td><input type="text" name="name" value="${board.name}"></td></tr>
-			<tr><th>비밀번호</th><td><input type="password" name="pass"></td></tr>
+<%-- 			<tr><th>작성자명</th><td><input type="text" name="name" value="${board.name}"></td></tr> --%>
+<!-- 			<tr><th>비밀번호</th><td><input type="password" name="pass"></td></tr> -->
 			<tr><th>글제목</th><td><input type="text" name="subject" value="${board.subject}"></td></tr>
 			<tr>
 				<th>글내용</th>
@@ -69,8 +69,9 @@
 			<div id="table_search">
 			<input type="submit" value="글쓰기" class="btn">
 			<input type="reset" value="다시작성" class="btn">
-			<input type="button" value="글목록" class="btn" onclick="location.href='/contact';">
+			<input type="button" value="글목록" class="btn" onclick="location.href='/contact?pageNum=${param.pageNum}';">
 			</div>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			</form>
 			
 		</div>

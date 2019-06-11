@@ -8,9 +8,13 @@
 	SELECT IFNULL(MAX(num), 0) + 1 FROM board
 </select>
 
+<select id="getBoardByNum" resultType="boardVO">
+	SELECT * FROM d_diver.board WHERE num = #{num}
+</select>
+
 <insert id="insertBoard">
-	INSERT INTO board (num, name, pass, subject, content, reRef, reLev, reSeq, readCount, ip, regDate)
-	VALUES (#{num}, #{name}, #{pass}, #{subject}, #{content}, #{reRef}, #{reLev}, #{reSeq}, #{readCount}, #{ip}, CURRENT_TIMESTAMP)
+	INSERT INTO board (num, name, pass, subject, content, reRef, reLev, reSeq, readCount, regDate, ip)
+	VALUES (#{num}, #{name}, #{pass}, #{subject}, #{content}, #{reRef}, #{reLev}, #{reSeq}, #{readCount}, CURRENT_TIMESTAMP, #{ip})
 </insert>
 
 <select id="getBoards" resultType="boardVO">
@@ -48,7 +52,7 @@
 	
 <update id="updateBoard">
 	UPDATE board 
-	SET name=#{name}, subject=#{subject}, content=#{content} 
+	SET subject=#{subject}, content=#{content} 
 	WHERE num=#{num} 
 </update>	
 

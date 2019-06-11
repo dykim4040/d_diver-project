@@ -10,6 +10,8 @@ public interface BoardMapper {
     
     public int getSeqBoardNum();
     
+    public BoardVO getBoardByNum(int num);
+    
     public int insertBoard(BoardVO boardVO);
     
     public BoardVO getBoard(int num);
@@ -22,9 +24,10 @@ public interface BoardMapper {
     
     public int updateReadcount(int num);
     
-    public int updateBoard(BoardVO board);
+    public void updateBoard(BoardVO board);
     
-    public int deleteBoard(int num);
+    public void deleteBoard(int num);
     
     public int updateReplyGroupSeq(@Param("reRef") int re_ref, @Param("reSeq") int re_seq);
+
 }

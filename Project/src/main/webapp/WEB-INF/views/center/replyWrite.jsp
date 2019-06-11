@@ -58,9 +58,9 @@
 			<input type="hidden" name="reRef" value="${param.reRef}">
 			<input type="hidden" name="reLev" value="${param.reLev}">
 			<input type="hidden" name="reSeq" value="${param.reSeq}">
+			<input type="hidden" name="name" value="${param.name}"> 
 			<table id="notice">
-			<tr><th>작성자명</th><td><input type="text" name="name"></td></tr>
-			<tr><th>비밀번호</th><td><input type="password" name="pass"></td></tr>
+<!-- 			<tr><th>비밀번호</th><td><input type="password" name="pass"></td></tr> -->
 			<tr><th>글제목</th><td><input type="text" name="subject"></td></tr>
 			<tr>
 				<th>글내용</th>

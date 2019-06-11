@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +29,33 @@
 <link rel="stylesheet" href="/resources/css/custom.css" />
 <style>
 
+ .ratt{
+
+		background-image: url('/resources/img/grade_img.png');
+        background-repeat: no-repeat;
+        vertical-align: middle;
+        display: inline-block;
+        width: 80px;
+        height: 16px;
+        background-size: 80px 32px;
+        white-space: nowrap;
+        position: relative;
+       
+   }
+   
+.rat{
+       display: inline-block;
+       background-size: 80px 32px;
+       background-position: 0 bottom;
+       height: 16px;
+       position: absolute;
+       background-image: url('/resources/img/grade_img.png');
+       background-repeat: no-repeat;
+       vertical-align: middle;
+       
+   }
+
+
 .ratt {
 	background-image: url('/resources/img/grade_img.png');
     background-repeat: no-repeat;
@@ -52,6 +80,103 @@
     vertical-align: middle;
     
 }
+/*slide-container*/
+.slideshow-container{
+    width: 800px;
+    height: 450px;
+    position: relative;
+    margin: auto;
+    display: table;
+}
+.mySlides{
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	margin: auto
+}
+
+.slideshow-container .mySlides img{
+    height: 450px;
+    
+}
+
+
+.mySlides{
+    display: none;
+}
+
+/* next & prev buttons*/
+
+.prev, .next{
+    cursor: pointer;
+    width: auto;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next{
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover{
+    background-color: rgba(0,0,0,0.8);
+
+}
+
+
+.number{
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+.dot{
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: backgrount-color 0.6s easel
+}
+
+.active, .dot:hover{
+    background-color: #717171;
+}
+
+.fade{
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade{
+    from{
+        opacity: .4;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes fade{
+    from{
+        opacity: .4;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
 
 
 </style>
@@ -100,62 +225,41 @@
 		<!-- 	</div> -->
 		<h2>${movieInfo.movieNm}</h2>
 		관객 평점 : 
-		<c:choose>
-			<c:when test="${movieInfo.avgScore == null}">
-			<div class="ratt"></div>
-			</c:when>
-			<c:when test="${movieInfo.avgScore > 0 &&  movieInfo.avgScore <= 1}">
-			<div class="ratt">
-			<div class="rat" style="width: 8px; z-index: 10;"></div>
-			</div>
-			</c:when>
-			<c:when test="${movieInfo.avgScore > 1 &&  movieInfo.avgScore <= 2}">
-			<div class="ratt">
-			<div class="rat" style="width: 16px; z-index: 9;"></div>
-			</div>
-			</c:when>
-			<c:when test="${movieInfo.avgScore > 2 &&  movieInfo.avgScore <= 3}">
-			<div class="ratt">
-			<div class="rat" style="width: 24px; z-index: 8;"></div>
-			</div>
-			</c:when>
-			<c:when test="${movieInfo.avgScore > 3 &&  movieInfo.avgScore <= 4}">
-			<div class="ratt">
-			<div class="rat" style="width: 32px; z-index: 7;"></div>
-			</div>
-			</c:when>
-			<c:when test="${movieInfo.avgScore > 4 &&  movieInfo.avgScore <= 5}">
-			<div class="ratt">
-			<div class="rat" style="width: 40px; z-index: 6;"></div>
-			</div>
-			</c:when>
-			<c:when test="${movieInfo.avgScore > 5 &&  movieInfo.avgScore <= 6}">
-			<div class="ratt">
-			<div class="rat" style="width: 48px; z-index: 5;"></div>
-			</div>
-			</c:when>
-			<c:when test="${movieInfo.avgScore > 6 &&  movieInfo.avgScore <= 7}">
-			<div class="ratt">
-			<div class="rat" style="width: 56px; z-index: 4;"></div>
-			</div>
-			</c:when>
-			<c:when test="${movieInfo.avgScore > 7 &&  movieInfo.avgScore <= 8}">
-			<div class="ratt">
-			<div class="rat" style="width: 64px; z-index: 3;"></div>
-			</div>
-			</c:when>
-			<c:when test="${movieInfo.avgScore > 8 &&  movieInfo.avgScore <= 9}">
-			<div class="ratt">
-			<div class="rat" style="width: 72px; z-index: 2;"></div>
-			</div>
-			</c:when>
-			<c:when test="${movieInfo.avgScore > 9 &&  movieInfo.avgScore <= 10}">
-			<div class="ratt">
-			<div class="rat" style="width: 80px; z-index: 1;"></div>
-			</div>
-			</c:when>
-		</c:choose>
-		
+
+		<div class="ratt">
+			<c:choose>
+				<c:when test="${movie.avgScore > 0 &&  movie.avgScore <= 1}">
+				<div class="rat" style="width: 8px; z-index: 10;"></div>
+				</c:when>
+				<c:when test="${movie.avgScore > 1 &&  movie.avgScore <= 2}">
+				<div class="rat" style="width: 16px; z-index: 9;"></div>
+				</c:when>
+				<c:when test="${movie.avgScore > 2 &&  movie.avgScore <= 3}">
+				<div class="rat" style="width: 24px; z-index: 8;"></div>
+				</c:when>
+				<c:when test="${movie.avgScore > 3 &&  movie.avgScore <= 4}">
+				<div class="rat" style="width: 32px; z-index: 7;"></div>
+				</c:when>
+				<c:when test="${movie.avgScore > 4 &&  movie.avgScore <= 5}">
+				<div class="rat" style="width: 40px; z-index: 6;"></div>
+				</c:when>
+				<c:when test="${movie.avgScore > 5 &&  movie.avgScore <= 6}">
+				<div class="rat" style="width: 48px; z-index: 5;"></div>
+				</c:when>
+				<c:when test="${movie.avgScore > 6 &&  movie.avgScore <= 7}">
+				<div class="rat" style="width: 56px; z-index: 4;"></div>
+				</c:when>
+				<c:when test="${movie.avgScore > 7 &&  movie.avgScore <= 8}">
+				<div class="rat" style="width: 64px; z-index: 3;"></div>
+				</c:when>
+				<c:when test="${movie.avgScore > 8 &&  movie.avgScore <= 9}">
+				<div class="rat" style="width: 72px; z-index: 2;"></div>
+				</c:when>
+				<c:when test="${movie.avgScore > 9 &&  movie.avgScore <= 10}">
+				<div class="rat" style="width: 80px; z-index: 1;"></div>
+				</c:when>
+			</c:choose>
+		</div>
 	</div>
 </div>
 </section>
@@ -275,7 +379,7 @@ if(test != null){
 			<input type="radio" name="starInput" <%if(score == 10){out.print("checked");} %>  value="10" id="p10"> 
 			<label for="p10">10</label>
 			</span>
-			
+
 			<input type="hidden" name="movieCd" value="${movie.movieCd}"> 
 			<output for="starInput">
 			<c:if test="${memberScore ne null }">
@@ -295,11 +399,29 @@ if(test != null){
 	<div class="myInput">
 			<div class="myStar"></div>
 	</div>
+</div>
+	</section>
+	<section>
+	
+	<div class="container">
 	<b>스틸컷</b>
+	<div class="slideshow-container">
 	<c:forEach var="stillCut" items="${movieInfo.movieStillCut }" varStatus="index">
-		<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<div class="mySlides fade">
 		<img class="lazy" data-original="${stillCut.stillCutUrl }" >
+		</div>
 	</c:forEach>
+	 <div style="width: 800px; text-align: center">
+     <c:forEach var="i" begin="0" end="${fn:length(movieInfo.movieStillCut) }">
+     <span class="dot" onclick="currentSlide(${i})"></span>
+     </c:forEach>
+ 
+    </div>
+	
+	</div>
+	 
+    
+
 </div>
 </section>
 <!-- Comment section -->
@@ -376,16 +498,15 @@ $(document).ready(function(){
 	}
 	
 	$('#frmStar').submit(function(){
-// 		var id = $('input[name=id]').val();
 		var movieCd = $('input[name=movieCd]').val();
 		var starInput = $('input:radio[name="starInput"]:checked').val();
-// 		console.log('id: ' + id);
 		console.log('movieCd: ' + movieCd);
 		console.log('score: ' + starInput);
 		
 		$.ajax({
 			url : '/movieDetailJson',
 			data :{
+
 				movieCd : movieCd,
 				starInput : starInput
 			},
@@ -402,16 +523,13 @@ $(document).ready(function(){
 	
 	$('.wish-list').on('click', function() {
 		$(this).toggleClass('selected');
-// 		var id = $('input[name=id]').val();
 		var movieCd = $('input[name=movieCd]').val();
-// 		console.log('id: ' + id);
 		console.log('movieCd: ' + movieCd);
 		
 		$.ajax({
 			
 			url: '/wishList',
 			data :{
-// 				id : id,
 				movieCd : movieCd
 			},
 			success: function() {
@@ -425,6 +543,55 @@ $(document).ready(function(){
 
 	
 });
+
+var slideIndex = 0;
+
+window.onload=function(){
+    showSlides(slideIndex);
+
+    /*3초마다 움직이게 하는 요소*/
+//     var sec=3000;
+//     setInterval(function(){
+//         slideIndex++;
+//         showSlides(slideIndex);
+//     }, sec);
+    
+}
+
+function moveSlides(n){
+    slideIndex = slideIndex + n;
+    showSlides(slideIndex);
+}
+
+function currentSlide(n){
+    slideIndex = n;
+    showSlides(slideIndex);
+}
+
+function showSlides(n){
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    var size = slides.length;
+
+    if((n+1) > size){
+        slideIndex = 0; n = 0;
+    } else if(n < 0){
+        slideIndex = (size - 1);
+        n = (size - 1);
+    }
+
+    for(i = 0; i < slides.length; i++){
+        slides[i].style.display = "none";
+    }
+
+    for(i = 0; i < dots.length; i++){
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    slides[n].style.display = "block";
+    dots[n].className += " active";
+ 
+}
 </script>
 
 <!-- jquery CDN-->
@@ -433,7 +600,7 @@ $(document).ready(function(){
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
 <script>
 $("img.lazy").lazyload({
-    threshold : 300,        //뷰포트에 보이기 300px 전에 미리 로딩
+    threshold : 50,        //뷰포트에 보이기 300px 전에 미리 로딩
     effect : "fadeIn"       //효과
 });
 </script>
