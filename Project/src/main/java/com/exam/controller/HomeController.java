@@ -43,6 +43,12 @@ public class HomeController {
 		List<MovieVO> list = movieService.newGetMovie(6);
 		model.addAttribute("list", list);
 		
+		List<MovieVO> grade = movieService.gradeGetMovie(6);
+		model.addAttribute("grade",grade);
+		
+		List<MovieVO> views = movieService.viewsGetMovie(6);
+		model.addAttribute("views",views);
+		
 		return "index";
 	}//main()
 	
@@ -193,12 +199,12 @@ public class HomeController {
 	
 	@GetMapping("/movieDetailJson")
 	@ResponseBody
-	public void detail(String id, int starInput, int movieCd) {
+	public void detail(int starInput, int movieCd, Principal principal) {
 		System.out.println("<< movieStar >>");
-		
+		String id = principal.getName();
 		memberService.insertScore(id, starInput, movieCd);
 		
-//		memberService.updateAvg(movieCd);
+
 		
 	}
 	
@@ -207,6 +213,7 @@ public class HomeController {
 		System.out.println("<< wishList, GET >>");
 		movieService.wishListProcess(id, movieCd);
 	}
+	
 	
 
 	// 각각 패키지 금액
