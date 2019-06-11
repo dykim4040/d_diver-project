@@ -65,6 +65,7 @@ location.href="/member/login";
 						<input type="text" name="strCash" placeholder="0">
 						<label>비밀번호</label>
 						<input type="password" name="password" placeholder="Password">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<button class="site-btn">충전</button>
 						<button type="reset" class="site-btn" style="float: right;">취소</button>
 					</div>
@@ -78,14 +79,14 @@ location.href="/member/login";
 
 <!-- Gallery section -->
 <div class="gallery">
-	<div class="gallery-slider owl-carousel">
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/1.jpg"></div>
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/2.jpg"></div>
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/3.jpg"></div>
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/4.jpg"></div>
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/5.jpg"></div>
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/6.jpg"></div>
-	</div>
+<div class="gallery-slider owl-carousel">
+	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/1.jpg"></div>
+	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/2.jpg"></div>
+	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/3.jpg"></div>
+	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/4.jpg"></div>
+	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/5.jpg"></div>
+	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/6.jpg"></div>
+</div>
 </div>
 <!-- Gallery section end -->
 

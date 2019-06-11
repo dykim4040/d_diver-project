@@ -55,10 +55,13 @@ public class HomeController {
 	}//main()
 	
 	@GetMapping("/myContents")
-	public String myContents(HttpSession session, Model model) throws Exception {
+	public String myContents(Principal principal, Model model) throws Exception {
 		System.out.println("<< myContents 호출 >>");
 		
-		String id = (String) session.getAttribute("sessionID");
+		if (principal == null) {
+			return "/member/login";
+		}
+		String id = principal.getName();
 		
 		List<MovieVO> watchList = movieService.getWatchList(id, 6);
 		List<MovieVO> wishList = movieService.getWishList(id, 0);
@@ -183,15 +186,15 @@ public class HomeController {
 		
 		MovieInfoVO movieInfo = movieService.getMovieInfo(movieCd);
 		model.addAttribute("movieInfo", movieInfo);
+
 		if(principal == null) {
 		    response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>");
             out.println("alert('로그인 후 이용해 주세요');");
-            out.println("history.back();");
             out.println("</script>");
             out.close();
-            return null;
+            return "/member/login";
 		}
 		String id = principal.getName();
 		if (!(id == null || "".equals(id))) {
@@ -212,17 +215,20 @@ public class HomeController {
 	@ResponseBody
 	public void detail(int starInput, int movieCd, Principal principal) {
 		System.out.println("<< movieStar >>");
+		if (principal == null) {
+			return;
+		}
 		String id = principal.getName();
 		memberService.insertScore(id, starInput, movieCd);
-		
-
-		
 	}
 	
 	@GetMapping("/wishList")
-	public void wishList(String id, int movieCd) {
+	public void wishList(int movieCd, Principal principal) {
 		System.out.println("<< wishList, GET >>");
-		movieService.wishListProcess(id, movieCd);
+		if (principal == null) {
+			return;
+		}
+		movieService.wishListProcess(principal.getName(), movieCd);
 	}
 	
 	
