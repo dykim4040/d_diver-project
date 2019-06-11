@@ -135,7 +135,9 @@
 				<li>
 					<strong>조회수 </strong>&nbsp;&nbsp;
 					<span>${movieInfo.views}</span>
-					
+					<br>
+					<strong>관객 평점 </strong>&nbsp;&nbsp;
+					<span>${movieInfo.avgScore}</span>
 				</li>
 				<li>
 					<strong>개요</strong><br>
