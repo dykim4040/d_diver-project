@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,12 +27,12 @@
 <link rel="stylesheet" href="/resources/css/custom.css" />
 </head>
 <body>
-<c:if test="${sessionID == null }">
+<sec:authorize access="isAnonymous()">
 <script>
 alert('로그인이 필요합니다.');
 location.href="/member/login";
 </script>
-</c:if>
+</sec:authorize>
 <!-- Page Preloder -->
 <div id="preloder">
 	<div class="loader"></div>
@@ -79,6 +80,7 @@ location.href="/member/login";
 			<p>6달 동안 시청 가능한 패키지</p>
 			<h4>￦${packList.gold }</h4><br>
 			<form action="/purchase/buyPackage" method="POST">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<input type="hidden" name="price" value="${packList.gold }">
 				<button class="site-btn">구매하기</button>
 			</form>
@@ -91,6 +93,7 @@ location.href="/member/login";
 			<p>3달 동안 시청 가능한 패키지</p>
 			<h4>￦${packList.silver }</h4><br>
 			<form action="/purchase/buyPackage" method="POST">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<input type="hidden" name="price" value="${packList.silver }">
 				<button class="site-btn">구매하기</button>
 			</form>
@@ -103,6 +106,7 @@ location.href="/member/login";
 			<p>1달 동안 시청 가능한 패키지</p>
 			<h4>￦${packList.bronze }</h4><br>
 			<form action="/purchase/buyPackage" method="POST">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<input type="hidden" name="price" value="${packList.bronze }">
 				<button class="site-btn">구매하기</button>
 			</form>

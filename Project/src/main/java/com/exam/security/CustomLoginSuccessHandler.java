@@ -21,7 +21,8 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication auth) throws IOException, ServletException {
-log.warn("Login Success");
+    	log.warn("Login Success");
+    	System.out.println("Login Success!");
         
         List<String> roleNames = new ArrayList<>();
         
@@ -33,6 +34,7 @@ log.warn("Login Success");
         }
         
         log.warn("ROLE NAMES: " + roleNames);
+        System.out.println("ROLE NAMES: " + roleNames);
         
         if (roleNames.contains("ROLE_ADMIN")) {
             response.sendRedirect("/contact");

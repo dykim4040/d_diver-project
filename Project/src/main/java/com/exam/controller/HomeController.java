@@ -1,9 +1,12 @@
 package com.exam.controller;
 
+import java.io.PrintWriter;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,10 +60,13 @@ public class HomeController {
 	}//main()
 	
 	@GetMapping("/myContents")
-	public String myContents(HttpSession session, Model model) throws Exception {
+	public String myContents(Principal principal, Model model) throws Exception {
 		System.out.println("<< myContents 호출 >>");
 		
-		String id = (String) session.getAttribute("sessionID");
+		if (principal == null) {
+			return "/member/login";
+		}
+		String id = principal.getName();
 		
 		List<MovieVO> watchList = movieService.getWatchList(id, 6);
 		List<MovieVO> wishList = movieService.getWishList(id, 0);
@@ -180,13 +186,23 @@ public class HomeController {
 	}//movie()
 	
 	@GetMapping("/movieDetail")
-	public String detail(int movieCd, Model model, HttpSession session){
+	public String detail(int movieCd, Model model, Principal principal, HttpServletResponse response) throws Exception{
 		System.out.println("<< movieDetail >>");
 		
 		MovieInfoVO movieInfo = movieService.getMovieInfo(movieCd);
 		model.addAttribute("movieInfo", movieInfo);
-		
-		String id = (String) session.getAttribute("sessionID");
+
+		if(principal == null) {
+		    response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            out.println("alert('로그인 후 이용해 주세요');");
+            out.println("location.href='member/login'");
+            out.println("</script>");
+            out.close();
+            return null;
+		}
+		String id = principal.getName();
 		if (!(id == null || "".equals(id))) {
 			movieService.insertWatchList(id, movieCd);
 			System.out.println(id + " 시청 목록에 " + movieCd + " 영화 추가!");
@@ -203,19 +219,22 @@ public class HomeController {
 	
 	@GetMapping("/movieDetailJson")
 	@ResponseBody
-	public void detail(String id, int starInput, int movieCd) {
+	public void detail(int starInput, int movieCd, Principal principal) {
 		System.out.println("<< movieStar >>");
-		
+		if (principal == null) {
+			return;
+		}
+		String id = principal.getName();
 		memberService.insertScore(id, starInput, movieCd);
-		
-
-		
 	}
 	
 	@GetMapping("/wishList")
-	public void wishList(String id, int movieCd) {
+	public void wishList(int movieCd, Principal principal) {
 		System.out.println("<< wishList, GET >>");
-		movieService.wishListProcess(id, movieCd);
+		if (principal == null) {
+			return;
+		}
+		movieService.wishListProcess(principal.getName(), movieCd);
 	}
 	
 	
@@ -224,12 +243,17 @@ public class HomeController {
 	public final static int gold = 35000, silver = 20000, bronze = 8000;	
 
 	@GetMapping("/purchase")
-	public String purchase(HttpSession session, Model model) {
+	public String purchase(Model model, Principal principal) {
 		System.out.println("<< purchase, GET >>");
-		
-		String id = (String) session.getAttribute("sessionID");
+		if (principal == null) {
+			return "purchase/purchase";
+		}
+		String id = principal.getName();
+		System.out.println("id : " + id);
 		
 		MemberVO member = memberService.getMember(id);
+		System.out.println("id : " + id);
+		System.out.println(member);
 		
 		Map<String, Integer> packList = new HashMap<String, Integer>();
 		packList.put("gold", gold);

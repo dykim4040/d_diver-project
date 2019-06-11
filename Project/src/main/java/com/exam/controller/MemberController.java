@@ -1,20 +1,32 @@
 package com.exam.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
+import java.security.Principal;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import org.omg.CORBA.Object;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exam.domain.MemberVO;
+import com.exam.mapper.MemberMapper;
+import com.exam.security.domain.CustomUser;
 import com.exam.service.MemberService;
 
 import lombok.Setter;
@@ -26,11 +38,14 @@ import lombok.extern.log4j.Log4j;
 public class MemberController {
     
     @Setter(onMethod_ = @Autowired)
-    private PasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
     
 	@Setter(onMethod_ = @Autowired)
 	private MemberService service;
-
+	
+	@Setter(onMethod_ = @Autowired)
+	private MemberMapper memberMapper;
+	
 	@GetMapping("/login")
 	public String login(String error, String logout, Model model) {
 		System.out.println("<< login 호출 >>");
@@ -80,14 +95,12 @@ public class MemberController {
 //		return new ResponseEntity<String>(headers, HttpStatus.FOUND);
 //	}
 
-	@GetMapping("/logout")
-	public String logout() {
-		System.out.println("<< logout, GET >>");
-//		HttpSession session
-//		session.invalidate();
-
-		return "member/logout";
-	}
+//	@GetMapping("/logout")
+//	public String logout() {
+//		System.out.println("<< logout, GET >>");
+//
+//		return "member/logout";
+//	}
 
 	@GetMapping("/join")
 	public String join() {
@@ -140,6 +153,8 @@ public class MemberController {
 			pack += "ilver";
 		} else if ("B".equals(pack)) {
 			pack += "ronze";
+		} else if (pack != null) {
+			pack = "없음";
 		}
 
 		model.addAttribute("pack", pack);
@@ -154,22 +169,31 @@ public class MemberController {
 	@GetMapping("/memberDelete")
 	public String delete() {
 		System.out.println("<< delete 호출 >>");
-
+	    
 		return "member/delete";
 	}
 
 	@PostMapping("/memberDelete")
-	public String memberDelete(String id, String password, HttpSession session, Model model) {
+	public String memberDelete(Model model, String id, String password, MemberVO memberVO, Principal principal) {
 		System.out.println("<< delete 호출 >>");
-
-		boolean result = service.checkPw(id, password);
-		if (result) {
-			service.deleteMember(id);
-			session.invalidate();
-			return "redirect:/";
-		}
-		model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
-		return "member/delete";
+		
+		
+		memberVO=memberMapper.getMemberById(id);
+		
+		String encodedPassword = memberVO.getPassword();;
+		
+		MemberVO member = service.getMember(id);
+		model.addAttribute("member", member);
+		
+		if (passwordEncoder.matches(password, encodedPassword)) {
+		    System.out.println("계정정보 일치");
+		    service.deleteMember(id);
+		    return "redirect:/";
+	    } else {
+	        System.out.println("계정정보 불일치");
+	        model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
+	        return "member/delete";
+	    }
 	}
 
 	// 회원정보수정하게만들기

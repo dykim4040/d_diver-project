@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,23 +30,6 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <link rel="stylesheet" href="/resources/css/custom.css" />
 <script src="/resources/script/jquery-3.3.1.min.js"></script>
-<script>
-// $(document).ready(function(){
-	
-	
-// 	$("#delete").click(function(){
-		
-// 		if(confirm("삭제??")){
-// 			var pw = document.querySelector("#password").value;
-// 			console.log('pw : ' + pw);
-// 			document.querySelector('#delete-password').value = pw;
-// 			//document.frm.action = "${path}/member/delete?id=${member.id }&password=" + pw;
-// 			document.querySelector('#delete-form').submit();
-// 		}
-// 	});
-// });
-
-</script>
 </head>
 <body>
 <!-- Page Preloder -->
@@ -78,22 +61,24 @@
 			<form action="/member/memberDelete" method="post" id="frmDelete" name="frm"
 				class="contact-form" onsubmit="return formCheck();">
 			<div class="row">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+			<sec:authorize access="isAuthenticated()">
+			<c:set var="id"><sec:authentication property="principal.member.id"/></c:set>
 				<div class="col-md-12">
 					<fieldset>
-						<legend>"${sessionID}" 회원님 정말 탈퇴하겠습니까??.</legend>
-						<input type="hidden" name="id" value="${sessionID}">
+						<legend>"${id}" 회원님 정말 탈퇴하겠습니까??.</legend>
+						<input type="hidden" name="id" value="${id}">
 						
 						<br>
 							
 						<label>Password</label> 
 						<input type="password" name="password" id="password" required><br>
 							
-<!-- 						<label>Password</label> <input type="password" name="rePassword" id="rePassword" -->
-<!-- 							required><br> -->
 							<div>${message }</div>
 						<button type="submit"  id="delete">탈퇴하기</button>
 					</fieldset>
 				</div>
+			</sec:authorize>	
 			</div>
 			</form>
 		</div>

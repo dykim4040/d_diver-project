@@ -15,12 +15,9 @@
 <link href="/resources/img/w.png" rel="shortcut icon" />
 
 <!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!-- Stylesheets -->
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css" />
@@ -99,7 +96,7 @@
 							
 						
 						<button class="site-btn" id="upDate">수정하기</button>
-						<button class="site-btn" id="delete" style="float: right;" onclick = "location.href = '/member/memberDelete'">탈퇴하기</button>
+						<button type="button" class="site-btn" id="delete" style="float: right;" onclick = "location.href = '/member/memberDelete'">탈퇴하기</button>
 							
 					</fieldset>
 				</div>
