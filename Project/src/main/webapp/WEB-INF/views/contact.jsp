@@ -39,8 +39,7 @@
 
 
 <!-- Hero section -->
-<section class="page-top-section set-bg"
-	data-setbg="/resources/img/page-top-bg.jpg">
+<section class="page-top-section set-bg" data-setbg="/resources/img/page-top-bg.jpg">
 	<div class="container">
 		<h2>고객센터</h2>
 	</div>

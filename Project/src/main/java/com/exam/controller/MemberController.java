@@ -36,11 +36,11 @@ public class MemberController {
 		System.out.println("<< login 호출 >>");
 		
 		if (error != null) {
-            model.addAttribute("error", "Login Error. Check Your Account.");
+            model.addAttribute("error", "아이디 또는 비밀번호가 맞지 않습니다.");
         }
         
         if (logout != null) {
-            model.addAttribute("logout", "Logout됨!!");
+            model.addAttribute("logout", "로그아웃 완료!");
         }
         
 		return "member/login";

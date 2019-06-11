@@ -17,6 +17,8 @@ public interface MovieMapper {
     
     public List<MovieVO> newGetMovie(int amount);
     
+    public List<MovieVO> gradeGetMovie(int amount);
+    
     
     
     

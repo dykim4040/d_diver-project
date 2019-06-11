@@ -27,45 +27,42 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <link rel="stylesheet" href="/resources/css/custom.css" />
 <style>
-      .a{
+.a {
 	background-image: url('/resources/img/grade_img.png');
-            background-repeat: no-repeat;
-            vertical-align: middle;
-        
-        display: inline-block;
-        width: 150px;
-        height: 28px;
-        background-size: 150px;
-        white-space: nowrap;
-      
-        position: relative;
-       
-   }
-  .b{
-       display: inline-block;
-       background-size: 150px;
-       background-position: 0 bottom;
-       height: 28px;
+	background-repeat: no-repeat;
+	vertical-align: middle;
+	display: inline-block;
+	width: 150px;
+	height: 28px;
+	background-size: 150px;
+	white-space: nowrap;
+	position: relative;
+}
 
-       position: absolute;
-       background-image: url('/resources/img/grade_img.png');
-            background-repeat: no-repeat;
-            vertical-align: middle;
-       
-   }
-   .myInput{
-   	float: right;
-   	
-   }
+.b {
+	display: inline-block;
+	background-size: 150px;
+	background-position: 0 bottom;
+	height: 28px;
+	position: absolute;
+	background-image: url('/resources/img/grade_img.png');
+	background-repeat: no-repeat;
+	vertical-align: middle;
+}
 
-   .c{
+.myInput {
+	float: right;
+}
+
+.c {
 	width: 15px;
-       z-index: 10;
-   }
-   .d{
+	z-index: 10;
+}
+
+.d {
 	width: 30px;
-       z-index: 9;
-   }
+	z-index: 9;
+}
 </style>
 
 </head>
