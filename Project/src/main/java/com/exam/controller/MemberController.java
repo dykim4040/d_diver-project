@@ -1,32 +1,20 @@
 package com.exam.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.security.Principal;
-import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
-import org.omg.CORBA.Object;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.exam.domain.MemberVO;
 import com.exam.mapper.MemberMapper;
-import com.exam.security.domain.CustomUser;
 import com.exam.service.MemberService;
 
 import lombok.Setter;
@@ -177,7 +165,6 @@ public class MemberController {
 	public String memberDelete(Model model, String id, String password, MemberVO memberVO, Principal principal) {
 		System.out.println("<< delete 호출 >>");
 		
-		
 		memberVO=memberMapper.getMemberById(id);
 		
 		String encodedPassword = memberVO.getPassword();;
@@ -238,36 +225,33 @@ public class MemberController {
 	} //내일 위에처럼 String 으로 다바꿔주세요
 	
 	
-	
-	
-	  //아이디찾기 완료했을때 힌트로넘어감
-	  
-	  @GetMapping("/hintUser") 
-	  public String hintUser() {
-	  System.out.println("<< hintUser 호출 >>"); 
-	  return "member/hintUser";
-	  
-	  }
-	  
-	  @PostMapping("/hintUser") 
-	  public String hintUser(MemberVO member, Model model) { 
-		  System.out.println("<< hintUser, POST >>");
-	  System.out.println(member); 
-	  String hint = service.getHintById(member.getId()); HttpHeaders headers = new HttpHeaders();
-	  StringBuffer msg = new StringBuffer();
-	  
-	  if(hint.equals(member.getHint())) {
-		  }
-	  		else {
-	  			return "member/hintID";
-	  }
-	  
-	  
-	  model.addAttribute("id", member.getId());
-	  
-	  
-	 return "member/hintPassword"; }
-	 
+	// 아이디찾기 완료했을때 힌트로넘어감
+
+	@GetMapping("/hintUser")
+	public String hintUser() {
+		System.out.println("<< hintUser 호출 >>");
+		return "member/hintUser";
+
+	}
+
+	@PostMapping("/hintUser")
+	public String hintUser(MemberVO member, Model model) {
+		System.out.println("<< hintUser, POST >>");
+		System.out.println(member);
+		String hint = service.getHintById(member.getId());
+		HttpHeaders headers = new HttpHeaders();
+		StringBuffer msg = new StringBuffer();
+
+		if (hint.equals(member.getHint())) {
+
+		} else {
+			return "member/hintID";
+		}
+
+		model.addAttribute("id", member.getId());
+
+		return "member/hintPassword";
+	}	 
 	
 	
 	
@@ -276,6 +260,7 @@ public class MemberController {
 		System.out.println("<< hintPassword 호출 >>");
 		return "member/hintPassword";
 	}
+	
 	@PostMapping("/hintPassword")
 	public String hintPassword(MemberVO member, Model model) {
 		System.out.println("<< hintPassword, POST >>"); 
