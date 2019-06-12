@@ -24,7 +24,7 @@ public interface BoardMapper {
     
     public int updateReadcount(int num);
     
-    public void updateBoard(BoardVO board);
+    public int updateBoard(BoardVO board);
     
     public void deleteBoard(int num);
     

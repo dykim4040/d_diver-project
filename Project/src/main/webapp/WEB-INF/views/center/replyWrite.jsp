@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,15 +53,15 @@
 		<div class="col-lg-8">
 		<div class="contact-form-warp">
 			<h1>Q&A 답글쓰기</h1>
-			
+			<sec:authorize access="isAuthenticated()">
+			<c:set var="id"><sec:authentication property="principal.member.id"/></c:set>
 			<form action="/board/reply" method="post" name="frm">
 			<input type="hidden" name="pageNum" value="${param.pageNum}">
 			<input type="hidden" name="reRef" value="${param.reRef}">
 			<input type="hidden" name="reLev" value="${param.reLev}">
 			<input type="hidden" name="reSeq" value="${param.reSeq}">
-			<input type="hidden" name="name" value="${param.name}"> 
+			<input type="hidden" name="name" value="${id}"> 
 			<table id="notice">
-<!-- 			<tr><th>비밀번호</th><td><input type="password" name="pass"></td></tr> -->
 			<tr><th>글제목</th><td><input type="text" name="subject"></td></tr>
 			<tr>
 				<th>글내용</th>
@@ -73,8 +74,9 @@
 			<input type="reset" value="다시작성" class="btn">
 			<input type="button" value="글목록" class="btn" onclick="location.href='/contact?pageNum=${param.pageNum}';">
 			</div>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			</form>
-			
+			</sec:authorize>
 		</div>
 		</div>
 	</div>

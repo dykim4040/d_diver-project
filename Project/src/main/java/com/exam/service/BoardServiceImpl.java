@@ -1,5 +1,6 @@
 package com.exam.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,28 +49,27 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void updateBoard(BoardVO board) {
-//        boolean isSuccess = false;
-//        
-//        BoardVO dbBoard = mapper.getBoard(board.getNum());
-//        
-//        if (board.getPass().equals(dbBoard.getPass())) {
-//            mapper.updateBoard(board);
-//            isSuccess = true;
-//        } else {
-//            isSuccess = false;
-//        }
-//        return isSuccess;
-        mapper.updateBoard(board);
+    public boolean updateBoard(BoardVO board) {
+        boolean isSuccess = false;
+        
+        BoardVO dbBoard = mapper.getBoard(board.getNum());
+        
+        if (board.getName().equals(dbBoard.getName())) {
+            mapper.updateBoard(board);
+            isSuccess = true;
+        } else {
+            isSuccess = false;
+        }
+        return isSuccess;
     } //updateBoard()
 
     @Override
-    public boolean deleteBoard(int num) {
+    public boolean deleteBoard(int num, String name) {
         boolean isSuccess = false;
         
         BoardVO dbBoard = mapper.getBoard(num);
         
-        if(num == dbBoard.getNum()) {
+        if(name.equals(dbBoard.getName())) {
             mapper.deleteBoard(num);
             isSuccess = true;
         } else {
