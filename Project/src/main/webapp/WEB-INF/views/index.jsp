@@ -135,6 +135,7 @@
 					</div>
 					</c:when>
 				</c:choose>
+				${movie.avgScore}
                </div>
             </div>
          </div>
@@ -156,7 +157,7 @@
 <div class="container">
 <div class="row">
 
-<div class="col-lg-4 col-md-6 ftw-warp" style="max-width: 33%; flex: auto;">
+<div class="col-lg-4 col-md-6 ftw-warp">
     <div class="section-title">
     	<h3> 평점 TOP 5 </h3>
     </div>
@@ -222,7 +223,8 @@
 					<div class="rat" style="width: 80px; z-index: 1;"></div>
 				</div>
 			</c:when>
-		</c:choose>     
+		</c:choose>
+		${movie.avgScore}     
 		</div>
 		</li>    
 		</c:forEach>
@@ -230,7 +232,7 @@
 	</ul>
 </div>
 <!--  평점! -->
-<div class="col-lg-4 col-md-6 ftw-warp" style="max-width: 33%; flex: auto;">
+<div class="col-lg-4 col-md-6 ftw-warp">
 	<div class="section-title">
 		<h3> 조회수 TOP 5 </h3>
 	</div>
@@ -298,7 +300,8 @@
 				<div class="rat" style="width: 80px; z-index: 1;"></div>
 				</div>
 				</c:when>
-			</c:choose>    
+			</c:choose>
+			${movie.avgScore}    
             </div>
          </li>    
          </c:forEach>
@@ -307,8 +310,7 @@
    
    
    </div>
-   <div class="col-lg-4 col-md-6 ftw-warp"
-       style="max-width: 33%; flex: auto;">
+   <div class="col-lg-4 col-md-6 ftw-warp">
       <div class="section-title">
          <h3>${category }  TOP 5 </h3>
       </div>
@@ -377,7 +379,8 @@
 				<div class="rat" style="width: 80px; z-index: 1;"></div>
 				</div>
 				</c:when>
-			</c:choose>    
+			</c:choose>
+			${movie.avgScore}    
             </div>
          </li>    
          </c:forEach>

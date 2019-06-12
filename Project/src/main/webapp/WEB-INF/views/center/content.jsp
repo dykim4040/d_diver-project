@@ -55,6 +55,7 @@
 		<div class="contact-form-warp">
 			
 			<article>
+			
 			<h1>Q&A 내용</h1>
 			<table id="notice">
 			<tr>
@@ -63,7 +64,7 @@
 			</tr>
 			<tr>
 				<th>작성자</th><td>${board.name}</td>
-				<th>작성일</th><td>${board.regDate}</td>
+				<th>작성일</th><td><fmt:formatDate value="${board.regDate }" pattern="yyyy.MM.dd HH:mm:ss"/></td>
 			</tr>
 			<tr>
 				<th>글제목</th>
@@ -73,6 +74,7 @@
 				<th>글내용</th>
 				<td colspan="3" class="left">${board.content}</td>
 			</tr>
+			
 			</table>
 			
 			<%--
