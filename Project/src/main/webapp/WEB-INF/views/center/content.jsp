@@ -141,7 +141,7 @@ tbody {
 				 onclick="location.href='/board/reply?reRef=${board.reRef}&reLev=${board.reLev}&reSeq=${board.reSeq}&pageNum=${param.pageNum}';">
 			</sec:authorize>
 				 
-			<input type="button" value="글목록" class="btn" onclick="location.href='/contact?pageNum=${param.pageNum}';">
+			<input type="button" value="글목록" class="btn" onclick="location.href='/contact?pageNum=${param.pageNum}';" style="float: right;">
 			</div>
 			
 			<div class="clear"></div>
