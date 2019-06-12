@@ -135,6 +135,7 @@
 					</div>
 					</c:when>
 				</c:choose>
+				${movie.avgScore}
                </div>
             </div>
          </div>
@@ -222,7 +223,8 @@
 					<div class="rat" style="width: 80px; z-index: 1;"></div>
 				</div>
 			</c:when>
-		</c:choose>     
+		</c:choose>
+		${movie.avgScore}     
 		</div>
 		</li>    
 		</c:forEach>
@@ -298,7 +300,8 @@
 				<div class="rat" style="width: 80px; z-index: 1;"></div>
 				</div>
 				</c:when>
-			</c:choose>    
+			</c:choose>
+			${movie.avgScore}    
             </div>
          </li>    
          </c:forEach>
@@ -377,7 +380,8 @@
 				<div class="rat" style="width: 80px; z-index: 1;"></div>
 				</div>
 				</c:when>
-			</c:choose>    
+			</c:choose>
+			${movie.avgScore}    
             </div>
          </li>    
          </c:forEach>
