@@ -137,14 +137,6 @@ function formCheck() {
 					<label>좋아하는 동물 이름은?</label>
 					<input type = "text" name = "hint">
 					<label>Gender</label>
-					<div class="row">
-					<div class="col-md-6">
-						W<input type="radio" name="gender" value="여" width="20%">
-					</div>
-					<div class="col-md-6">
-						M<input type="radio" name="gender" value="남" width="20%">
-					</div>
-					</div>
 				</fieldset>
 				<div class="clear"></div>
 				<div id="buttons">
