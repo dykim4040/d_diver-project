@@ -30,6 +30,7 @@ public class PurchaseController {
 	@Setter(onMethod_ = @Autowired)
 	private MemberService memberService;
 	
+	
 	@GetMapping("/cash")
 	public String cash() {
 		System.out.println("<< cash, GET >>");

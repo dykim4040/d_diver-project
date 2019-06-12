@@ -67,6 +67,37 @@ location.href="/member/login";
 <!-- Cash section end -->
 
 
+<!-- tier section -->
+<section class="facts-section">
+<div class="facts-warp">
+<div class="container cash">
+<fieldset>
+	<label><b>${member.id }</b> 님의 현재 패키지 는 </label>
+	 <label><sec:authorize access="isAuthenticated()">
+         <form action="<c:url value='/member/logout'/>" method="POST">
+         <c:choose>
+         <c:when test="${pack == 'G' }">
+         <img src="/resources/img/package/gold.png">
+         </c:when>
+         <c:when test="${pack == 'S' }">
+         <img src="/resources/img/package/silver.png">
+         </c:when>
+         <c:when test="${pack == 'B' }">
+         <img src="/resources/img/package/bronze.png">
+       
+         </c:when>
+         </c:choose>
+         </form>
+      </sec:authorize>
+      </label>
+</fieldset>
+</div>
+</div>
+</section>
+<!-- tier section end -->
+
+
+
 <!-- Facts section -->
 <section class="facts-section">
 <div class="facts-warp">

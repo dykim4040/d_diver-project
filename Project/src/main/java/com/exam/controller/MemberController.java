@@ -201,9 +201,18 @@ public class MemberController {
 	}
 
 	// 회원정보수정페이지완료
-	@PostMapping("/upDateInfo")
-	public String upDateMember(MemberVO memberVO) {
+	@PostMapping("/upDateInfo" )
+	public String upDateMember(MemberVO memberVO , HttpServletResponse response) throws IOException {
 		System.out.println("<< upDate 됬어요 호출 >>");
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>");
+        out.println("alert('수정이되었습니다.');");
+        out.println("location.href='/'");
+        out.println("</script>");
+        out.close();
+		
+		
 		service.upDateMember(memberVO);
 		
 		return "/index";
