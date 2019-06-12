@@ -67,7 +67,7 @@ public class HomeController {
             PrintWriter out = response.getWriter();
             out.println("<script>");
             out.println("alert('로그인이 필요합니다.');");
-            out.println("location.href='member/login'");
+            out.println("location.href='member/login';");
             out.println("</script>");
             out.close();
             return null;

@@ -131,7 +131,7 @@ to {
 <div id="preloder">
 	<div class="loader"></div>
 </div>
-<div id="wish-list-selected" style="display: none;">${wishList }</div>
+<div id="wish-list-selected" style="display: none;">${wishList}</div>
 <!-- Header section -->
 <jsp:include page="/WEB-INF/views/inc/top.jsp"></jsp:include>
 <!-- Header section end -->
@@ -269,7 +269,7 @@ to {
 				</li>
 			</ul>
 <!-- 			<button class="btn">구매하기</button> -->
-			<button class="btn wish-list">즐겨찾기</button>
+			<button class="btn btn-wish wish-list">즐겨찾기</button>
 			<!-- 선택되면 selected 클래스 추가 -->
 		</div>
 	</div>

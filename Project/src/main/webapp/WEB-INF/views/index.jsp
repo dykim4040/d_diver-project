@@ -135,6 +135,7 @@
 					</div>
 					</c:when>
 				</c:choose>
+				${movie.avgScore}
                </div>
             </div>
          </div>
@@ -222,7 +223,8 @@
 					<div class="rat" style="width: 80px; z-index: 1;"></div>
 				</div>
 			</c:when>
-		</c:choose>     
+		</c:choose>
+		${movie.avgScore}     
 		</div>
 		</li>    
 		</c:forEach>
@@ -298,7 +300,8 @@
 				<div class="rat" style="width: 80px; z-index: 1;"></div>
 				</div>
 				</c:when>
-			</c:choose>    
+			</c:choose>
+			${movie.avgScore}    
             </div>
          </li>    
          </c:forEach>
@@ -314,8 +317,8 @@
       <ul class="sp-recipes-list">
 		<li>
       
-      <c:if test="${not empty catelist }">
-   <c:forEach var="movie" items="${catelist}">
+    	<c:if test="${not empty catelist }">
+   		<c:forEach var="movie" items="${catelist}">
       
          <li>
          <a href="/movieDetail?movieCd=${movie.movieCd}"><img src="${movie.covThUrl}" width="200px" height="250px"></a>
@@ -376,7 +379,8 @@
 				<div class="rat" style="width: 80px; z-index: 1;"></div>
 				</div>
 				</c:when>
-			</c:choose>    
+			</c:choose>
+			${movie.avgScore}    
             </div>
          </li>    
          </c:forEach>

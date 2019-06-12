@@ -64,7 +64,7 @@
 			</tr>
 			<tr>
 				<th>작성자</th><td>${board.name}</td>
-				<th>작성일</th><td>${board.regDate}</td>
+				<th>작성일</th><td><fmt:formatDate value="${board.regDate }" pattern="yyyy.MM.dd HH:mm:ss"/></td>
 			</tr>
 			<tr>
 				<th>글제목</th>
