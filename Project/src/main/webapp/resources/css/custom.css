@@ -264,6 +264,10 @@
 	margin-top: 20px;	
 }
 
+.btn-wish {
+	background: #b7b0b0;
+}
+
 .selected {
 	background: #ea003d;
 	color: #fff;	
