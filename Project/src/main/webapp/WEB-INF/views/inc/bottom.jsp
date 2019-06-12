@@ -6,8 +6,8 @@
 	<div class="row">
 		<div class="col-lg-6">
 			<div class="footer-logo" style="height: 55px;">
-<!-- 				<img src="/resources/img/logo.png" alt=""> -->
-				WEBFLIX
+ 				<img src="/resources/img/logo.png" alt=""> 
+<!-- 				WEBFLIX -->
 			</div>
 			<div class="footer-social">
 				<a href="#"><i class="fa fa-pinterest"></i></a>

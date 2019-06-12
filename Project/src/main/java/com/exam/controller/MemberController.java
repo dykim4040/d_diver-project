@@ -3,6 +3,8 @@ package com.exam.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.Principal;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,13 +14,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.exam.domain.AuthVO;
 import com.exam.domain.MemberVO;
+import com.exam.mapper.AuthMapper;
 import com.exam.mapper.MemberMapper;
 import com.exam.service.MemberService;
 
@@ -39,8 +44,11 @@ public class MemberController {
 	@Setter(onMethod_ = @Autowired)
 	private MemberMapper memberMapper;
 	
+	@Setter(onMethod_ = @Autowired)
+	private AuthMapper authMapper;
+	
 	@GetMapping("/login")
-	public String login(String error, String logout, Model model) {
+	public String login(String error, String logout, Model model, Principal principal) {
 		System.out.println("<< login 호출 >>");
 		
 		if (error != null) {
@@ -50,6 +58,13 @@ public class MemberController {
         if (logout != null) {
             model.addAttribute("logout", "로그아웃 완료!");
         }
+        if (principal == null) {
+        	return "member/login";
+        }
+        List<AuthVO> list = authMapper.selectAuthListById(principal.getName());
+        System.out.println(list.size());
+        System.out.println(list);
+        
         
 		return "member/login";
 	}
@@ -94,6 +109,28 @@ public class MemberController {
 //
 //		return "member/logout";
 //	}
+	
+	
+	// 만 나이 계산하는 메소드
+	public int countAge(Date date) {
+		Date now = new Date();
+		int difYear = now.getYear() - date.getYear();
+		int difMonth = now.getMonth() - date.getMonth();
+		int difDate = now.getDate() - date.getDate();
+		
+		if (difDate < 0) {
+			difMonth -= 1;
+		}
+		
+		if (difMonth < 0) {
+			difYear -= 1;
+		}
+		
+		System.out.println(difYear + ", " + difMonth + ", " + difDate);
+		
+		return difYear;
+	}
+	
 
 	@GetMapping("/join")
 	public String join() {
@@ -110,7 +147,26 @@ public class MemberController {
         log.info(memberVO);
 		
 		service.join(memberVO);
-
+		
+		// 만 나이 계산해서 나이별로 권한 입력
+		int age = countAge(memberVO.getBirthday());
+		System.out.println(age);
+		
+		if (age < 12) {
+			authMapper.insertAuth(memberVO.getId(), "ROLE_UNDER12");
+			// 12세 미만, 전체관람가만 시청 가능
+		} else if (age < 15) {
+			authMapper.insertAuth(memberVO.getId(), "ROLE_UNDER15");
+			// 15세 미만, 전체관람가, 12세이상관람가만 시청 가능 
+		} else if (age < 19) {
+			authMapper.insertAuth(memberVO.getId(), "ROLE_UNDER19");
+			// 19세 미만, 전체관람가, 12세이상관람가, 15세이상관람가만 시청 가능
+		} else {
+			authMapper.insertAuth(memberVO.getId(), "ROLE_ADULT");
+			// 성인, 모든 영화 시청 가능
+		}
+		
+		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "text/html; charset=UTF-8");
 
@@ -134,9 +190,20 @@ public class MemberController {
 	}
 
 	@GetMapping("/myInfo")
-	public String myInfo(String id, Model model) {
+	public String myInfo(Model model, Principal principal, HttpServletResponse response) throws Exception {
 		System.out.println("<< myInfo 호출 >>");
-
+		
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+		if (principal == null) {
+			out.println("<script>");
+			out.println("alert('로그인이 필요합니다.');");
+			out.println("location.href='/';");
+			out.println("</script>");
+			out.close();
+			return null;
+		}
+		String id = principal.getName();
 		MemberVO member = service.getMember(id);
 		String pack = service.getCurrPackage(id);
 		
@@ -166,10 +233,11 @@ public class MemberController {
 		return "member/delete";
 	}
 
+	@Transactional
 	@PostMapping("/memberDelete")
-	public String memberDelete(Model model, String id, String password, MemberVO memberVO, Principal principal) {
+	public String memberDelete(Model model, String id, String password, MemberVO memberVO, Principal principal, HttpServletResponse response) throws Exception {
 		System.out.println("<< delete 호출 >>");
-		
+		System.out.println("id : " + id);
 		memberVO=memberMapper.getMemberById(id);
 		
 		String encodedPassword = memberVO.getPassword();;
@@ -177,14 +245,30 @@ public class MemberController {
 		MemberVO member = service.getMember(id);
 		model.addAttribute("member", member);
 		
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
 		if (passwordEncoder.matches(password, encodedPassword)) {
 		    System.out.println("계정정보 일치");
 		    service.deleteMember(id);
-		    return "redirect:/member/logout";
+		    memberMapper.deleteAllPackageById(id);
+		    authMapper.deleteAuthById(id);
+		    
+		    
+            out.println("<script>");
+            out.println("alert('성공적으로 탈퇴하였습니다.');");
+            out.println("location.href='/';");
+            out.println("</script>");
+            out.close();
+            return null;
 	    } else {
+	    	out.println("<script>");
+            out.println("alert('비밀번호가 일치하지 않습니다.');");
+            out.println("location.href='/member/memberDelete';");
+            out.println("</script>");
+            out.close();
 	        System.out.println("계정정보 불일치");
 	        model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
-	        return "member/delete";
+	        return null;
 	    }
 	}
 
@@ -201,9 +285,18 @@ public class MemberController {
 	}
 
 	// 회원정보수정페이지완료
-	@PostMapping("/upDateInfo")
-	public String upDateMember(MemberVO memberVO) {
+	@PostMapping("/upDateInfo" )
+	public String upDateMember(MemberVO memberVO , HttpServletResponse response) throws IOException {
 		System.out.println("<< upDate 됬어요 호출 >>");
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        out.println("<script>");
+        out.println("alert('수정이되었습니다.');");
+        out.println("location.href='/'");
+        out.println("</script>");
+        out.close();
+		
+		
 		service.upDateMember(memberVO);
 		
 		return "/index";

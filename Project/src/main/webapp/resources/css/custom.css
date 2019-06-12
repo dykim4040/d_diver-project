@@ -1,3 +1,7 @@
+.bg-hight {
+	height: 420px;
+}
+
 .join{
 	width: 100%;
 	margin-bottom: 25px;
@@ -258,6 +262,10 @@
 	color: #fff;
 	min-width: 140px;
 	margin-top: 20px;	
+}
+
+.btn-wish {
+	background: #b7b0b0;
 }
 
 .selected {

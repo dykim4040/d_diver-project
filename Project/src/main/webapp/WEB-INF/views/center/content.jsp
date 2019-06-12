@@ -99,6 +99,7 @@ tbody {
 		<div class="contact-form-warp">
 			
 			<article>
+			
 			<h1>Q&A 내용</h1>
 			<table class="notice">
 			<thead>
@@ -108,7 +109,7 @@ tbody {
 			</tr>
 			<tr>
 				<th>작성자</th><td style="border-right: 1px solid #fff">${board.name}</td>
-				<th>작성일</th><td>${board.regDate}</td>
+				<th>작성일</th><td><fmt:formatDate value="${board.regDate }" pattern="yyyy.MM.dd HH:mm:ss"/></td>
 			</tr>
 			
 			
@@ -122,6 +123,7 @@ tbody {
 				<td colspan="4" class="content">${board.content}</td>
 			</tr>
 			</tbody>
+			
 			</table>
 			
 			<%--
