@@ -54,8 +54,9 @@
 			<h1>Q&A 글쓰기</h1>
 			
 			<form action="/board/write" method="post" name="frm">
+
 			<table id="notice">
-<!-- 			<tr><th>작성자명</th><td><input type="text" name="name"></td></tr> -->
+<!-- 			<tr><th>작성자</th><td><input type="text" name="name"></td></tr> -->
 <!-- 			<tr><th>비밀번호</th><td><input type="password" name="pass"></td></tr> -->
 			<tr><th>글제목</th><td><input type="text" name="subject"></td></tr>
 			<tr>

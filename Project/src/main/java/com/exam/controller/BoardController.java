@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,20 +42,21 @@ public class BoardController {
     }
     
     @PostMapping("/write")
-    public String write(BoardVO boardVO, HttpServletRequest request) {
+    public String write(BoardVO board, HttpServletRequest request, Principal principal) {
         log.info(" << write(), POST >> ");
         // 시퀀스로부터 글번호 구하기
         int num = service.getSeqBoardNum();
-        boardVO.setNum(num);  // 주글번호
-        boardVO.setReRef(num); // re_ref == num 주글일때는 글그룹번호와 글번호가 같음.
-        boardVO.setReLev(0);  // re_lev 들여쓰기 레벨
-        boardVO.setReSeq(0);  // re_seq 글그룹 내에서는 오름차순 정렬. 최상단에 주글이 옴.
-        boardVO.setReadCount(0); // readCount 조회수 0
+        board.setName(principal.getName());
+        board.setNum(num);  // 주글번호
+        board.setReRef(num); // re_ref == num 주글일때는 글그룹번호와 글번호가 같음.
+        board.setReLev(0);  // re_lev 들여쓰기 레벨
+        board.setReSeq(0);  // re_seq 글그룹 내에서는 오름차순 정렬. 최상단에 주글이 옴.
+        board.setReadCount(0); // readCount 조회수 0
         
         // 글작성자 IP주소 값 저장
-        boardVO.setIp(request.getRemoteAddr());
+        board.setIp(request.getRemoteAddr());
         
-        service.insert(boardVO);
+        service.insert(board);
         return "redirect:/contact";
     }
     
@@ -83,23 +85,43 @@ public class BoardController {
     
     
     @GetMapping("/modify")
-    public String modify(int num, Model model) {
+    public String modify(int num, Model model, HttpSession session) {
         System.out.println("<< Modify 호출 >>");
         
         BoardVO board = service.getBoard(num);
         model.addAttribute("board", board);
-        System.out.println("num : " + num);
         
         return "center/update";
     } //modify GET
     
+    @PreAuthorize("principal.username == #board.name")
     @PostMapping("/modify")
-    public String modify(Model model, BoardVO boardVO, int num, Principal principal) {
+    public ResponseEntity<String> modify(Model model, BoardVO board, int num, Principal principal, String pageNum) {
         System.out.println("update 됬어! ");
         
-        service.updateBoard(boardVO);
+//        service.updateBoard(boardVO);
+//        
+//        return "redirect:/contact";
         
-        return "redirect:/contact";
+        boolean isSuccess = service.updateBoard(board);
+        
+        if(!isSuccess) { //글 수정 실패
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "text/html; charset=UTF-8"); 
+            
+            StringBuilder sb = new StringBuilder();
+            sb.append("<script>");
+            sb.append("alert('글 작성자가 다릅니다!');");
+            sb.append("history.back();");
+            sb.append("</script>");
+            
+            return new ResponseEntity<String>(sb.toString(), headers, HttpStatus.OK);
+        }
+        
+        //글 수정 성공 이후 글목록으로 리다이렉트
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Location", "/contact?pageNum="+pageNum); //redirect 경로 위치
+        return new ResponseEntity<String>(headers, HttpStatus.FOUND);
     }// modify POST
     
     
@@ -114,7 +136,7 @@ public class BoardController {
     public ResponseEntity<String> delete(Model model, int num, String pageNum, BoardVO boardVO, Principal principal) {
         System.out.println("<< delete 호출 >>");
         
-        boolean isSuccess = service.deleteBoard(num);
+        boolean isSuccess = service.deleteBoard(num, principal.getName());
         
         //삭제 성공 이후 글목록으로 리다이렉트
         HttpHeaders headers = new HttpHeaders();
@@ -129,12 +151,13 @@ public class BoardController {
     }
     
     @PostMapping("/reply")
-    public String reply(BoardVO board, HttpServletRequest request, String pageNum, RedirectAttributes rttr) {
+    public String reply(BoardVO board, HttpServletRequest request, String pageNum, RedirectAttributes rttr, Principal principal) {
         // 사용자 직접 입력값(답글내용) 파라미터 가져와서 저장
         // [답글을 다는 대상글]의 답글관련 정보 파라미터 가져와서 저장
         
         // 답글 작성자의 IP주소 가져와서 저장
         board.setIp(request.getRemoteAddr());
+        board.setName(principal.getName());
         
         service.replyInsert(board); // 답글등록
         

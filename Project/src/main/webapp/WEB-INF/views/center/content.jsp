@@ -81,7 +81,8 @@
 			 --%>
 			<div id="table_search">
 			<sec:authorize access="isAuthenticated()">
-			<c:if test="${principal.username eq board.name}">
+			<c:set var="id"><sec:authentication property="principal.member.id"/></c:set>
+			<c:if test="${id eq board.name}">
 				<input type="button" value="글수정" class="btn" onclick="location.href='/board/modify?num=${board.num}&pageNum=${param.pageNum}';">
 				<input type="button" value="글삭제" class="btn" onclick="location.href='/board/delete?num=${board.num}&pageNum=${param.pageNum}';">
 			</c:if>
