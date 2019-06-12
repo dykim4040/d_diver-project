@@ -76,7 +76,7 @@
 							
 							<div>${message }</div>
 							
-						<button type="submit"  id="delete">탈퇴하기</button>
+						<button type="submit"  id="delete" class="btn">탈퇴하기</button>
 					</fieldset>
 				</div>
 			</sec:authorize>	
