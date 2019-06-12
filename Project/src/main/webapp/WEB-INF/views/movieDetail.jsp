@@ -3,11 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Food Blog - Web Template</title>
+<title>Webflix - ${movieInfo.movieNm} 영화 정보</title>
 <meta charset="UTF-8">
 <meta name="description" content="Food Blog Web Template">
 <meta name="keywords" content="food, unica, creative, html">

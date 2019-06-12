@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>WEB MOVIE</title>
+<title>Webflix 대한민국 - 인터넷으로 영화를 시청하세요</title>
 <meta charset="UTF-8">
 <meta name="description" content="Food Blog Web Template">
 <meta name="keywords" content="food, unica, creative, html">

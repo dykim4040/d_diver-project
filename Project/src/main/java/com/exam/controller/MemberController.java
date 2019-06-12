@@ -146,15 +146,15 @@ public class MemberController {
 			pack += "ilver";
 		} else if ("B".equals(pack)) {
 			pack += "ronze";
-		} else if (pack != null) {
+		} else if (pack == null) {
 			pack = "없음";
 		}
+		System.out.println("pack : [" + pack + "]");
 
-		model.addAttribute("pack", pack);
+		model.addAttribute("myPack", pack);
 		model.addAttribute("member", member);
 		System.out.println("아이디 : " + id);
 		System.out.println("RegDate : " + member.getRegDate());
-
 
 		return "member/myInfo";
 	}

@@ -2,11 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Food Blog - Web Template</title>
+<title>Webflix</title>
 <meta charset="UTF-8">
 <meta name="description" content="Food Blog Web Template">
 <meta name="keywords" content="food, unica, creative, html">
@@ -81,7 +80,7 @@
 							
 						<label>Mypackage</label>
 						<input type="text" name="Mypackage" disabled="disabled"
-							value="${pack }" required><br> 
+							value="${myPack }" required><br> 
 							
 						<label>cash</label> 
 						<input type="text" name="cash" disabled="disabled"
