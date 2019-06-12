@@ -55,6 +55,7 @@
 		<div class="contact-form-warp">
 			
 			<article>
+			
 			<h1>Q&A 내용</h1>
 			<table id="notice">
 			<tr>
@@ -73,6 +74,7 @@
 				<th>글내용</th>
 				<td colspan="3" class="left">${board.content}</td>
 			</tr>
+			
 			</table>
 			
 			<%--

@@ -60,6 +60,7 @@
 <!-- 			<tr><th>비밀번호</th><td><input type="password" name="pass"></td></tr> -->
 			<tr><th>글제목</th><td><input type="text" name="subject"></td></tr>
 			<tr>
+			<tr>
 				<th>글내용</th>
 				<td><textarea rows="13" cols="40" name="content"></textarea></td>
 			</tr>
