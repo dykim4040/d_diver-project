@@ -1,6 +1,11 @@
 package com.exam.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.Principal;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -213,11 +218,9 @@ public class MemberController {
 	}
 	
 	@PostMapping("/hintID")
-	public String hintID(MemberVO member, Model model) {
+	public String hintID(MemberVO member, Model model ) {
 		System.out.println("<< hintID, POST >>"); 
 		int check = service.countById(member.getId());
-		HttpHeaders headers = new HttpHeaders();
-		StringBuffer msg = new StringBuffer();
 
 		model.addAttribute("id", member.getId());
 		return "member/hintUser";
@@ -235,17 +238,20 @@ public class MemberController {
 	}
 
 	@PostMapping("/hintUser")
-	public String hintUser(MemberVO member, Model model) {
+	public String hintUser(MemberVO member, Model model ,HttpServletResponse response) throws IOException {
 		System.out.println("<< hintUser, POST >>");
 		System.out.println(member);
 		String hint = service.getHintById(member.getId());
-		HttpHeaders headers = new HttpHeaders();
-		StringBuffer msg = new StringBuffer();
 
-		if (hint.equals(member.getHint())) {
-
-		} else {
-			return "member/hintID";
+		if (!hint.equals(member.getHint())) {
+			response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            out.println("alert('힌트가 맞지않습니다.');");
+            out.println("location.href='/member/hintID'");
+            out.println("</script>");
+            out.close();
+            return null;
 		}
 
 		model.addAttribute("id", member.getId());
@@ -268,9 +274,7 @@ public class MemberController {
 		String encodedPassword = passwordEncoder.encode(member.getPassword());
 		member.setPassword(encodedPassword);
 		int check = service.updatePassword(member.getId() , member.getPassword());
-		HttpHeaders headers = new HttpHeaders();
-		StringBuffer msg = new StringBuffer();
-		
+   
 
 		model.addAttribute("id", member.getId());
 	

@@ -59,12 +59,18 @@ public class HomeController {
 	}//main()
 	
 	@GetMapping("/myContents")
-	public String myContents(Principal principal, Model model) throws Exception {
+	public String myContents(Principal principal, Model model, HttpServletResponse response) throws Exception {
 		System.out.println("<< myContents 호출 >>");
 		
 		if (principal == null) {
-			
-			return "/member/login";
+			response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            out.println("alert('로그인이 필요합니다.');");
+            out.println("location.href='member/login'");
+            out.println("</script>");
+            out.close();
+            return null;
 		}
 		String id = principal.getName();
 		

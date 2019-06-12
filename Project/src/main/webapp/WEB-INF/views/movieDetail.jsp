@@ -29,156 +29,100 @@
 <link rel="stylesheet" href="/resources/css/custom.css" />
 <style>
 
- .ratt{
-
-		background-image: url('/resources/img/grade_img.png');
-        background-repeat: no-repeat;
-        vertical-align: middle;
-        display: inline-block;
-        width: 80px;
-        height: 16px;
-        background-size: 80px 32px;
-        white-space: nowrap;
-        position: relative;
-       
-   }
-   
-.rat{
-       display: inline-block;
-       background-size: 80px 32px;
-       background-position: 0 bottom;
-       height: 16px;
-       position: absolute;
-       background-image: url('/resources/img/grade_img.png');
-       background-repeat: no-repeat;
-       vertical-align: middle;
-       
-   }
-
-
-.ratt {
-	background-image: url('/resources/img/grade_img.png');
-    background-repeat: no-repeat;
-    vertical-align: middle;
-    display: inline-block;
-    width: 80px;
-    height: 16px;
-    background-size: 80px 32px;
-    white-space: nowrap;
-    position: relative;
-}
-.rat{
-    display: inline-block;
-    background-size: 80px 32px;
-    background-position: 0 bottom;
-    height: 16px;
- /* width: 15px;
-    z-index: 4; */
-    position: absolute;
-    background-image: url('/resources/img/grade_img.png');
-    background-repeat: no-repeat;
-    vertical-align: middle;
-    
-}
 /*slide-container*/
-.slideshow-container{
-    width: 800px;
-    height: 450px;
-    position: relative;
-    margin: auto;
-    display: table;
+.slideshow-container {
+	width: 800px;
+	height: 450px;
+	position: relative;
+	margin: auto;
+	display: table;
 }
-.mySlides{
+
+.mySlides {
 	display: table-cell;
 	vertical-align: middle;
 	text-align: center;
 	margin: auto
 }
 
-.slideshow-container .mySlides img{
-    height: 450px;
-    
+.slideshow-container .mySlides img {
+	height: 450px;
 }
 
-
-.mySlides{
-    display: none;
+.mySlides {
+	display: none;
 }
 
 /* next & prev buttons*/
-
-.prev, .next{
-    cursor: pointer;
-    width: auto;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-    user-select: none;
+.prev, .next {
+	cursor: pointer;
+	width: auto;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
 }
 
-.next{
-    right: 0;
-    border-radius: 3px 0 0 3px;
+.next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
 }
 
-.prev:hover, .next:hover{
-    background-color: rgba(0,0,0,0.8);
-
+.prev:hover, .next:hover {
+	background-color: rgba(0, 0, 0, 0.8);
 }
 
-
-.number{
-    color: #f2f2f2;
-    font-size: 12px;
-    padding: 8px 12px;
-    position: absolute;
-    top: 0;
+.number {
+	color: #f2f2f2;
+	font-size: 12px;
+	padding: 8px 12px;
+	position: absolute;
+	top: 0;
 }
 
-.dot{
-    cursor: pointer;
-    height: 10px;
-    width: 10px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: backgrount-color 0.6s easel
+.dot {
+	cursor: pointer;
+	height: 10px;
+	width: 10px;
+	margin: 0 2px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	transition: backgrount-color 0.6s easel
 }
 
-.active, .dot:hover{
-    background-color: #717171;
+.active, .dot:hover {
+	background-color: #717171;
 }
 
-.fade{
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
-    animation-name: fade;
-    animation-duration: 1.5s;
+.fade {
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 1.5s;
+	animation-name: fade;
+	animation-duration: 1.5s;
 }
 
-@-webkit-keyframes fade{
-    from{
-        opacity: .4;
-    }
-    to{
-        opacity: 1;
-    }
+@
+-webkit-keyframes fade {from { opacity:.4;
+	
 }
 
-@keyframes fade{
-    from{
-        opacity: .4;
-    }
-    to{
-        opacity: 1;
-    }
+to {
+	opacity: 1;
 }
 
+}
+@
+keyframes fade {from { opacity:.4;
+	
+}
 
-
+to {
+	opacity: 1;
+}
+}
 </style>
 
 </head>
@@ -208,7 +152,7 @@
 <div class="recipe-view-section">
 	<div class="container">
 		<%-- 		<img src="${movie.covThUrl}" width="350px" height="500px"> --%>
-		<iframe width="100%" height="600"
+		<iframe id="mov1" width="100%" 
 			src="https://www.youtube.com/embed/pWemV6TiUZE" frameborder="0"
 			allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -325,8 +269,8 @@
 					</c:forEach>
 				</li>
 			</ul>
-			<button class="btn">구매하기</button>
-			<button class="btn wish-list" style="float: right;">즐겨찾기</button>
+<!-- 			<button class="btn">구매하기</button> -->
+			<button class="btn wish-list">즐겨찾기</button>
 			<!-- 선택되면 selected 클래스 추가 -->
 		</div>
 	</div>
@@ -391,7 +335,7 @@ if(test != null){
 				
 			</output>
 			</span>
-			<button class="btn" type="submit">별</button>
+			<button class="btn" type="submit">평점 등록</button>
 		</form>
 		</div>
 		
@@ -496,6 +440,9 @@ $(document).ready(function(){
 	if (wishList == 'selected') {
 		$('.wish-list').addClass('selected');
 	}
+	var iframeWidth = $("#mov1").outerWidth();
+	var iframeHeight = (iframeWidth / 16) * 9;
+	$("#mov1").attr("height", iframeHeight);
 	
 	$('#frmStar').submit(function(){
 		var movieCd = $('input[name=movieCd]').val();
@@ -512,13 +459,19 @@ $(document).ready(function(){
 			},
 			
 			success : function(){
-				alert("별점이 들어갔습니다.");
+				alert("평점이 등록되었습니다.");
 				location.reload();
 			}
 			
 		});
 		
 		return false;
+	});
+	
+	$(window).resize(function() {
+		iframeWidth = $("#mov1").outerWidth();
+		iframeHeight = (iframeWidth / 16) * 9;
+		$("#mov1").attr("height", iframeHeight);
 	});
 	
 	$('.wish-list').on('click', function() {

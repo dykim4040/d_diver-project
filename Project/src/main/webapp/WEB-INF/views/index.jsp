@@ -25,35 +25,6 @@
 <link rel="stylesheet" href="/resources/css/style.css"/>
 <link rel="stylesheet" href="/resources/css/custom.css" />
 
-<style>
- .ratt{
-	background-image: url('/resources/img/grade_img.png');
-            background-repeat: no-repeat;
-            vertical-align: middle;
-        
-        display: inline-block;
-        width: 80px;
-        height: 16px;
-        background-size: 80px 32px;
-        white-space: nowrap;
-      
-        position: relative;
-       
-   }
-   .rat{
-       display: inline-block;
-       background-size: 80px 32px;
-       background-position: 0 bottom;
-       height: 16px;
-	   /* width: 15px;
-       z-index: 4; */
-       position: absolute;
-       background-image: url('/resources/img/grade_img.png');
-            background-repeat: no-repeat;
-            vertical-align: middle;
-       
-   }
-</style>
 </head>
 <body>
 <!-- Page Preloder -->
@@ -89,17 +60,10 @@
 
 <section class="review-section">
 <div class="container">
-<div class="section-title">
-      <h2>영화 예고편</h2>
-      </div>
-   <div class="row">
-      <div class="col-lg-6 col-md-8 offset-lg-0 offset-md-2">         
-                  <iframe width="1100" height="520" src="https://www.youtube.com/embed/Q38h5XD4RKE?amp;autoplay=1"
-                  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen></iframe>     
-                 </div>
-               </div>
-            </div>
+	<iframe id="mov1" width="100%" src="https://www.youtube.com/embed/Q38h5XD4RKE?amp;autoplay=1"
+	frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+	allowfullscreen></iframe>     
+</div>
 </section>
 <!-- Recipes section -->
 <section class="recipes-section spad pt-6">
@@ -453,5 +417,19 @@
 <script src="/resources/js/jquery-3.2.1.min.js"></script>
 <script src="/resources/js/owl.carousel.min.js"></script>
 <script src="/resources/js/main.js"></script>
+<script>
+$(document).ready(function() {
+	var iframeWidth = $("#mov1").outerWidth();
+	var iframeHeight = (iframeWidth / 16) * 9;
+	$("#mov1").attr("height", iframeHeight);
+
+	
+	$(window).resize(function() {
+		iframeWidth = $("#mov1").outerWidth();
+		iframeHeight = (iframeWidth / 16) * 9;
+		$("#mov1").attr("height", iframeHeight);
+	});
+});
+</script>
 </body>
 </html>

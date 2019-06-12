@@ -72,9 +72,9 @@ $(function() {
 				console.log('result: ' + isDup);
 
 				if (isDup) {// id중복
-					$('span#dupCheck').html('존재하는 아이디입니다.').css('color', 'green');
+					$('span#dupCheck').html('해당하는 아이디가 존재합니다!').css('color', 'green');
 				} else { // id중복아님
-					$('span#dupCheck').html('존재 하지 않은 아이디입니다.').css('color', 'red');
+					$('span#dupCheck').html('해당하는 아이디가 존재하지않습니다!').css('color', 'red');
 				}
 			}
 		});
