@@ -233,7 +233,7 @@ ol {
 }
 
 .header-top {
-	background: #141414;
+	background: #222222;
 	overflow: hidden;
 	padding: 18px 0;
 }
@@ -376,7 +376,7 @@ ol {
 
 .hs-title-2 span {
 	padding: 5px 28px;
-	background: #fdc856;
+	background: #c40f0f;
 	-webkit-transform: rotate(0deg);
 	    -ms-transform: rotate(0deg);
 	        transform: rotate(0deg);
@@ -391,7 +391,7 @@ ol {
 
 .hs-title-3 span {
 	padding: 10px 28px;
-	background: #bdde64;
+	background: #c40f0f;
 	-webkit-transform: rotate(0deg);
 	    -ms-transform: rotate(0deg);
 	        transform: rotate(0deg);
