@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Food Blog - Web Template</title>
+<title>Webflix - 고객센터</title>
 <meta charset="UTF-8">
 <meta name="description" content="Food Blog Web Template">
 <meta name="keywords" content="food, unica, creative, html">
@@ -25,7 +25,47 @@
 <link rel="stylesheet" href="/resources/css/animate.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
 <link rel="stylesheet" href="/resources/css/custom.css" />
+<style>
+.notice{
+	width: 100%;
+	border-collapse: collapse;
+	letter-spacing: 0;
+	border-top: 1px solid #fff;
+	margin-bottom: 30px;
+	position: relative;
+	z-index: 1;
+}
+.content{
+	width: 100%;
+	height: 300px;
+	background: #747474;
+	color: #fff;
+	border-radius: 5px 5px 5px 5px;
+	border: 1px solid #212121;
+}
+tr{
+	display: table-row;
+	vertical-align: inherit;
+	border-color: inherit;
+}
 
+.notice th, .notice td{
+	padding: 8px 16px;
+	border-bottom: 1px solid #fff;
+}
+th{
+/* 	border-right: 1px solid #fff; */
+	text-align: center;
+}
+input {
+	color: #fff; 
+	background: #747474;
+	border-radius: 5px 5px 5px 5px;
+	border: 1px solid #212121;
+}
+
+
+</style>
 </head>
 <body>
 <!-- Page Preloder -->
@@ -55,21 +95,26 @@
 			
 			<form action="/board/write" method="post" name="frm">
 
-			<table id="notice">
+			<table class="notice">
 <!-- 			<tr><th>작성자</th><td><input type="text" name="name"></td></tr> -->
 <!-- 			<tr><th>비밀번호</th><td><input type="password" name="pass"></td></tr> -->
-			<tr><th>글제목</th><td><input type="text" name="subject"></td></tr>
+			<tr>
+			<th>글제목</th>
+			<td><input type="text" name="subject"></td>
+			</tr>
 			<tr>
 			<tr>
 				<th>글내용</th>
-				<td><textarea rows="13" cols="40" name="content"></textarea></td>
+				<td>
+				<textarea rows="13" cols="40" name="content" class="content" ></textarea>
+				</td>
 			</tr>
 			</table>
 			
 			<div id="table_search">
 			<input type="submit" value="글쓰기" class="btn">
 			<input type="reset" value="다시작성" class="btn">
-			<input type="button" value="글목록" class="btn" onclick="location.href='/contact';">
+			<input type="button" value="글목록" class="btn" onclick="location.href='/contact';" style="float: right;">
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			</form>

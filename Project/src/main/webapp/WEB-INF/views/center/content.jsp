@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Food Blog - Web Template</title>
+<title>Webflix - 고객센터</title>
 <meta charset="UTF-8">
 <meta name="description" content="Food Blog Web Template">
 <meta name="keywords" content="food, unica, creative, html">
@@ -26,7 +26,51 @@
 <link rel="stylesheet" href="/resources/css/animate.css" />
 <link rel="stylesheet" href="/resources/css/style.css" />
 <link rel="stylesheet" href="/resources/css/custom.css" />
+<style>
+.notice{
+	width: 100%;
+	border-collapse: collapse;
+	letter-spacing: 0;
+	border-top: 1px solid #fff;
+	margin-bottom: 30px;
+	position: relative;
+	z-index: 1;
+	text-align: center;
+}
+thead {
+	display: table-header-group;
+	vertical-align: middle;
+	border-color: inherit;
+}
+tr{
+	display: table-row;
+	vertical-align: inherit;
+	border-color: inherit;
+	border-top: 1px solid #fff;
+}
+thead {
+	display: table-row-group;
+	vertical-align: middle;
+	border-color: inherit;
+}
+.notice .content{
+	padding: 20px;
+	border-left: 0;
+}
 
+th td{
+	padding: 10px 16px;
+	word-break:break-all;
+	border-right: 1px solid #fff; 
+}
+th{
+	border-right: 1px solid #fff;
+}
+tbody {
+	 border-bottom: 1px solid #fff;
+}
+
+</style>
 </head>
 <body>
 <!-- Page Preloder -->
@@ -57,23 +101,28 @@
 			<article>
 			
 			<h1>Q&A 내용</h1>
-			<table id="notice">
+			<table class="notice">
+			<thead>
 			<tr>
-				<th>글번호</th><td>${board.num}</td>
+				<th>글번호</th><td style="border-right: 1px solid #fff">${board.num}</td>
 				<th>조회수</th><td>${board.readCount}</td>
 			</tr>
 			<tr>
-				<th>작성자</th><td>${board.name}</td>
+				<th>작성자</th><td style="border-right: 1px solid #fff">${board.name}</td>
 				<th>작성일</th><td><fmt:formatDate value="${board.regDate }" pattern="yyyy.MM.dd HH:mm:ss"/></td>
 			</tr>
+			
+			
 			<tr>
 				<th>글제목</th>
-				<td colspan="3" class="left">${board.subject}</td>
+				<td colspan="3">${board.subject}</td>
 			</tr>
+			</thead>
+			<tbody>
 			<tr>
-				<th>글내용</th>
-				<td colspan="3" class="left">${board.content}</td>
+				<td colspan="4" class="content">${board.content}</td>
 			</tr>
+			</tbody>
 			
 			</table>
 			
