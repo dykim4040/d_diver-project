@@ -28,53 +28,6 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <link rel="stylesheet" href="/resources/css/custom.css" />
 <style>
-.ratt {
-	background-image: url('/resources/img/grade_img.png');
-	background-repeat: no-repeat;
-	vertical-align: middle;
-	display: inline-block;
-	width: 80px;
-	height: 16px;
-	background-size: 80px 32px;
-	white-space: nowrap;
-	position: relative;
-}
-
-.rat {
-	display: inline-block;
-	background-size: 80px 32px;
-	background-position: 0 bottom;
-	height: 16px;
-	position: absolute;
-	background-image: url('/resources/img/grade_img.png');
-	background-repeat: no-repeat;
-	vertical-align: middle;
-}
-
-.ratt {
-	background-image: url('/resources/img/grade_img.png');
-	background-repeat: no-repeat;
-	vertical-align: middle;
-	display: inline-block;
-	width: 80px;
-	height: 16px;
-	background-size: 80px 32px;
-	white-space: nowrap;
-	position: relative;
-}
-
-.rat {
-	display: inline-block;
-	background-size: 80px 32px;
-	background-position: 0 bottom;
-	height: 16px;
-	/* width: 15px;
-    z-index: 4; */
-	position: absolute;
-	background-image: url('/resources/img/grade_img.png');
-	background-repeat: no-repeat;
-	vertical-align: middle;
-}
 
 /*slide-container*/
 .slideshow-container {
@@ -199,7 +152,7 @@ to {
 <div class="recipe-view-section">
 	<div class="container">
 		<%-- 		<img src="${movie.covThUrl}" width="350px" height="500px"> --%>
-		<iframe width="100%" height="600"
+		<iframe id="mov1" width="100%" 
 			src="https://www.youtube.com/embed/pWemV6TiUZE" frameborder="0"
 			allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -316,8 +269,8 @@ to {
 					</c:forEach>
 				</li>
 			</ul>
-			<button class="btn">구매하기</button>
-			<button class="btn wish-list" style="float: right;">즐겨찾기</button>
+<!-- 			<button class="btn">구매하기</button> -->
+			<button class="btn wish-list">즐겨찾기</button>
 			<!-- 선택되면 selected 클래스 추가 -->
 		</div>
 	</div>
@@ -382,7 +335,7 @@ if(test != null){
 				
 			</output>
 			</span>
-			<button class="btn" type="submit">별</button>
+			<button class="btn" type="submit">평점 등록</button>
 		</form>
 		</div>
 		
@@ -487,6 +440,9 @@ $(document).ready(function(){
 	if (wishList == 'selected') {
 		$('.wish-list').addClass('selected');
 	}
+	var iframeWidth = $("#mov1").outerWidth();
+	var iframeHeight = (iframeWidth / 16) * 9;
+	$("#mov1").attr("height", iframeHeight);
 	
 	$('#frmStar').submit(function(){
 		var movieCd = $('input[name=movieCd]').val();
@@ -503,13 +459,19 @@ $(document).ready(function(){
 			},
 			
 			success : function(){
-				alert("별점이 들어갔습니다.");
+				alert("평점이 등록되었습니다.");
 				location.reload();
 			}
 			
 		});
 		
 		return false;
+	});
+	
+	$(window).resize(function() {
+		iframeWidth = $("#mov1").outerWidth();
+		iframeHeight = (iframeWidth / 16) * 9;
+		$("#mov1").attr("height", iframeHeight);
 	});
 	
 	$('.wish-list').on('click', function() {

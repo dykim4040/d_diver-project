@@ -25,35 +25,6 @@
 <link rel="stylesheet" href="/resources/css/style.css"/>
 <link rel="stylesheet" href="/resources/css/custom.css" />
 
-<style>
- .ratt{
-	background-image: url('/resources/img/grade_img.png');
-            background-repeat: no-repeat;
-            vertical-align: middle;
-        
-        display: inline-block;
-        width: 80px;
-        height: 16px;
-        background-size: 80px 32px;
-        white-space: nowrap;
-      
-        position: relative;
-       
-   }
-   .rat{
-       display: inline-block;
-       background-size: 80px 32px;
-       background-position: 0 bottom;
-       height: 16px;
-	   /* width: 15px;
-       z-index: 4; */
-       position: absolute;
-       background-image: url('/resources/img/grade_img.png');
-            background-repeat: no-repeat;
-            vertical-align: middle;
-       
-   }
-</style>
 </head>
 <body>
 <!-- Page Preloder -->
