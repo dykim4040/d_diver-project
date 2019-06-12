@@ -66,7 +66,7 @@
 			<c:set var="id"><sec:authentication property="principal.member.id"/></c:set>
 				<div class="col-md-12">
 					<fieldset>
-						<legend>"${id}" 회원님 정말 탈퇴하겠습니까???</legend>
+						<legend>"${id}" 회원님 정말 탈퇴하시겠습니까???</legend>
 						<input type="hidden" name="id" value="${id}">
 						
 						<br>
@@ -75,6 +75,7 @@
 						<input type="password" name="password" id="password" required><br>
 							
 							<div>${message }</div>
+							
 						<button type="submit"  id="delete">탈퇴하기</button>
 					</fieldset>
 				</div>

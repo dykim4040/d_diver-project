@@ -251,11 +251,11 @@
 }
 .btn{
 	height: 50px;
-	border: solid 1px #f2a6a6;
-	background: #fff;
+	border: solid 1px #c40f0f;
+	background: #c40f0f;
 	box-sizing: border-box;
 	text-align: center;
-	color: #ea003d;
+	color: #fff;
 	min-width: 140px;
 	margin-top: 20px;	
 }
