@@ -315,8 +315,8 @@
       <ul class="sp-recipes-list">
 		<li>
       
-      <c:if test="${not empty catelist }">
-   <c:forEach var="movie" items="${catelist}">
+    	<c:if test="${not empty catelist }">
+   		<c:forEach var="movie" items="${catelist}">
       
          <li>
          <a href="/movieDetail?movieCd=${movie.movieCd}"><img src="${movie.covThUrl}" width="200px" height="250px"></a>

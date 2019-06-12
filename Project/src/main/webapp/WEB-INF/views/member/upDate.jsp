@@ -71,7 +71,7 @@
 					<input type="hidden" name="id" value="${member.id }"><br>
 				
 						<label>Password</label>
-						<input type="hidden" name="password" value="${member.password }" ><br>
+						<input type="password" name="password"  ><br>
 																		
 						<label>E-Mail</label>
 						<input type="email" name="email" value="${member.email }" ><br>	
@@ -80,8 +80,8 @@
 						<input type="date" name="birthday" value='<fmt:formatDate value="${member.birthday }" pattern="yyyy-MM-dd"/>'><br>
 						<label>좋아하는 동물이름은?</label>
 						<input type="text" name="hint" value="${member.hint }"><br>
-						<input type="submit" value="글수정" class="btn">
-						<input type="reset" value="다시작성" class="btn">
+						<button class="btn">글수정</button>
+						<button type="reset" class="btn" style="float: right;">다시 작성</button>
 					</fieldset>
 				</div>
 				</div>

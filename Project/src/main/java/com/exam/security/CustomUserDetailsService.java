@@ -40,6 +40,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         MemberVO member = memberMapper.getMemberById(username);
         List<AuthVO> authList = authMapper.selectAuthListById(username);
         
+        member.setAuthList(authList);
+        
         
         log.warn("member : " + member);
         

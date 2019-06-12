@@ -6,8 +6,18 @@
 
 <select id="selectAuthListById" resultType="authVO">
 	SELECT * 
-	FROM member_auth 
+	FROM d_diver.member_auth 
 	WHERE id = #{id}
 </select>
+
+<insert id="insertAuth">
+	INSERT INTO d_diver.member_auth
+	VALUES (#{id}, #{auth})
+</insert>
+
+<delete id="deleteAuthById">
+	DELETE FROM d_diver.member_auth
+	WHERE id = #{id}
+</delete>
 
 </mapper>
