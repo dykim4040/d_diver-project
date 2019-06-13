@@ -301,6 +301,8 @@ if(test != null){
 			<span class="starInput">
 	 
 			<span class="input">
+			<input type="radio" name="starInput" <%if(score == 0){out.print("checked");} %> value="0" id="p0"> 
+			<label for="p0">0</label> 
 			<input type="radio" name="starInput" <%if(score == 1){out.print("checked");} %> value="1" id="p1"> 
 			<label for="p1">1</label> 
 			<input type="radio" name="starInput" <%if(score == 2){out.print("checked");} %> value="2" id="p2"> 
