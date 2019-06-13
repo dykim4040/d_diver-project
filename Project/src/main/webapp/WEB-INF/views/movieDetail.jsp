@@ -30,7 +30,7 @@
 
 /*slide-container*/
 .slideshow-container {
-	width: 800px;
+	width: 100%;
 	height: 450px;
 	position: relative;
 	margin: auto;
@@ -41,27 +41,35 @@
 	display: table-cell;
 	vertical-align: middle;
 	text-align: center;
-	margin: auto
+	margin: auto;
+	width: 700px;
 }
 
 .slideshow-container .mySlides img {
 	height: 450px;
+	
+}
+.slida{
+	width:800px;
+	position: relative;
 }
 
-.mySlides {
-	display: none;
-}
+
 
 /* next & prev buttons*/
 .prev, .next {
 	cursor: pointer;
-	width: auto;
-	color: white;
-	font-weight: bold;
-	font-size: 18px;
-	transition: 0.6s ease;
-	border-radius: 0 3px 3px 0;
-	user-select: none;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
 }
 
 .next {
@@ -139,7 +147,7 @@ to {
 
 <!-- Hero section -->
 <section class="page-top-section set-bg"
-	data-setbg="/resources/img/page-top-bg.jpg">
+	data-setbg="/resources/img/movie.jpg">
 	<div class="container">
 		<h2>${movieInfo.movieNm}</h2>
 	</div>
@@ -269,7 +277,7 @@ to {
 				</li>
 			</ul>
 <!-- 			<button class="btn">구매하기</button> -->
-			<button class="btn btn-wish wish-list">즐겨찾기</button>
+			<button class="btn btn-wish wish-list" style="border:#b7b0b0;" >즐겨찾기</button>
 			<!-- 선택되면 selected 클래스 추가 -->
 		</div>
 	</div>
@@ -349,18 +357,25 @@ if(test != null){
 	<div class="container">
 	<b>스틸컷</b>
 	<div class="slideshow-container">
+			<div class="slida">
 	<c:forEach var="stillCut" items="${movieInfo.movieStillCut }" varStatus="index">
+
 		<div class="mySlides fade">
 		<img class="lazy" data-original="${stillCut.stillCutUrl }" >
 		</div>
+
+		
 	</c:forEach>
-	 <div style="width: 800px; text-align: center">
+			<a class="prev" onclick="moveSlides(-1)">&#10094;</a>
+        <a class="next" onclick="moveSlides(1)">&#10095;</a>
+	</div>
+	 <div style="width: 800px; text-align: center;">
      <c:forEach var="i" begin="0" end="${fn:length(movieInfo.movieStillCut) }">
      <span class="dot" onclick="currentSlide(${i})"></span>
      </c:forEach>
  
     </div>
-	
+	 	
 	</div>
 	 
     
