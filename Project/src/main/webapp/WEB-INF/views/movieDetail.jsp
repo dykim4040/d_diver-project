@@ -228,7 +228,7 @@ to {
 		<strong>조회수 </strong>&nbsp;&nbsp;
 		<span>${movieInfo.views}</span><br>
 		
-		<button class="btn btn-wish wish-list">즐겨찾기</button>
+		<button class="btn btn-wish wish-list" style="border:#b7b0b0;">즐겨찾기</button>
 			<!-- 선택되면 selected 클래스 추가 -->
 		</div>
 		<div class="row2">
@@ -284,7 +284,7 @@ to {
 					</c:forEach>
 				</li>
 			</ul>
-			<button class="btn btn-wish wish-list" style="border:#b7b0b0;" >즐겨찾기</button>
+<!-- 			<button class="btn btn-wish wish-list" style="border:#b7b0b0;" >즐겨찾기</button> -->
 		</div>
 	</div>
 </div>

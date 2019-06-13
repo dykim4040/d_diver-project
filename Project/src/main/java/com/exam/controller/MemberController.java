@@ -1,3 +1,4 @@
+
 package com.exam.controller;
 
 import java.io.IOException;
@@ -7,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -235,7 +237,7 @@ public class MemberController {
 
 	@Transactional
 	@PostMapping("/memberDelete")
-	public String memberDelete(Model model, String id, String password, MemberVO memberVO, Principal principal, HttpServletResponse response) throws Exception {
+	public String memberDelete(Model model, String id, String password, MemberVO memberVO, Principal principal, HttpServletResponse response, HttpSession session) throws Exception {
 		System.out.println("<< delete 호출 >>");
 		System.out.println("id : " + id);
 		memberVO=memberMapper.getMemberById(id);
@@ -257,6 +259,7 @@ public class MemberController {
             out.println("<script>");
             out.println("alert('성공적으로 탈퇴하였습니다.');");
             out.println("location.href='/';");
+            session.invalidate();
             out.println("</script>");
             out.close();
             return null;
