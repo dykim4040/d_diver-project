@@ -41,29 +41,28 @@
 	FROM d_diver.movie	
 	ORDER BY open_dt DESC
 	LIMIT #{amount}
-</select>
+</select><!-- 개봉일 순 -->
 
 <select id="gradeGetMovie" resultType="MovieVO">
 	SELECT * 
 	FROM d_diver.movie 
 	ORDER BY AVG_SCORE DESC 
 	limit #{amount}
-</select>
-<!-- 평점 순위 -->
+</select><!-- 평점 순 -->
 
 <select id="viewsGetMovie" resultType="MovieVO">
 	SELECT * 
 	FROM d_diver.movie 
 	ORDER BY views DESC 
 	limit #{amount}
-</select>
-<!-- 조회수 순위 -->
+</select><!-- 조회수 순 -->
+
 <select id="categoryGetMovie" resultType="MovieVO">
 	SELECT * FROM d_diver.movie
 	WHERE REP_GENRE_NM = #{category}
 	ORDER BY views DESC 
 	limit #{amount}
-</select>
+</select><!-- 카테고리 별 조회수 순 -->
 
 
 
@@ -193,6 +192,12 @@
 <select id="getMemberScore" resultType="Integer">
 	select score from member_movie_score where MOVIE_CD = #{movieCd} and id = #{id}
 </select>
+
+<select id="getWatchGrade" resultType="string">
+	SELECT DISTINCT watch_grade_nm 
+	FROM d_diver.movie_info WHERE movie_cd = #{movieCd};
+</select><!-- 해당 영화의 관람 등급 확인하기 -->
+
 	
 	
 </mapper>  

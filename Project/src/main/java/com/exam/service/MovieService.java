@@ -41,5 +41,7 @@ public interface MovieService {
 
     public Integer getMemberScore(GetMemberScoreDTO getMemberScoreDTO);
     
+    public String getWatchGrade(int movieCd);
+    
 }
 

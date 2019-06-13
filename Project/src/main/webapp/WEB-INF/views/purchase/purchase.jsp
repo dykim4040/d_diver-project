@@ -69,35 +69,33 @@ location.href="/member/login";
 
 
 <!-- tier section -->
+<c:if test="${pack != null }">
 <section class="facts-section">
-<div class="facts-warp">
-<div class="container cash">
-<fieldset>
-	<label><b>${member.id }</b> 님의 현재 패키지 는 </label>
-	 <label><sec:authorize access="isAuthenticated()">
-         <form action="<c:url value='/member/logout'/>" method="POST">
-         <c:choose>
-         <c:when test="${pack == 'G' }">
-         <img src="/resources/img/package/gold.png">
-         </c:when>
-         <c:when test="${pack == 'S' }">
-         <img src="/resources/img/package/silver.png">
-         </c:when>
-         <c:when test="${pack == 'B' }">
-         <img src="/resources/img/package/bronze.png">
-       		
-       		
-       
-         </c:when>
-         </c:choose>
-         </form>
-      </sec:authorize>
-      </label>
-      <label><b><fmt:formatDate value="${expireDate }" pattern="yyyy.MM.dd HH:mm:ss"/></b> 남은 기간입니다.</label>
-</fieldset>
+<!-- <div class="facts-warp"> -->
+<div class="container cash" style="text-align: center;">
+	<fieldset>
+		<h3>현재 사용중인 패키지
+
+		<c:choose>
+			<c:when test="${pack == 'G' }">
+				<img src="/resources/img/package/gold.png">
+			</c:when>
+			<c:when test="${pack == 'S' }">
+				<img src="/resources/img/package/silver.png">
+			</c:when>
+			<c:when test="${pack == 'B' }">
+				<img src="/resources/img/package/bronze.png">
+			</c:when>
+		</c:choose>
+		</h3>
+		<h4>만료 기간  : 
+		<b><fmt:formatDate value="${expireDate }" pattern="yyyy.MM.dd HH:mm:ss" /></b>
+		</h4>
+	</fieldset>
 </div>
-</div>
+<!-- </div> -->
 </section>
+</c:if>
 <!-- tier section end -->
 
 
