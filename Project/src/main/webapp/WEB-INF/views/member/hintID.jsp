@@ -90,7 +90,7 @@ $(function() {
 </Script>
 
 <!-- Hero section -->
-<section class="page-top-section set-bg" data-setbg="/resources/img/page-top-bg.jpg">
+<section class="page-top-section set-bg" data-setbg="/resources/img/movie.jpg">
 	<div class="container">
 		<h2>비밀번호찾기</h2>
 	</div>
@@ -131,16 +131,7 @@ $(function() {
 </section>
 
 <!-- Gallery section -->
-<div class="gallery">
-	<div class="gallery-slider owl-carousel">
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/1.jpg"></div>
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/2.jpg"></div>
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/3.jpg"></div>
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/4.jpg"></div>
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/5.jpg"></div>
-		<div class="gs-item set-bg" data-setbg="/resources/img/instagram/6.jpg"></div>
-	</div>
-</div>
+<jsp:include page="/WEB-INF/views/inc/slider.jsp"></jsp:include>
 <!-- Gallery section end -->
 
 

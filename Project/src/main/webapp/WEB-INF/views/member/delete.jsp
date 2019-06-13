@@ -44,7 +44,7 @@
 
 <!-- Hero section -->
 <section class="page-top-section set-bg"
-	data-setbg="/resources/img/page-top-bg.jpg">
+	data-setbg="/resources/img/movie.jpg">
 	<div class="container">
 		<h2>내정보</h2>
 	</div>
@@ -76,7 +76,7 @@
 							
 							<div>${message }</div>
 							
-						<button type="submit"  id="delete">탈퇴하기</button>
+						<button type="submit"  id="delete" class="btn">탈퇴하기</button>
 					</fieldset>
 				</div>
 			</sec:authorize>	
@@ -89,22 +89,7 @@
 </section>
 
 <!-- Gallery section -->
-<div class="gallery">
-	<div class="gallery-slider owl-carousel">
-		<div class="gs-item set-bg"
-			data-setbg="/resources/img/instagram/1.jpg"></div>
-		<div class="gs-item set-bg"
-			data-setbg="/resources/img/instagram/2.jpg"></div>
-		<div class="gs-item set-bg"
-			data-setbg="/resources/img/instagram/3.jpg"></div>
-		<div class="gs-item set-bg"
-			data-setbg="/resources/img/instagram/4.jpg"></div>
-		<div class="gs-item set-bg"
-			data-setbg="/resources/img/instagram/5.jpg"></div>
-		<div class="gs-item set-bg"
-			data-setbg="/resources/img/instagram/6.jpg"></div>
-	</div>
-</div>
+<jsp:include page="/WEB-INF/views/inc/slider.jsp"></jsp:include>
 <!-- Gallery section end -->
 
 
