@@ -119,5 +119,12 @@ public class MovieServiceImpl implements MovieService {
 	    return mapper.getMemberScore(getMemberScoreDTO);
 	}
 
+	@Override
+	public String getWatchGrade(int movieCd) {
+		return mapper.getWatchGrade(movieCd);
+	}
+
+	
+	
 
 }
