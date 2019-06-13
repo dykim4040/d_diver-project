@@ -288,17 +288,18 @@ public class MemberController {
 	@PostMapping("/upDateInfo" )
 	public String upDateMember(MemberVO memberVO , HttpServletResponse response) throws IOException {
 		System.out.println("<< upDate 됬어요 호출 >>");
-		response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        out.println("<script>");
-        out.println("alert('수정이되었습니다.');");
-        out.println("location.href='/'");
-        out.println("</script>");
-        out.close();
 		
-		
+        String encodedPassword = passwordEncoder.encode(memberVO.getPassword());
+        memberVO.setPassword(encodedPassword);
 		service.upDateMember(memberVO);
 		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('정보가 수정 되었습니다.');");
+		out.println("location.href='/'");
+		out.println("</script>");
+		out.close();
 		return "/index";
 	}
 	

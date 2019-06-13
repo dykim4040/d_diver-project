@@ -80,7 +80,7 @@
 						<input type="date" name="birthday" value='<fmt:formatDate value="${member.birthday }" pattern="yyyy-MM-dd"/>'><br>
 						<label>좋아하는 동물이름은?</label>
 						<input type="text" name="hint" value="${member.hint }"><br>
-						<button class="btn">글수정</button>
+						<button class="btn">수정 하기</button>
 						<button type="reset" class="btn" style="float: right;">다시 작성</button>
 					</fieldset>
 				</div>
