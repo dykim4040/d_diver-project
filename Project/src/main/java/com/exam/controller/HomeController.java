@@ -3,6 +3,7 @@ package com.exam.controller;
 
 import java.io.PrintWriter;
 import java.security.Principal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import com.exam.domain.GetMemberScoreDTO;
 import com.exam.domain.MemberVO;
 import com.exam.domain.MovieInfoVO;
 import com.exam.domain.MovieVO;
+import com.exam.mapper.MemberMapper;
 import com.exam.service.BoardService;
 import com.exam.service.MemberService;
 import com.exam.service.MovieService;
@@ -27,6 +29,9 @@ import lombok.Setter;
 
 @Controller
 public class HomeController {
+	
+	@Setter(onMethod_ = @Autowired)
+	private MemberMapper memberMapper;
 	
 	@Setter(onMethod_ = @Autowired)
 	private MemberService memberService;
@@ -267,6 +272,9 @@ public class HomeController {
 		System.out.println("id : " + id);
 		System.out.println(member);
 		
+		Date expireDate = memberMapper.getExpireDateById(id);
+		System.out.println("Date : " + id);
+		
 		Map<String, Integer> packList = new HashMap<String, Integer>();
 		packList.put("gold", gold);
 		packList.put("silver", silver);
@@ -274,6 +282,7 @@ public class HomeController {
 		
 		model.addAttribute("member", member);
 		model.addAttribute("packList", packList);
+		model.addAttribute("expireDate", expireDate);
 		
 		return "purchase/purchase";
 	}

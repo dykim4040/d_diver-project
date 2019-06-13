@@ -1,5 +1,6 @@
 package com.exam.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -41,6 +42,8 @@ public interface MemberMapper {
 	/* 구매 관련 */
 	
 	public String getCurrPackageById(String id);
+	
+	public Date getExpireDateById(String id);
 	 
 	public int updateCash(@Param("cash") int cash, @Param("id") String id);
 	

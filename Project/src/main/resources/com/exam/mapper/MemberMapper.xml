@@ -80,7 +80,12 @@
 
 <select id="getCurrPackageById" resultType="string">
 	SELECT package FROM d_diver.package
-	WHERE id = #{id} AND expire_date > current_date()
+	WHERE id = #{id} AND expire_date > current_timestamp()
+</select>
+
+<select id="getExpireDateById" resultType="date">
+	SELECT expire_date FROM d_diver.package
+	WHERE id = #{id} AND expire_date > current_timestamp()
 </select>
 
 <update id="updateCash">
