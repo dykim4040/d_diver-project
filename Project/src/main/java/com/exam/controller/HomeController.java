@@ -289,7 +289,6 @@ public class HomeController {
 	
 	@GetMapping("/movieDetailJson")
 	@ResponseBody
-
 	public void detail(int starInput, int movieCd, Principal principal) {
 		System.out.println("<< movieStar >>");
 		
@@ -302,6 +301,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/wishList")
+	@ResponseBody
 	public void wishList(int movieCd, Principal principal) {
 		System.out.println("<< wishList, GET >>");
 		if (principal == null) {
