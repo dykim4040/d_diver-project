@@ -46,7 +46,7 @@
 
 
 <!-- Hero section -->
-<section class="page-top-section set-bg" data-setbg="/resources/img/page-top-bg.jpg">
+<section class="page-top-section set-bg" data-setbg="/resources/img/movie.jpg">
 	<div class="container">
 		<h2>내정보수정</h2>
 	</div>
@@ -80,7 +80,7 @@
 						<input type="date" name="birthday" value='<fmt:formatDate value="${member.birthday }" pattern="yyyy-MM-dd"/>'><br>
 						<label>좋아하는 동물이름은?</label>
 						<input type="text" name="hint" value="${member.hint }"><br>
-						<button class="btn">글수정</button>
+						<button class="btn">수정 하기</button>
 						<button type="reset" class="btn" style="float: right;">다시 작성</button>
 					</fieldset>
 				</div>
@@ -93,22 +93,7 @@
 </section>
 
 <!-- Gallery section -->
-<div class="gallery">
-<div class="gallery-slider owl-carousel">
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/1.jpg"></div>
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/2.jpg"></div>
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/3.jpg"></div>
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/4.jpg"></div>
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/5.jpg"></div>
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/6.jpg"></div>
-</div>
-</div>
+<jsp:include page="/WEB-INF/views/inc/slider.jsp"></jsp:include>
 <!-- Gallery section end -->
 
 

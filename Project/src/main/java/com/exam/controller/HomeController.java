@@ -3,6 +3,7 @@ package com.exam.controller;
 
 import java.io.PrintWriter;
 import java.security.Principal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,11 +15,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.exam.domain.AuthVO;
 import com.exam.domain.BoardVO;
 import com.exam.domain.GetMemberScoreDTO;
 import com.exam.domain.MemberVO;
 import com.exam.domain.MovieInfoVO;
 import com.exam.domain.MovieVO;
+import com.exam.mapper.AuthMapper;
+import com.exam.mapper.MemberMapper;
 import com.exam.service.BoardService;
 import com.exam.service.MemberService;
 import com.exam.service.MovieService;
@@ -27,6 +31,12 @@ import lombok.Setter;
 
 @Controller
 public class HomeController {
+	
+	@Setter(onMethod_ = @Autowired)
+	private AuthMapper authMapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private MemberMapper memberMapper;
 	
 	@Setter(onMethod_ = @Autowired)
 	private MemberService memberService;
@@ -203,12 +213,62 @@ public class HomeController {
             PrintWriter out = response.getWriter();
             out.println("<script>");
             out.println("alert('로그인 후 이용해 주세요');");
-            out.println("location.href='member/login'");
+            out.println("location.href='member/login';");
             out.println("</script>");
             out.close();
             return null;
 		}
+		
 		String id = principal.getName();
+		List<AuthVO> authList =  authMapper.selectAuthListById(id);
+		String watchGrade = movieService.getWatchGrade(movieCd);
+		for (AuthVO auth : authList) {
+			System.out.println("Auth : " + auth.getAuth());
+			
+			if (auth.getAuth().equals("ROLE_UNDER12")) {
+				
+				if (!watchGrade.equals("전체관람가")) {
+					response.setContentType("text/html; charset=UTF-8");
+		            PrintWriter out = response.getWriter();
+		            out.println("<script>");
+		            out.println("alert('시청 연령이 적절하지 않습니다.');");
+		            out.println("history.back();");
+		            out.println("</script>");
+		            out.close();
+		            return null;
+				}
+			}
+			
+			if (auth.getAuth().equals("ROLE_UNDER15")) {
+				
+				if (watchGrade.equals("15세이상관람가") || watchGrade.equals("청소년관람불가")) {
+					response.setContentType("text/html; charset=UTF-8");
+		            PrintWriter out = response.getWriter();
+		            out.println("<script>");
+		            out.println("alert('시청 연령이 적절하지 않습니다.');");
+		            out.println("history.back();");
+		            out.println("</script>");
+		            out.close();
+		            return null;
+				}
+			}
+			
+			if (auth.getAuth().equals("ROLE_UNDER19")) {
+				
+				if (watchGrade.equals("청소년관람불가")) {
+					response.setContentType("text/html; charset=UTF-8");
+		            PrintWriter out = response.getWriter();
+		            out.println("<script>");
+		            out.println("alert('시청 연령이 적절하지 않습니다.');");
+		            out.println("history.back();");
+		            out.println("</script>");
+		            out.close();
+		            return null;
+				}
+			}
+		}
+		
+		
 		if (!(id == null || "".equals(id))) {
 			movieService.insertWatchList(id, movieCd);
 			System.out.println(id + " 시청 목록에 " + movieCd + " 영화 추가!");
@@ -229,7 +289,6 @@ public class HomeController {
 	
 	@GetMapping("/movieDetailJson")
 	@ResponseBody
-
 	public void detail(int starInput, int movieCd, Principal principal) {
 		System.out.println("<< movieStar >>");
 		
@@ -242,6 +301,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/wishList")
+	@ResponseBody
 	public void wishList(int movieCd, Principal principal) {
 		System.out.println("<< wishList, GET >>");
 		if (principal == null) {
@@ -267,6 +327,9 @@ public class HomeController {
 		System.out.println("id : " + id);
 		System.out.println(member);
 		
+		Date expireDate = memberMapper.getExpireDateById(id);
+		System.out.println("Date : " + id);
+		
 		Map<String, Integer> packList = new HashMap<String, Integer>();
 		packList.put("gold", gold);
 		packList.put("silver", silver);
@@ -274,6 +337,7 @@ public class HomeController {
 		
 		model.addAttribute("member", member);
 		model.addAttribute("packList", packList);
+		model.addAttribute("expireDate", expireDate);
 		
 		return "purchase/purchase";
 	}

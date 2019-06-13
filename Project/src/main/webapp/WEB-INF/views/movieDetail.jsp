@@ -175,7 +175,20 @@ to {
 		<!-- 		<span>For Begginers</span> -->
 		<!-- 	</div> -->
 		<h2>${movieInfo.movieNm}</h2>
-		관객 평점 : 
+		
+		
+	</div>
+</div>
+</section>
+
+<section class="movie-detail">
+<div class="container">
+	<div class="container-row">
+		<div class="thumb">
+				
+			<img src="${movieInfo.covThUrl}" id="movieP"><br><br>
+			
+		<strong>관객 평점</strong> : 
 
 		<div class="ratt">
 			<c:choose>
@@ -211,29 +224,24 @@ to {
 				</c:when>
 			</c:choose>
 		</div>
-	</div>
-</div>
-</section>
-
-<section class="movie-detail">
-<div class="container">
-	<div class="container-row">
-		<div class="thumb">
-				
-			<img src="${movieInfo.covThUrl}" id="movieP">
-			
+		${movieInfo.avgScore} 점<br>
+		<strong>조회수 </strong>&nbsp;&nbsp;
+		<span>${movieInfo.views}</span><br>
+		
+		<button class="btn btn-wish wish-list">즐겨찾기</button>
+			<!-- 선택되면 selected 클래스 추가 -->
 		</div>
 		<div class="row2">
 			<b>시놉시스</b>
 			<div class="summary">${movieInfo.synopsis}</div>
 			<ul id="summmary-ul">
-				<li>
-					<strong>조회수 </strong>&nbsp;&nbsp;
-					<span>${movieInfo.views}</span>
-					<br>
-					<strong>관객 평점 </strong>&nbsp;&nbsp;
-					<span>${movieInfo.avgScore}</span>
-				</li>
+<!-- 				<li> -->
+<!-- 					<strong>조회수 </strong>&nbsp;&nbsp; -->
+<%-- 					<span>${movieInfo.views}</span> --%>
+<!-- 					<br> -->
+<!-- 					<strong>관객 평점 </strong>&nbsp;&nbsp; -->
+<%-- 					<span>${movieInfo.avgScore}</span> --%>
+<!-- 				</li> -->
 				<li>
 					<strong>개요</strong><br>
 					<span>${movieInfo.repGenreNm}</span>
@@ -276,9 +284,7 @@ to {
 					</c:forEach>
 				</li>
 			</ul>
-<!-- 			<button class="btn">구매하기</button> -->
 			<button class="btn btn-wish wish-list" style="border:#b7b0b0;" >즐겨찾기</button>
-			<!-- 선택되면 selected 클래스 추가 -->
 		</div>
 	</div>
 </div>
@@ -302,13 +308,15 @@ if(test != null){
 	<div class="container-row">
 	
 		<div class="thumb">
-			<span id="fnt">Leave a comment</span>
+			<span id="fnt"><!-- Leave a comment --></span>
 		</div>
 		<div class="row2">
 		<form method="post" id="frmStar" name="frmStar">
 			<span class="starInput">
 	 
 			<span class="input">
+			<input type="radio" name="starInput" <%if(score == 0){out.print("checked");} %> value="0" id="p0"> 
+			<label for="p0">0</label> 
 			<input type="radio" name="starInput" <%if(score == 1){out.print("checked");} %> value="1" id="p1"> 
 			<label for="p1">1</label> 
 			<input type="radio" name="starInput" <%if(score == 2){out.print("checked");} %> value="2" id="p2"> 
@@ -386,22 +394,7 @@ if(test != null){
 
 
 <!-- Gallery section -->
-<div class="gallery">
-<div class="gallery-slider owl-carousel">
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/1.jpg"></div>
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/2.jpg"></div>
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/3.jpg"></div>
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/4.jpg"></div>
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/5.jpg"></div>
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/6.jpg"></div>
-</div>
-</div>
+<jsp:include page="/WEB-INF/views/inc/slider.jsp"></jsp:include>
 <!-- Gallery section end -->
 
 

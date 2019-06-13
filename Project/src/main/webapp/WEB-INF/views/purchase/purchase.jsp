@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +45,7 @@ location.href="/member/login";
 
 
 <!-- Hero section -->
-<section class="page-top-section set-bg" data-setbg="/resources/img/page-top-bg.jpg">
+<section class="page-top-section set-bg" data-setbg="/resources/img/movie.jpg">
 	<div class="container">
 		<h2>구매</h2>
 	</div>
@@ -68,32 +69,33 @@ location.href="/member/login";
 
 
 <!-- tier section -->
+<c:if test="${pack != null }">
 <section class="facts-section">
-<div class="facts-warp">
-<div class="container cash">
-<fieldset>
-	<label><b>${member.id }</b> 님의 현재 패키지 는 </label>
-	 <label><sec:authorize access="isAuthenticated()">
-         <form action="<c:url value='/member/logout'/>" method="POST">
-         <c:choose>
-         <c:when test="${pack == 'G' }">
-         <img src="/resources/img/package/gold.png">
-         </c:when>
-         <c:when test="${pack == 'S' }">
-         <img src="/resources/img/package/silver.png">
-         </c:when>
-         <c:when test="${pack == 'B' }">
-         <img src="/resources/img/package/bronze.png">
-       
-         </c:when>
-         </c:choose>
-         </form>
-      </sec:authorize>
-      </label>
-</fieldset>
+<!-- <div class="facts-warp"> -->
+<div class="container cash" style="text-align: center;">
+	<fieldset>
+		<h3>현재 사용중인 패키지
+
+		<c:choose>
+			<c:when test="${pack == 'G' }">
+				<img src="/resources/img/package/gold.png">
+			</c:when>
+			<c:when test="${pack == 'S' }">
+				<img src="/resources/img/package/silver.png">
+			</c:when>
+			<c:when test="${pack == 'B' }">
+				<img src="/resources/img/package/bronze.png">
+			</c:when>
+		</c:choose>
+		</h3>
+		<h4>만료 기간  : 
+		<b><fmt:formatDate value="${expireDate }" pattern="yyyy.MM.dd HH:mm:ss" /></b>
+		</h4>
+	</fieldset>
 </div>
-</div>
+<!-- </div> -->
 </section>
+</c:if>
 <!-- tier section end -->
 
 
@@ -149,16 +151,7 @@ location.href="/member/login";
 <!-- Facts section end -->
 
 <!-- Gallery section -->
-<div class="gallery">
-<div class="gallery-slider owl-carousel">
-	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/1.jpg"></div>
-	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/2.jpg"></div>
-	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/3.jpg"></div>
-	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/4.jpg"></div>
-	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/5.jpg"></div>
-	<div class="gs-item set-bg" data-setbg="/resources/img/instagram/6.jpg"></div>
-</div>
-</div>
+<jsp:include page="/WEB-INF/views/inc/slider.jsp"></jsp:include>
 <!-- Gallery section end -->
 
 

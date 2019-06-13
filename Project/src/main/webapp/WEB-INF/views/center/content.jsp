@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Food Blog - Web Template</title>
+<title>Webflix - 고객센터</title>
 <meta charset="UTF-8">
 <meta name="description" content="Food Blog Web Template">
 <meta name="keywords" content="food, unica, creative, html">
@@ -85,7 +85,7 @@ tbody {
 
 <!-- Hero section -->
 <section class="page-top-section set-bg"
-	data-setbg="/resources/img/page-top-bg.jpg">
+	data-setbg="/resources/img/movie.jpg">
 	<div class="container">
 		<h2>고객센터</h2>
 	</div>
@@ -141,7 +141,7 @@ tbody {
 				 onclick="location.href='/board/reply?reRef=${board.reRef}&reLev=${board.reLev}&reSeq=${board.reSeq}&pageNum=${param.pageNum}';">
 			</sec:authorize>
 				 
-			<input type="button" value="글목록" class="btn" onclick="location.href='/contact?pageNum=${param.pageNum}';">
+			<input type="button" value="글목록" class="btn" onclick="location.href='/contact?pageNum=${param.pageNum}';" style="float: right;">
 			</div>
 			
 			<div class="clear"></div>
@@ -155,22 +155,7 @@ tbody {
 </section>
 
 <!-- Gallery section -->
-<div class="gallery">
-<div class="gallery-slider owl-carousel">
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/1.jpg"></div>
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/2.jpg"></div>
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/3.jpg"></div>
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/4.jpg"></div>
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/5.jpg"></div>
-	<div class="gs-item set-bg"
-		data-setbg="/resources/img/instagram/6.jpg"></div>
-</div>
-</div>
+<jsp:include page="/WEB-INF/views/inc/slider.jsp"></jsp:include>
 <!-- Gallery section end -->
 
 
