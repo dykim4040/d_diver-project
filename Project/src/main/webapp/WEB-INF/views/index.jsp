@@ -84,6 +84,11 @@
 					<c:when test="${movie.avgScore == null}">
 					<div class="ratt"></div>
 					</c:when>
+					<c:when test="${movie.avgScore == 0 }">
+					<div class="ratt">
+				<div class="rat" style="width: 0px;"></div>
+				</div>
+				</c:when>
 					<c:when test="${movie.avgScore > 0 &&  movie.avgScore <= 1}">
 					<div class="ratt">
 					<div class="rat" style="width: 8px; z-index: 10;"></div>
@@ -173,6 +178,11 @@
 			<c:when test="${movie.avgScore == null}">
 				<div class="ratt"></div>
 			</c:when>
+			<c:when test="${movie.avgScore == 0 }">
+					<div class="ratt">
+				<div class="rat" style="width: 0px;"></div>
+				</div>
+				</c:when>
 			<c:when test="${movie.avgScore > 0 &&  movie.avgScore <= 1}">
 				<div class="ratt">
 					<div class="rat" style="width: 8px; z-index: 10;"></div>
@@ -249,6 +259,11 @@
 			<c:choose>
 				<c:when test="${movie.avgScore == null}">
 				<div class="ratt"></div>
+				</c:when>
+				<c:when test="${movie.avgScore == 0 }">
+					<div class="ratt">
+				<div class="rat" style="width: 0px;"></div>
+				</div>
 				</c:when>
 				<c:when test="${movie.avgScore > 0 &&  movie.avgScore <= 1}">
 				<div class="ratt">
@@ -328,6 +343,11 @@
             <c:choose>
 				<c:when test="${movie.avgScore == null}">
 				<div class="ratt"></div>
+				</c:when>
+				<c:when test="${movie.avgScore == 0 }">
+					<div class="ratt">
+				<div class="rat" style="width: 0px;"></div>
+				</div>
 				</c:when>
 				<c:when test="${movie.avgScore > 0 &&  movie.avgScore <= 1}">
 				<div class="ratt">
