@@ -30,6 +30,7 @@
 		<result column="auth" property="auth"/>
 	</collection>
 </resultMap>
+
 <select id="getMemberAndAuthById" resultMap="collectionResultMap">
 	SELECT m.id, m.password, m.reg_date, m.cash, m.mileage, m.email, 
 	       m.birthday, m.gender, m.hint, a.auth
@@ -73,6 +74,10 @@
 <delete id="deleteMember">
 	DELETE FROM d_diver.member WHERE id = #{id}
 </delete>
+
+<select id="getMemberList" resultType="memberVO">
+	SELECT * FROM d_diver.member;
+</select>
 
 
 
