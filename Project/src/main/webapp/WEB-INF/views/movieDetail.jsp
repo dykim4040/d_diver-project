@@ -139,7 +139,7 @@ to {
 
 <!-- Hero section -->
 <section class="page-top-section set-bg"
-	data-setbg="/resources/img/page-top-bg.jpg">
+	data-setbg="/resources/img/movie.jpg">
 	<div class="container">
 		<h2>${movieInfo.movieNm}</h2>
 	</div>
