@@ -3,22 +3,17 @@ package com.exam.mapper;
 import java.util.Date;
 import java.util.List;
 
-
-
 import org.apache.ibatis.annotations.Param;
 
 import com.exam.domain.MemberVO;
-import com.exam.domain.MovieScoreDTO;
-import com.exam.domain.MovieVO;
 
 public interface MemberMapper {
+	
 	public int insert(MemberVO member);
 
 	public MemberVO getMemberById(String id);
 
 	public int countById(String id);
-
-	public List<MemberVO> getList();
 
 	public String checkPw(String id);
 
@@ -34,6 +29,7 @@ public interface MemberMapper {
 	
 	public int updatePassword(@Param("id") String id , @Param("password")String password);
 
+	public List<MemberVO> getMemberList();
 	
 	
 	

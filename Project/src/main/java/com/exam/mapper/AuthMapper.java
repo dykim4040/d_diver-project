@@ -11,6 +11,7 @@ public interface AuthMapper {
     
     public int insertAuth(@Param("id") String id, @Param("auth") String auth);
     
-    public int deleteAuthById(String id);
+    // auth에 null이 들어가면 해당 id의 권한을 "모두" 삭제
+    public int deleteAuthById(@Param("id") String id, @Param("auth") String auth);
     
 }

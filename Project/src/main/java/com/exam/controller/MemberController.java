@@ -114,7 +114,7 @@ public class MemberController {
 	
 	
 	// 만 나이 계산하는 메소드
-	public int countAge(Date date) {
+	public static int countAge(Date date) {
 		Date now = new Date();
 		int difYear = now.getYear() - date.getYear();
 		int difMonth = now.getMonth() - date.getMonth();
@@ -253,7 +253,7 @@ public class MemberController {
 		    System.out.println("계정정보 일치");
 		    service.deleteMember(id);
 		    memberMapper.deleteAllPackageById(id);
-		    authMapper.deleteAuthById(id);
+		    authMapper.deleteAuthById(id, null);
 		    
 		    
             out.println("<script>");

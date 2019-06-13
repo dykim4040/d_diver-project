@@ -18,6 +18,9 @@
 <delete id="deleteAuthById">
 	DELETE FROM d_diver.member_auth
 	WHERE id = #{id}
+	<if test="auth != null">
+		AND auth = #{auth}
+	</if>
 </delete>
 
 </mapper>
