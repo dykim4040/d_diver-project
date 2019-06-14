@@ -630,13 +630,13 @@ ol {
 }
 
 .sp-recipes-list .rl-info {
-	padding-left: 90px;
+/* 	padding-left: 90px; */
 }
 
 .sp-recipes-list .rl-info span {
 	font-size: 12px;
 	font-weight: 500;
-	color: #000000a0;
+	color: #fff;
 }
 
 .sp-recipes-list .rl-info h6 {

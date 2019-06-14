@@ -191,41 +191,7 @@ to {
 		<strong>관객 평점</strong> : 
 
 		<div class="ratt">
-			<c:choose>
-				<c:when test="${movie.avgScore == 0 }">
-				<div class="rat" style="width: 0px;"></div>
-				</c:when>
-				<c:when test="${movie.avgScore > 0 &&  movie.avgScore <= 1}">
-				<div class="rat" style="width: 8px; z-index: 10;"></div>
-				</c:when>
-				<c:when test="${movie.avgScore > 1 &&  movie.avgScore <= 2}">
-				<div class="rat" style="width: 16px; z-index: 9;"></div>
-				</c:when>
-				<c:when test="${movie.avgScore > 2 &&  movie.avgScore <= 3}">
-				<div class="rat" style="width: 24px; z-index: 8;"></div>
-				</c:when>
-				<c:when test="${movie.avgScore > 3 &&  movie.avgScore <= 4}">
-				<div class="rat" style="width: 32px; z-index: 7;"></div>
-				</c:when>
-				<c:when test="${movie.avgScore > 4 &&  movie.avgScore <= 5}">
-				<div class="rat" style="width: 40px; z-index: 6;"></div>
-				</c:when>
-				<c:when test="${movie.avgScore > 5 &&  movie.avgScore <= 6}">
-				<div class="rat" style="width: 48px; z-index: 5;"></div>
-				</c:when>
-				<c:when test="${movie.avgScore > 6 &&  movie.avgScore <= 7}">
-				<div class="rat" style="width: 56px; z-index: 4;"></div>
-				</c:when>
-				<c:when test="${movie.avgScore > 7 &&  movie.avgScore <= 8}">
-				<div class="rat" style="width: 64px; z-index: 3;"></div>
-				</c:when>
-				<c:when test="${movie.avgScore > 8 &&  movie.avgScore <= 9}">
-				<div class="rat" style="width: 72px; z-index: 2;"></div>
-				</c:when>
-				<c:when test="${movie.avgScore > 9 &&  movie.avgScore <= 10}">
-				<div class="rat" style="width: 80px; z-index: 1;"></div>
-				</c:when>
-			</c:choose>
+			<div class="rat"></div>
 		</div>
 		${movieInfo.avgScore} 점<br>
 		<strong>조회수 </strong>&nbsp;&nbsp;
@@ -380,7 +346,7 @@ if(test != null){
 			<a class="prev" onclick="moveSlides(-1)">&#10094;</a>
         <a class="next" onclick="moveSlides(1)">&#10095;</a>
 	</div>
-	 <div style="width: 800px; text-align: center;">
+	 <div style="width: 800px; text-align:center;">
      <c:forEach var="i" begin="0" end="${fn:length(movieInfo.movieStillCut) }">
      <span class="dot" onclick="currentSlide(${i})"></span>
      </c:forEach>
@@ -389,6 +355,7 @@ if(test != null){
 	 	
 	</div>
 	 
+    
     
 
 </div>
@@ -507,6 +474,15 @@ $(document).ready(function(){
 	
 });
 
+
+$(document).ready(function(){
+	
+	var avg = ${movie.avgScore};
+	
+	drawStar(avg);
+	
+});
+
 var slideIndex = 0;
 
 window.onload=function(){
@@ -556,7 +532,7 @@ function showSlides(n){
  
 }
 </script>
-
+<script src="/resources/js/starAvg.js"></script>
 <!-- jquery CDN-->
 <script src="//code.jquery.com/jquery.min.js"></script>
 <!-- lazyload 1.9.1 CDN -->
