@@ -255,7 +255,6 @@ public class MemberController {
 		    memberMapper.deleteAllPackageById(id);
 		    authMapper.deleteAuthById(id, null);
 		    
-		    
             out.println("<script>");
             out.println("alert('성공적으로 탈퇴하였습니다.');");
             out.println("location.href='/';");
