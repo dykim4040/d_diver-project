@@ -22,7 +22,8 @@ $(window).on('load', function() {
 	--------------------*/
 	$('.gs-item').each(function() {
 		var item_w = $(this).width();
-		$(this).height(item_w);
+		var item_h = (item_w / 500) * 714;
+		$(this).height(item_h);
 	});
 
 });

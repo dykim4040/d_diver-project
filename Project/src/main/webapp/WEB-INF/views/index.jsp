@@ -440,6 +440,15 @@ $(document).ready(function() {
 		iframeWidth = $("#mov1").outerWidth();
 		iframeHeight = (iframeWidth / 16) * 9;
 		$("#mov1").attr("height", iframeHeight);
+		
+		setTimeout(() => {
+			$('.gs-item').each(function() {
+				var item_w = $(this).width();
+				var item_h = (item_w / 500) * 714;
+				$(this).height(item_h);
+			});
+		}, 300);
+		
 	});
 });
 </script>
