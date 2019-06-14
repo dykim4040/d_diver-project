@@ -630,7 +630,8 @@ ol {
 }
 
 .sp-recipes-list .rl-info {
-	padding-top: 20px;
+/* 	padding-top: 20px; */
+	padding-top: 10px;
 	padding-left: 20px;
     padding-bottom: 50px;
 }
@@ -642,7 +643,7 @@ ol {
 }
 
 .sp-recipes-list .rl-info h6 {
-	margin-bottom: 12px;
+/* 	margin-bottom: 12px; */
 	padding-top: 2px;
 }
 

@@ -317,7 +317,7 @@ public class MemberController {
 	@PostMapping("/hintID")
 	public String hintID(MemberVO member, Model model ) {
 		System.out.println("<< hintID, POST >>"); 
-		int check = service.countById(member.getId());
+//		int check = service.countById(member.getId());
 
 		model.addAttribute("id", member.getId());
 		return "member/hintUser";
