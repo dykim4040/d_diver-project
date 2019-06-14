@@ -326,12 +326,10 @@ public class MemberController {
 	
 	
 	// 아이디찾기 완료했을때 힌트로넘어감
-
 	@GetMapping("/hintUser")
 	public String hintUser() {
 		System.out.println("<< hintUser 호출 >>");
 		return "member/hintUser";
-
 	}
 
 	@PostMapping("/hintUser")
@@ -372,7 +370,6 @@ public class MemberController {
 		member.setPassword(encodedPassword);
 		int check = service.updatePassword(member.getId() , member.getPassword());
    
-
 		model.addAttribute("id", member.getId());
 	
 		return "member/login";

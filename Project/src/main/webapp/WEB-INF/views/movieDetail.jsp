@@ -380,7 +380,7 @@ if(test != null){
 			<a class="prev" onclick="moveSlides(-1)">&#10094;</a>
         <a class="next" onclick="moveSlides(1)">&#10095;</a>
 	</div>
-	 <div style="width: 800px; text-align: center;">
+	 <div style="width: 800px; text-align: center; margin-top: 10px; margin-bottom: 100px;">
      <c:forEach var="i" begin="0" end="${fn:length(movieInfo.movieStillCut) }">
      <span class="dot" onclick="currentSlide(${i})"></span>
      </c:forEach>
