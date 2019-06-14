@@ -62,6 +62,10 @@ input {
 	background: #747474;
 	border-radius: 5px 5px 5px 5px;
 	border: 1px solid #212121;
+	padding: 10px;
+}
+textarea {
+	padding: 10px;
 }
 
 
@@ -89,9 +93,9 @@ input {
 <section class="contact-section spad">
 <div class="container">
 	<div class="row">
-		<div class="col-lg-8">
+		<div class="col-lg-8 center">
 		<div class="contact-form-warp">
-			<h1>Q&A 글쓰기</h1>
+			<h1>Q&A 작성</h1>
 			
 			<form action="/board/write" method="post" name="frm">
 
@@ -112,9 +116,9 @@ input {
 			</table>
 			
 			<div id="table_search">
-			<input type="submit" value="글쓰기" class="btn">
+			<input type="submit" value="확인" class="btn">
 			<input type="reset" value="다시작성" class="btn">
-			<input type="button" value="글목록" class="btn" onclick="location.href='/contact';" style="float: right;">
+			<input type="button" value="목록" class="btn" onclick="location.href='/contact';" style="float: right;">
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			</form>
