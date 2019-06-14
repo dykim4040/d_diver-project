@@ -103,7 +103,7 @@ tbody {
 			<table class="notice">
 			<thead>
 			<tr>
-				<th>글제목</th>
+				<th>제목</th>
 				<td colspan="3">${board.subject}</td>
 			</tr>
 			<tr>

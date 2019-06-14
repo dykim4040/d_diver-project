@@ -107,7 +107,6 @@ textarea {
 			<td><input type="text" name="subject"></td>
 			</tr>
 			<tr>
-			<tr>
 				<th>글내용</th>
 				<td>
 				<textarea rows="13" cols="40" name="content" class="content" ></textarea>
