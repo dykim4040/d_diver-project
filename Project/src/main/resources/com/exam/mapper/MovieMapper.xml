@@ -64,7 +64,10 @@
 	limit #{amount}
 </select><!-- 카테고리 별 조회수 순 -->
 
-
+<select id="movieUrl" resultType="string">
+	SELECT url FROM d_diver.movie_url
+	WHERE movie_cd=#{movieCd}
+</select>
 
 
 

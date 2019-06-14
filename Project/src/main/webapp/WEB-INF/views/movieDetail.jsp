@@ -160,7 +160,7 @@ to {
 	<div class="container">
 		<%-- 		<img src="${movie.covThUrl}" width="350px" height="500px"> --%>
 		<iframe id="mov1" width="100%" 
-			src="https://www.youtube.com/embed/pWemV6TiUZE" frameborder="0"
+			src="${url}" frameborder="0"
 			allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 	</div>

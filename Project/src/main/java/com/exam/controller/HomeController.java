@@ -23,6 +23,7 @@ import com.exam.domain.MovieInfoVO;
 import com.exam.domain.MovieVO;
 import com.exam.mapper.AuthMapper;
 import com.exam.mapper.MemberMapper;
+import com.exam.mapper.MovieMapper;
 import com.exam.service.BoardService;
 import com.exam.service.MemberService;
 import com.exam.service.MovieService;
@@ -37,6 +38,9 @@ public class HomeController {
 	
 	@Setter(onMethod_ = @Autowired)
 	private MemberMapper memberMapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private MovieMapper movieMapper;
 	
 	@Setter(onMethod_ = @Autowired)
 	private MemberService memberService;
@@ -207,7 +211,7 @@ public class HomeController {
 	      
 	      MovieInfoVO movieInfo = movieService.getMovieInfo(movieCd);
 //	      model.addAttribute("movieInfo", movieInfo);
-
+	      
 	      if(principal == null) {
 	          response.setContentType("text/html; charset=UTF-8");
 	            PrintWriter out = response.getWriter();
@@ -295,8 +299,14 @@ public class HomeController {
 	      GetMemberScoreDTO getMemberScoreDTO = new GetMemberScoreDTO();
 	      getMemberScoreDTO.setId(id);
 	      getMemberScoreDTO.setMovieCd(movieCd);
+	      String url = movieMapper.movieUrl(movieCd);
+	      if(url==null) {
+	          url = "https://www.youtube.com/embed/pWemV6TiUZE";
+	      }
+	      
 	      model.addAttribute("memberScore", movieService.getMemberScore(getMemberScoreDTO));
 	      model.addAttribute("movieInfo", movieInfo);
+	      model.addAttribute("url", url);
 	      
 	       return "movieDetail";
 	   }
