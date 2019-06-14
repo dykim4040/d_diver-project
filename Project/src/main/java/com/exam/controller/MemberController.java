@@ -114,6 +114,7 @@ public class MemberController {
 	
 	
 	// 만 나이 계산하는 메소드
+	@SuppressWarnings("deprecation")
 	public static int countAge(Date date) {
 		Date now = new Date();
 		int difYear = now.getYear() - date.getYear();
@@ -368,8 +369,11 @@ public class MemberController {
 		String encodedPassword = passwordEncoder.encode(member.getPassword());
 		member.setPassword(encodedPassword);
 		int check = service.updatePassword(member.getId() , member.getPassword());
-   
-		model.addAttribute("id", member.getId());
+
+		if (check >= 1) {
+			System.out.println("비밀번호 " + check + " 수정 완료!");
+			model.addAttribute("id", member.getId());
+		}
 	
 		return "member/login";
 

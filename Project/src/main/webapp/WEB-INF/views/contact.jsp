@@ -67,7 +67,7 @@
 			</c:when>
 			<c:otherwise>
 			<c:forEach items="${list }" var="board">
-				<tr onclick="location.href='/board/detail?num=${board.num}&pageNum=${pageInfoMap.pageNum}&#board'">
+				<tr>
 				<td width="5%" class="text-center">${board.num }</td>
 				<td class="title1 left" style="padding-left: 25px;">
 				<c:if test="${board.reLev > 0 }">
@@ -76,7 +76,7 @@
 					</c:forEach>
 					<span id="reply">└</span>
 				</c:if>
-				${board.subject }
+				<a href="/board/detail?num=${board.num}&pageNum=${pageInfoMap.pageNum}&#board" style="text-decoration: none; color: #FFF;">${board.subject }</a>
 <%-- 				<c:if test="${board.commentCount > 0 }"> --%>
 <%-- 					<b style="color: red;">[${board.commentCount }]</b> --%>
 <%-- 				</c:if>댓글 수 세서 제목 옆에 표시하기 --%>

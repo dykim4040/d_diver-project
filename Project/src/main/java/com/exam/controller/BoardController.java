@@ -45,8 +45,22 @@ public class BoardController {
     }
     
     @PostMapping("/write")
-    public String write(BoardVO board, HttpServletRequest request, Principal principal) {
+    public String write(BoardVO board, HttpServletRequest request, Principal principal, HttpServletResponse response) throws IOException {
         log.info(" << write(), POST >> ");
+        
+        if (principal == null) {
+        	response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            out.println("alert('로그인이 필요합니다.');");
+            out.println("location.href='/member/login';");
+            out.println("</script>");
+            out.close();
+            
+            return null
+            		;
+        }
+        
         // 시퀀스로부터 글번호 구하기
         int num = service.getSeqBoardNum();
         board.setName(principal.getName());
@@ -104,31 +118,29 @@ public class BoardController {
         System.out.println(board);
         
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "text/html; charset=UTF-8"); 
         if (principal == null) {
+        	headers.add("Content-Type", "text/html; charset=UTF-8"); 
         	StringBuilder sb = new StringBuilder();
             sb.append("<script>");
             sb.append("alert('잘못된 접근입니다.');");
             sb.append("history.back();");
             sb.append("</script>");
             
-//            return new ResponseEntity<String>(sb.toString(), headers, HttpStatus.OK);
-            return null;
+            return new ResponseEntity<String>(sb.toString(), headers, HttpStatus.OK);
         }
         board.setName(principal.getName());
         
         boolean isSuccess = service.updateBoard(board);
         
         if(!isSuccess) { //글 수정 실패
-            
+        	headers.add("Content-Type", "text/html; charset=UTF-8");
             StringBuilder sb = new StringBuilder();
             sb.append("<script>");
             sb.append("alert('글 작성자가 다릅니다!');");
             sb.append("history.back();");
             sb.append("</script>");
             
-//            return new ResponseEntity<String>(sb.toString(), headers, HttpStatus.OK);
-            return null;
+            return new ResponseEntity<String>(sb.toString(), headers, HttpStatus.OK);
         }
         
         //글 수정 성공 이후 글목록으로 리다이렉트

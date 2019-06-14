@@ -13,8 +13,8 @@
 </select>
 
 <insert id="insertBoard">
-	INSERT INTO board (num, name, pass, subject, content, reRef, reLev, reSeq, readCount, regDate, ip)
-	VALUES (#{num}, #{name}, #{pass}, #{subject}, #{content}, #{reRef}, #{reLev}, #{reSeq}, #{readCount}, CURRENT_TIMESTAMP, #{ip})
+	INSERT INTO board (num, name, subject, content, reRef, reLev, reSeq, readCount, regDate, ip)
+	VALUES (#{num}, #{name}, #{subject}, #{content}, #{reRef}, #{reLev}, #{reSeq}, #{readCount}, CURRENT_TIMESTAMP, #{ip})
 </insert>
 
 <select id="getBoards" resultType="boardVO">
