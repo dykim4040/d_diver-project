@@ -1,8 +1,11 @@
 package com.exam.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +71,7 @@ public class BoardController {
         // 글번호에 해당하는 글 전체(상세)내용 가져오기
         BoardVO board = service.getBoard(num);
         log.info("detail board : " + board);
+        System.out.println("detail board : " + board);
         
         // *글내용 줄바꿈 처리방법
         // (1) <pre>태그처리
@@ -94,20 +98,28 @@ public class BoardController {
         return "center/update";
     } //modify GET
     
-    @PreAuthorize("principal.username == #board.name")
     @PostMapping("/modify")
     public ResponseEntity<String> modify(Model model, BoardVO board, int num, Principal principal, String pageNum) {
-        System.out.println("update 됬어! ");
+        System.out.println("<< update, POST >>");
+        System.out.println(board);
         
-//        service.updateBoard(boardVO);
-//        
-//        return "redirect:/contact";
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "text/html; charset=UTF-8"); 
+        if (principal == null) {
+        	StringBuilder sb = new StringBuilder();
+            sb.append("<script>");
+            sb.append("alert('잘못된 접근입니다.');");
+            sb.append("history.back();");
+            sb.append("</script>");
+            
+//            return new ResponseEntity<String>(sb.toString(), headers, HttpStatus.OK);
+            return null;
+        }
+        board.setName(principal.getName());
         
         boolean isSuccess = service.updateBoard(board);
         
         if(!isSuccess) { //글 수정 실패
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "text/html; charset=UTF-8"); 
             
             StringBuilder sb = new StringBuilder();
             sb.append("<script>");
@@ -115,34 +127,57 @@ public class BoardController {
             sb.append("history.back();");
             sb.append("</script>");
             
-            return new ResponseEntity<String>(sb.toString(), headers, HttpStatus.OK);
+//            return new ResponseEntity<String>(sb.toString(), headers, HttpStatus.OK);
+            return null;
         }
         
         //글 수정 성공 이후 글목록으로 리다이렉트
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "/contact?pageNum="+pageNum); //redirect 경로 위치
+        headers.add("Location", "/contact?#board&pageNum="+pageNum); //redirect 경로 위치
         return new ResponseEntity<String>(headers, HttpStatus.FOUND);
     }// modify POST
     
     
-    @GetMapping("/delete")
-    public String delete() {
-        System.out.println("<< delete 호출 >>");
-        
-        return "center/delete";
-    }
+//    @GetMapping("/delete")
+//    public String delete() {
+//        System.out.println("<< delete 호출 >>");
+//        
+//        return "center/delete";
+//    }
     
-    @PostMapping("/delete")
-    public ResponseEntity<String> delete(Model model, int num, String pageNum, BoardVO boardVO, Principal principal) {
+    @GetMapping("/delete")
+    public void delete(int num, String pageNum, Principal principal, HttpServletResponse response) throws IOException {
         System.out.println("<< delete 호출 >>");
+        System.out.println(num + " : " + principal.getName());
         
         boolean isSuccess = service.deleteBoard(num, principal.getName());
         
-        //삭제 성공 이후 글목록으로 리다이렉트
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "/contact?pageNum="+ pageNum); // redirect 경로 위치
-        return new ResponseEntity<String>(headers, HttpStatus.FOUND);
-    } //delete POST
+        response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        String msg = null;
+        if (isSuccess) {
+        	msg = "삭제되었습니다.";
+        } else {
+        	msg = "잘못된 접근입니다.";
+        }
+        out.println("<script>");
+        out.println("alert('" + msg + "');");
+        out.println("location.href='/contact?#board';");
+        out.println("</script>");
+        out.close();
+        return;
+    }
+    
+//    @PostMapping("/delete")
+//    public ResponseEntity<String> delete(Model model, int num, String pageNum, BoardVO boardVO, Principal principal) {
+//        System.out.println("<< delete 호출 >>");
+//        
+//        boolean isSuccess = service.deleteBoard(num, principal.getName());
+//        
+//        //삭제 성공 이후 글목록으로 리다이렉트
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.add("Location", "/contact?pageNum="+ pageNum); // redirect 경로 위치
+//        return new ResponseEntity<String>(headers, HttpStatus.FOUND);
+//    } //delete POST
     
     
     @GetMapping("/reply")

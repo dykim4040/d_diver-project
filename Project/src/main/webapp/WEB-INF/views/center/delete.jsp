@@ -46,21 +46,21 @@
 </section>
 <!-- Hero section end -->
 
-<section class="contact-section spad">
+<section class="contact-section spad" id="board">
 <div class="container">
 	<div class="row">
-		<div class="col-lg-8">
+		<div class="col-lg-8 center">
 		<div class="contact-form-warp">
 			<h1>Q&A 글삭제</h1>
 			
 			<form action="/board/delete" method="post" name="frm">
 			<fieldset>
-			<legend>정말 삭제하겠습니까??.</legend>
+			<legend>정말 삭제하겠습니까??</legend>
 			<input type="hidden" name="num" value="${param.num}">
  			<input type="hidden" name="pageNum" value="${param.pageNum}">
 			<div id="table_search">
-			<input type="submit" value="글삭제" class="btn">
-			<input type="button" value="글목록" class="btn" onclick="location.href='contact?pageNum=${param.pageNum}';">
+			<input type="submit" value="삭제" class="btn">
+			<input type="button" value="목록" class="btn" onclick="location.href='/contact?pageNum=${param.pageNum}&#board';">
 			</div>
 			</fieldset>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">

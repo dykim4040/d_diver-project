@@ -70,6 +70,13 @@ tbody {
 }
 
 </style>
+<script>
+function deleteProcess(num, pageNum){
+	if (confirm("정말 삭제하시겠습니까?")) {
+		location.href="/board/delete?num=" + num + "&pageNum=" + pageNum;
+	}
+};
+</script>
 </head>
 <body>
 <!-- Page Preloder -->
@@ -83,15 +90,14 @@ tbody {
 
 
 <!-- Hero section -->
-<section class="page-top-section set-bg"
-	data-setbg="/resources/img/movie.jpg">
+<section class="page-top-section set-bg" data-setbg="/resources/img/movie.jpg">
 	<div class="container">
 		<h2>고객센터</h2>
 	</div>
 </section>
 <!-- Hero section end -->
 
-<section class="contact-section spad">
+<section class="contact-section spad" id="board">
 <div class="container">
 	<div class="row">
 		<div class="col-lg-8 center">
@@ -132,14 +138,15 @@ tbody {
 			<sec:authorize access="isAuthenticated()">
 			<c:set var="id"><sec:authentication property="principal.member.id"/></c:set>
 			<c:if test="${id eq board.name}">
-				<input type="button" value="수정" class="btn" onclick="location.href='/board/modify?num=${board.num}&pageNum=${param.pageNum}';">
-				<input type="button" value="삭제" class="btn" onclick="location.href='/board/delete?num=${board.num}&pageNum=${param.pageNum}';">
+				<input type="button" value="수정" class="btn" onclick="location.href='/board/modify?num=${board.num}&pageNum=${param.pageNum}&#board';">
+<%-- 				<input type="button" value="삭제" class="btn" onclick="location.href='/board/delete?num=${board.num}&pageNum=${param.pageNum}&#board';"> --%>
+				<button class="btn" onclick="deleteProcess(${board.num }, ${param.pageNum });">삭제</button>
 			</c:if>
 			<input type="button" value="답글" class="btn" 
-				 onclick="location.href='/board/reply?reRef=${board.reRef}&reLev=${board.reLev}&reSeq=${board.reSeq}&pageNum=${param.pageNum}';">
+				 onclick="location.href='/board/reply?reRef=${board.reRef}&reLev=${board.reLev}&reSeq=${board.reSeq}&pageNum=${param.pageNum}&#board';">
 			</sec:authorize>
 				 
-			<input type="button" value="목록" class="btn" onclick="location.href='/contact?pageNum=${param.pageNum}';" style="float: right;">
+			<input type="button" value="목록" class="btn" onclick="location.href='/contact?pageNum=${param.pageNum}&#board';" style="float: right;">
 			</div>
 			
 			<div class="clear"></div>

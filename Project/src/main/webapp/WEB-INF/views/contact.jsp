@@ -51,7 +51,6 @@
 <div class="container">
 	<div class="row">
 		<h1 class="text-center">Q&A : ${pageInfoMap.allRowCount}</h1>
-
 		<table class="table table-striped table-bordered table-list">
 			<thead>
 				<tr>
@@ -68,7 +67,7 @@
 			</c:when>
 			<c:otherwise>
 			<c:forEach items="${list }" var="board">
-				<tr onclick="location.href='/board/detail?num=${board.num}&pageNum=${pageInfoMap.pageNum}'">
+				<tr onclick="location.href='/board/detail?num=${board.num}&pageNum=${pageInfoMap.pageNum}&#board'">
 				<td width="5%" class="text-center">${board.num }</td>
 				<td class="title1 left" style="padding-left: 25px;">
 				<c:if test="${board.reLev > 0 }">
@@ -141,7 +140,7 @@
 	</div>
 	<sec:authorize access="isAuthenticated()">
 	<p style="text-align: right;">
-	<input type="button" value="글쓰기" class="btn" onclick="location.href = '/board/write';">
+	<input type="button" value="글쓰기" class="btn" onclick="location.href = '/board/write?#board';">
 	</p>
 	</sec:authorize>
 	
@@ -154,7 +153,7 @@
 <!-- 	</div> -->
 	
 	<h3 class="h5 text-black mb-3">Search</h3>
-	<form action="/contact" method="GET">
+	<form action="/contact?#board" method="GET">
 		<div class="form-group d-flex">
 			<input type="text" class="form-control" name="search" placeholder="Search keyword and hit enter..." value="${search }">
 		</div>

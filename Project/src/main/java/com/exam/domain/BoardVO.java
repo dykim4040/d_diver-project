@@ -8,7 +8,6 @@ import lombok.Data;
 public class BoardVO {
     private int num;         // 글번호
     private String name;     // 작성자명
-    private String pass;     // 글 비밀번호
     private String subject;  // 글제목
     private String content;  // 글내용
     private int reRef;      // 글그룹 번호

@@ -91,7 +91,7 @@ textarea {
 </section>
 <!-- Hero section end -->
 
-<section class="contact-section spad">
+<section class="contact-section spad" id="board">
 <div class="container">
 	<div class="row">
 		<div class="col-lg-8 center">
@@ -119,7 +119,7 @@ textarea {
 			<div id="table_search">
 			<input type="submit" value="확인" class="btn">
 			<input type="reset" value="다시작성" class="btn">
-			<input type="button" value="목록" class="btn" style="float: right;" onclick="location.href='/contact?pageNum=${param.pageNum}';">
+			<input type="button" value="목록" class="btn" style="float: right;" onclick="location.href='/contact?pageNum=${param.pageNum}&#board';">
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			</form>

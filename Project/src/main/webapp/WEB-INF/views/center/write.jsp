@@ -90,7 +90,7 @@ textarea {
 </section>
 <!-- Hero section end -->
 
-<section class="contact-section spad">
+<section class="contact-section spad" id="board">
 <div class="container">
 	<div class="row">
 		<div class="col-lg-8 center">
@@ -100,8 +100,6 @@ textarea {
 			<form action="/board/write" method="post" name="frm">
 
 			<table class="notice">
-<!-- 			<tr><th>작성자</th><td><input type="text" name="name"></td></tr> -->
-<!-- 			<tr><th>비밀번호</th><td><input type="password" name="pass"></td></tr> -->
 			<tr>
 			<th>글제목</th>
 			<td><input type="text" name="subject"></td>
@@ -117,7 +115,7 @@ textarea {
 			<div id="table_search">
 			<input type="submit" value="확인" class="btn">
 			<input type="reset" value="다시작성" class="btn">
-			<input type="button" value="목록" class="btn" onclick="location.href='/contact';" style="float: right;">
+			<input type="button" value="목록" class="btn" onclick="location.href='/contact?#board';" style="float: right;">
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			</form>
