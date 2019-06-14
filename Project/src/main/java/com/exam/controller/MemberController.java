@@ -255,7 +255,6 @@ public class MemberController {
 		    memberMapper.deleteAllPackageById(id);
 		    authMapper.deleteAuthById(id, null);
 		    
-		    
             out.println("<script>");
             out.println("alert('성공적으로 탈퇴하였습니다.');");
             out.println("location.href='/';");
@@ -317,7 +316,7 @@ public class MemberController {
 	@PostMapping("/hintID")
 	public String hintID(MemberVO member, Model model ) {
 		System.out.println("<< hintID, POST >>"); 
-		int check = service.countById(member.getId());
+//		int check = service.countById(member.getId());
 
 		model.addAttribute("id", member.getId());
 		return "member/hintUser";
@@ -326,12 +325,10 @@ public class MemberController {
 	
 	
 	// 아이디찾기 완료했을때 힌트로넘어감
-
 	@GetMapping("/hintUser")
 	public String hintUser() {
 		System.out.println("<< hintUser 호출 >>");
 		return "member/hintUser";
-
 	}
 
 	@PostMapping("/hintUser")
@@ -372,7 +369,6 @@ public class MemberController {
 		member.setPassword(encodedPassword);
 		int check = service.updatePassword(member.getId() , member.getPassword());
    
-
 		model.addAttribute("id", member.getId());
 	
 		return "member/login";

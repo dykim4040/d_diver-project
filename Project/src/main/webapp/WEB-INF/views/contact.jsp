@@ -56,9 +56,9 @@
 			<thead>
 				<tr>
 				<th colspan="2" class="text-center">제목</th>
-				<th width="15%">작성자</th>
-				<th width="10%">작성일</th>
-				<th width="60px">조회</th>
+				<th width="15%" class="text-center">작성자</th>
+				<th width="10%" class="text-center">작성일</th>
+				<th width="60px" class="text-center">조회</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -70,7 +70,7 @@
 			<c:forEach items="${list }" var="board">
 				<tr onclick="location.href='/board/detail?num=${board.num}&pageNum=${pageInfoMap.pageNum}'">
 				<td width="5%" class="text-center">${board.num }</td>
-				<td class="title1 left">
+				<td class="title1 left" style="padding-left: 25px;">
 				<c:if test="${board.reLev > 0 }">
 					<c:forEach begin="1" end="${board.reLev }">
 						&nbsp;

@@ -54,14 +54,13 @@ thead {
 	border-color: inherit;
 }
 .notice .content{
-	padding: 20px;
+	padding: 50px;
 	border-left: 0;
 }
 
-th td{
+th, td{
 	padding: 10px 16px;
 	word-break:break-all;
-	border-right: 1px solid #fff; 
 }
 th{
 	border-right: 1px solid #fff;
@@ -95,14 +94,18 @@ tbody {
 <section class="contact-section spad">
 <div class="container">
 	<div class="row">
-		<div class="col-lg-8">
+		<div class="col-lg-8 center">
 		<div class="contact-form-warp">
 			
 			<article>
 			
-			<h1>Q&A 내용</h1>
+			<h1>Q&A</h1>
 			<table class="notice">
 			<thead>
+			<tr>
+				<th>제목</th>
+				<td colspan="3">${board.subject}</td>
+			</tr>
 			<tr>
 				<th>글번호</th><td style="border-right: 1px solid #fff">${board.num}</td>
 				<th>조회수</th><td>${board.readCount}</td>
@@ -112,11 +115,6 @@ tbody {
 				<th>작성일</th><td><fmt:formatDate value="${board.regDate }" pattern="yyyy.MM.dd HH:mm:ss"/></td>
 			</tr>
 			
-			
-			<tr>
-				<th>글제목</th>
-				<td colspan="3">${board.subject}</td>
-			</tr>
 			</thead>
 			<tbody>
 			<tr>
@@ -134,14 +132,14 @@ tbody {
 			<sec:authorize access="isAuthenticated()">
 			<c:set var="id"><sec:authentication property="principal.member.id"/></c:set>
 			<c:if test="${id eq board.name}">
-				<input type="button" value="글수정" class="btn" onclick="location.href='/board/modify?num=${board.num}&pageNum=${param.pageNum}';">
-				<input type="button" value="글삭제" class="btn" onclick="location.href='/board/delete?num=${board.num}&pageNum=${param.pageNum}';">
+				<input type="button" value="수정" class="btn" onclick="location.href='/board/modify?num=${board.num}&pageNum=${param.pageNum}';">
+				<input type="button" value="삭제" class="btn" onclick="location.href='/board/delete?num=${board.num}&pageNum=${param.pageNum}';">
 			</c:if>
-			<input type="button" value="답글쓰기" class="btn" 
+			<input type="button" value="답글" class="btn" 
 				 onclick="location.href='/board/reply?reRef=${board.reRef}&reLev=${board.reLev}&reSeq=${board.reSeq}&pageNum=${param.pageNum}';">
 			</sec:authorize>
 				 
-			<input type="button" value="글목록" class="btn" onclick="location.href='/contact?pageNum=${param.pageNum}';" style="float: right;">
+			<input type="button" value="목록" class="btn" onclick="location.href='/contact?pageNum=${param.pageNum}';" style="float: right;">
 			</div>
 			
 			<div class="clear"></div>

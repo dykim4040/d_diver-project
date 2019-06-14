@@ -202,90 +202,104 @@ public class HomeController {
 	}//movie()
 	
 	@GetMapping("/movieDetail")
-	public String detail(int movieCd, Model model, Principal principal, HttpServletResponse response) throws Exception{
-		System.out.println("<< movieDetail >>");
-		
-		MovieInfoVO movieInfo = movieService.getMovieInfo(movieCd);
-//		model.addAttribute("movieInfo", movieInfo);
+	   public String detail(int movieCd, Model model, Principal principal, HttpServletResponse response) throws Exception{
+	      System.out.println("<< movieDetail >>");
+	      
+	      MovieInfoVO movieInfo = movieService.getMovieInfo(movieCd);
+//	      model.addAttribute("movieInfo", movieInfo);
 
-		if(principal == null) {
-		    response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>");
-            out.println("alert('로그인 후 이용해 주세요');");
-            out.println("location.href='member/login';");
-            out.println("</script>");
-            out.close();
-            return null;
-		}
-		
-		String id = principal.getName();
-		List<AuthVO> authList =  authMapper.selectAuthListById(id);
-		String watchGrade = movieService.getWatchGrade(movieCd);
-		for (AuthVO auth : authList) {
-			System.out.println("Auth : " + auth.getAuth());
-			
-			if (auth.getAuth().equals("ROLE_UNDER12")) {
-				
-				if (!watchGrade.equals("전체관람가")) {
-					response.setContentType("text/html; charset=UTF-8");
-		            PrintWriter out = response.getWriter();
-		            out.println("<script>");
-		            out.println("alert('시청 연령이 적절하지 않습니다.');");
-		            out.println("history.back();");
-		            out.println("</script>");
-		            out.close();
-		            return null;
-				}
-			}
-			
-			if (auth.getAuth().equals("ROLE_UNDER15")) {
-				
-				if (watchGrade.equals("15세이상관람가") || watchGrade.equals("청소년관람불가")) {
-					response.setContentType("text/html; charset=UTF-8");
-		            PrintWriter out = response.getWriter();
-		            out.println("<script>");
-		            out.println("alert('시청 연령이 적절하지 않습니다.');");
-		            out.println("history.back();");
-		            out.println("</script>");
-		            out.close();
-		            return null;
-				}
-			}
-			
-			if (auth.getAuth().equals("ROLE_UNDER19")) {
-				
-				if (watchGrade.equals("청소년관람불가")) {
-					response.setContentType("text/html; charset=UTF-8");
-		            PrintWriter out = response.getWriter();
-		            out.println("<script>");
-		            out.println("alert('시청 연령이 적절하지 않습니다.');");
-		            out.println("history.back();");
-		            out.println("</script>");
-		            out.close();
-		            return null;
-				}
-			}
-		}
-		
-		
-		if (!(id == null || "".equals(id))) {
-			movieService.insertWatchList(id, movieCd);
-			System.out.println(id + " 시청 목록에 " + movieCd + " 영화 추가!");
-			
-			int count = movieService.countWishListByIdAndMovieCd(id, movieCd);
-			if (count >= 1) {
-				model.addAttribute("wishList", "selected");
-			}
-		}
-		GetMemberScoreDTO getMemberScoreDTO = new GetMemberScoreDTO();
-		getMemberScoreDTO.setId(id);
-		getMemberScoreDTO.setMovieCd(movieCd);
-		model.addAttribute("memberScore", movieService.getMemberScore(getMemberScoreDTO));
-		model.addAttribute("movieInfo", movieInfo);
-		
-	    return "movieDetail";
-	}
+	      if(principal == null) {
+	          response.setContentType("text/html; charset=UTF-8");
+	            PrintWriter out = response.getWriter();
+	            out.println("<script>");
+	            out.println("alert('로그인 후 이용해 주세요');");
+	            out.println("location.href='member/login';");
+	            out.println("</script>");
+	            out.close();
+	            return null;
+	      }
+	      
+	      String id = principal.getName();
+	      String packId = memberService.getCurrPackage(id);
+	      
+	      System.out.println("packId :: "+packId);
+	      if(packId == null) {
+	          response.setContentType("text/html; charset=UTF-8");
+	            PrintWriter out = response.getWriter();
+	            out.println("<script>");
+	            out.println("alert('패키지 구매 후 이용해 주세요');");
+	            out.println("location.href=history.back();");
+	            out.println("</script>");
+	            out.close();
+	            return null;
+	      }
+	      
+	      List<AuthVO> authList =  authMapper.selectAuthListById(id);
+	      String watchGrade = movieService.getWatchGrade(movieCd);
+	      for (AuthVO auth : authList) {
+	         System.out.println("Auth : " + auth.getAuth());
+	         
+	         if (auth.getAuth().equals("ROLE_UNDER12")) {
+	            
+	            if (!watchGrade.equals("전체관람가")) {
+	               response.setContentType("text/html; charset=UTF-8");
+	                  PrintWriter out = response.getWriter();
+	                  out.println("<script>");
+	                  out.println("alert('시청 연령이 적절하지 않습니다.');");
+	                  out.println("history.back();");
+	                  out.println("</script>");
+	                  out.close();
+	                  return null;
+	            }
+	         }
+	         
+	         if (auth.getAuth().equals("ROLE_UNDER15")) {
+	            
+	            if (watchGrade.equals("15세이상관람가") || watchGrade.equals("청소년관람불가")) {
+	               response.setContentType("text/html; charset=UTF-8");
+	                  PrintWriter out = response.getWriter();
+	                  out.println("<script>");
+	                  out.println("alert('시청 연령이 적절하지 않습니다.');");
+	                  out.println("history.back();");
+	                  out.println("</script>");
+	                  out.close();
+	                  return null;
+	            }
+	         }
+	         
+	         if (auth.getAuth().equals("ROLE_UNDER19")) {
+	            
+	            if (watchGrade.equals("청소년관람불가")) {
+	               response.setContentType("text/html; charset=UTF-8");
+	                  PrintWriter out = response.getWriter();
+	                  out.println("<script>");
+	                  out.println("alert('시청 연령이 적절하지 않습니다.');");
+	                  out.println("history.back();");
+	                  out.println("</script>");
+	                  out.close();
+	                  return null;
+	            }
+	         }
+	      }
+	      
+	      
+	      if (!(id == null || "".equals(id))) {
+	         movieService.insertWatchList(id, movieCd);
+	         System.out.println(id + " 시청 목록에 " + movieCd + " 영화 추가!");
+	         
+	         int count = movieService.countWishListByIdAndMovieCd(id, movieCd);
+	         if (count >= 1) {
+	            model.addAttribute("wishList", "selected");
+	         }
+	      }
+	      GetMemberScoreDTO getMemberScoreDTO = new GetMemberScoreDTO();
+	      getMemberScoreDTO.setId(id);
+	      getMemberScoreDTO.setMovieCd(movieCd);
+	      model.addAttribute("memberScore", movieService.getMemberScore(getMemberScoreDTO));
+	      model.addAttribute("movieInfo", movieInfo);
+	      
+	       return "movieDetail";
+	   }
 	
 	@GetMapping("/movieDetailJson")
 	@ResponseBody

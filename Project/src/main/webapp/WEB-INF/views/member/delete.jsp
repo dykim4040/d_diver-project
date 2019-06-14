@@ -30,6 +30,11 @@
 <link rel="stylesheet" href="/resources/css/style.css" />
 <link rel="stylesheet" href="/resources/css/custom.css" />
 <script src="/resources/script/jquery-3.3.1.min.js"></script>
+
+
+
+
+
 </head>
 <body>
 <!-- Page Preloder -->
