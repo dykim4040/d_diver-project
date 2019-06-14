@@ -120,3 +120,27 @@ $(window).on('load', function() {
 
 })(jQuery);
 
+
+
+
+
+/*Custom*/
+
+$(document).ready(function() {
+	
+	$(window).resize(function() {
+		
+		setTimeout(() => {
+			$('.gs-item').each(function() {
+				var item_w = $(this).width();
+				var item_h = (item_w / 500) * 714;
+				$(this).height(item_h);
+			});
+		}, 300);
+		
+	});
+});
+
+
+
+
