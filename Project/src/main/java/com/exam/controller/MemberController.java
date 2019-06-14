@@ -1,3 +1,4 @@
+
 package com.exam.controller;
 
 import java.io.IOException;
@@ -7,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -112,7 +114,7 @@ public class MemberController {
 	
 	
 	// 만 나이 계산하는 메소드
-	public int countAge(Date date) {
+	public static int countAge(Date date) {
 		Date now = new Date();
 		int difYear = now.getYear() - date.getYear();
 		int difMonth = now.getMonth() - date.getMonth();
@@ -235,7 +237,7 @@ public class MemberController {
 
 	@Transactional
 	@PostMapping("/memberDelete")
-	public String memberDelete(Model model, String id, String password, MemberVO memberVO, Principal principal, HttpServletResponse response) throws Exception {
+	public String memberDelete(Model model, String id, String password, MemberVO memberVO, Principal principal, HttpServletResponse response, HttpSession session) throws Exception {
 		System.out.println("<< delete 호출 >>");
 		System.out.println("id : " + id);
 		memberVO=memberMapper.getMemberById(id);
@@ -251,10 +253,12 @@ public class MemberController {
 		    System.out.println("계정정보 일치");
 		    service.deleteMember(id);
 		    memberMapper.deleteAllPackageById(id);
-		    authMapper.deleteAuthById(id);
+		    authMapper.deleteAuthById(id, null);
+		    
             out.println("<script>");
             out.println("alert('성공적으로 탈퇴하였습니다.');");
             out.println("location.href='/';");
+            session.invalidate();
             out.println("</script>");
             out.close();
             return null;
@@ -312,7 +316,7 @@ public class MemberController {
 	@PostMapping("/hintID")
 	public String hintID(MemberVO member, Model model ) {
 		System.out.println("<< hintID, POST >>"); 
-		int check = service.countById(member.getId());
+//		int check = service.countById(member.getId());
 
 		model.addAttribute("id", member.getId());
 		return "member/hintUser";

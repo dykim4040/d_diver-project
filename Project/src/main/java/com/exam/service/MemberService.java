@@ -1,9 +1,6 @@
 package com.exam.service;
 
-import java.util.List;
-
 import com.exam.domain.MemberVO;
-import com.exam.domain.MovieVO;
 
 public interface MemberService {
 	
@@ -13,7 +10,7 @@ public interface MemberService {
 	
 	public boolean isIdDupChecked(String id);
 	
-	public List<MemberVO> getAllMembers();
+//	public List<MemberVO> getAllMembers();
 	
 	public MemberVO getMember(String id);
 

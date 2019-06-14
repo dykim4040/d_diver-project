@@ -187,7 +187,6 @@
 
 .starInput>.input>label[for="p0"] {
 	width: 0px;
-	z-index: 10;
 }
 
 .starInput>.input>label[for="p1"] {

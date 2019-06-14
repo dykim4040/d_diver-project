@@ -53,10 +53,10 @@ public class MemberServiceImpl implements MemberService {
 		return isDup;
 	}
 	
-	@Override
-    public List<MemberVO> getAllMembers() {
-        return mapper.getList();
-    }
+//	@Override
+//    public List<MemberVO> getAllMembers() {
+//        return mapper.getList();
+//    }
 	
 	@Override
 	public MemberVO getMember(String id) {
