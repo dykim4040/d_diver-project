@@ -29,14 +29,14 @@
 
 <script>
 
-function formCheck() {
-	if(hhh.hint.value.length < 3) {
-		alert('힌트 는  3글자이상 입력해주세요');
-		hhh.hint.focus();
-		return false;
-		}
-	}
-	// 힌트 3글자 이상쓰시오
+// function formCheck() {
+// 	if(hhh.hint.value.length < 3) {
+// 		alert('힌트는  3글자 이상 입력해주세요');
+// 		hhh.hint.focus();
+// 		return false;
+// 	}
+// }
+// // 힌트 3글자 이상쓰시오
 
 
 
@@ -55,7 +55,7 @@ function formCheck() {
 <!-- Hero section -->
 <section class="page-top-section set-bg" data-setbg="/resources/img/movie.jpg">
 	<div class="container">
-		<h2>비밀번호찾기</h2>
+		<h2>비밀번호 찾기</h2>
 	</div>
 </section>
 <!-- Hero section end -->
@@ -80,7 +80,7 @@ function formCheck() {
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<input type="hidden" name="id" value="${id }">
 						<span id="dupCheck" style="float: right;"></span>
-						<input type="text" name="hint" class = "hint" placeholder="힌트">
+						<input type="text" name="hint" class = "hint" placeholder="답변">
 						<button class="site-btn" style="float: right;">다음</button>
 					</div>
 				</div>

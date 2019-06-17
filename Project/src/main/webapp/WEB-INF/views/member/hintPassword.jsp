@@ -38,7 +38,7 @@
 <!-- Hero section -->
 <section class="page-top-section set-bg" data-setbg="/resources/img/movie.jpg">
 	<div class="container">
-		<h2>비밀번호찾기</h2>
+		<h2>비밀번호 찾기</h2>
 	</div>
 </section>
 <!-- Hero section end -->
@@ -50,8 +50,8 @@
 		<div class="col-lg-6" style="margin: auto;">
 		<div class="contact-form-warp">
 		
-			<h4>새로운비밀번호 입력하세요.</h4>
-			<p>까먹지말아주세요.</p>
+			<h4>새 비밀번호를 입력하세요</h4>
+<!-- 			<p>까먹지 말아주세요.</p> -->
 			<form action="/member/hintPassword" class="contact-form" method="POST">
 				<div class="row">
 					<!-- <div class="col-md-6">
@@ -66,7 +66,7 @@
 						<label>Password</label> 
 						<input type="password" name="password" value="${password }" ><br>
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">					
-						<button class="site-btn" style="float: right;">비밀번호수정 </button>
+						<button class="site-btn" style="float: right;">비밀번호 수정 </button>
 					</div>
 				</div>
 			</form>

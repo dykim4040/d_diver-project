@@ -72,9 +72,9 @@ $(function() {
 				console.log('result: ' + isDup);
 
 				if (isDup) {// id중복
-					$('span#dupCheck').html('해당하는 아이디가 존재합니다!').css('color', 'green');
+					$('span#dupCheck').html('해당 아이디가 존재합니다!').css('color', 'green');
 				} else { // id중복아님
-					$('span#dupCheck').html('해당하는 아이디가 존재하지않습니다!').css('color', 'red');
+					$('span#dupCheck').html('해당 아이디가 존재하지 않습니다!').css('color', 'red');
 				}
 			}
 		});
@@ -92,7 +92,7 @@ $(function() {
 <!-- Hero section -->
 <section class="page-top-section set-bg" data-setbg="/resources/img/movie.jpg">
 	<div class="container">
-		<h2>비밀번호찾기</h2>
+		<h2>비밀번호 찾기</h2>
 	</div>
 </section>
 <!-- Hero section end -->
@@ -104,7 +104,7 @@ $(function() {
 		<div class="col-lg-6" style="margin: auto;">
 		<div class="contact-form-warp">
 			<h4>비밀번호 찾기</h4>
-			<p>비밀번호를 찾을 아이디를 입력하세요.</p>
+<!-- 			<p>비밀번호를 찾을 아이디를 입력하세요.</p> -->
 			<form action="/member/hintID" class="contact-form" name = "frm" method="POST" onsubmit="return formCheck();">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<div class="row">
@@ -116,7 +116,7 @@ $(function() {
 					</div> -->
 					<div class="col-md-12">
 						<label>User ID</label><span id="dupCheck" style="float: right;"></span>
-					<input type="text" name="id" class="id" required><br>
+					<input type="text" name="id" placeholder="아이디를 입력하세요" class="id" required><br>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					
 						<!-- <a href="/member/hintUser"> -->

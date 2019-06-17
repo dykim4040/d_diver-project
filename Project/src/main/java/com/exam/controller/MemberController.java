@@ -275,7 +275,7 @@ public class MemberController {
 	    }
 	}
 
-	// 회원정보수정하게만들기
+	// 회원정보 수정하게 만들기
 	@PostMapping("/upDate")
 	public String upDateMember(String id, Model model) {
 		System.out.println("<< upDate 호출 >>");
@@ -287,7 +287,7 @@ public class MemberController {
 		return "member/upDate";
 	}
 
-	// 회원정보수정페이지완료
+	// 회원정보 수정 페이지 완료
 	@PostMapping("/upDateInfo" )
 	public String upDateMember(MemberVO memberVO , HttpServletResponse response) throws IOException {
 		System.out.println("<< upDate 됬어요 호출 >>");
@@ -307,7 +307,7 @@ public class MemberController {
 	}
 	
 
-	// 아이디찾기
+	// 아이디 찾기
 	@GetMapping("/hintID")
 	public String hintID() {
 		System.out.println("<< hintID 호출 >>");
@@ -322,7 +322,7 @@ public class MemberController {
 		model.addAttribute("id", member.getId());
 		return "member/hintUser";
 
-	} //내일 위에처럼 String 으로 다바꿔주세요
+	} 
 	
 	
 	// 아이디찾기 완료했을때 힌트로넘어감
@@ -342,8 +342,8 @@ public class MemberController {
 			response.setContentType("text/html; charset=UTF-8");
             PrintWriter out = response.getWriter();
             out.println("<script>");
-            out.println("alert('힌트가 맞지않습니다.');");
-            out.println("location.href='/member/hintID'");
+            out.println("alert('답변이 맞지 않습니다.');");
+            out.println("location.href='/member/hintID';");
             out.println("</script>");
             out.close();
             return null;
@@ -363,7 +363,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("/hintPassword")
-	public String hintPassword(MemberVO member, Model model) {
+	public String hintPassword(MemberVO member, Model model, HttpServletResponse response) throws IOException {
 		System.out.println("<< hintPassword, POST >>"); 
 		System.out.println(member);
 		String encodedPassword = passwordEncoder.encode(member.getPassword());
@@ -373,6 +373,14 @@ public class MemberController {
 		if (check >= 1) {
 			System.out.println("비밀번호 " + check + " 수정 완료!");
 			model.addAttribute("id", member.getId());
+			response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>");
+            out.println("alert('성공적으로 반영되었습니다.');");
+            out.println("location.href='/member/login';");
+            out.println("</script>");
+            out.close();
+            return null;
 		}
 	
 		return "member/login";
