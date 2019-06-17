@@ -25,11 +25,11 @@
 	color: #FFF;
 }
 
-span.memberId {
+.hovMenu {
 	color: #FFF;
 }
 
-span.memberId:hover {
+.hovMenu:hover {
 	color: #C40F0F;
 }
 

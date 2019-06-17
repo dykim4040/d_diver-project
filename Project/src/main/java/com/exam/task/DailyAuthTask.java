@@ -1,6 +1,5 @@
 package com.exam.task;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ public class DailyAuthTask {
 	public MemberMapper memberMapper;
 
 	// http://www.cronmaker.com/
-	@Scheduled(cron = "0 0 0 * * *")
+	@Scheduled(cron = "0 39 14 * * *")
 	public void authTask() {
 		System.out.println("\"시청 연령\" 권한 갱신");
 		

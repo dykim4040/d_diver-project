@@ -6,8 +6,8 @@
    <div class="header-top">
       <div class="user-panel">
       <sec:authorize access="isAnonymous()">
-         <a href="/member/join">Join</a>&nbsp;/&nbsp; 
-         <a href="/member/login">Login</a>
+         <a href="/member/join" class="hovMenu">Join</a>&nbsp;/&nbsp; 
+         <a href="/member/login" class="hovMenu">Login</a>
       </sec:authorize>
       <sec:authorize access="isAuthenticated()">
          <form action="<c:url value='/member/logout'/>" method="POST">
@@ -23,7 +23,7 @@
          </c:when>
          </c:choose>
          <c:set var="id"><sec:authentication property="principal.member.id"/></c:set>
-         <a href="/member/myInfo?id=${id}"><b><span class="memberId" >${id}</span></b></a>&nbsp;님&nbsp;
+         <a href="/member/myInfo?id=${id}"><b><span class="hovMenu" >${id}</span></b></a>&nbsp;님&nbsp;
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             <button class="logout">로그아웃</button>
          </form>

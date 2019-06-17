@@ -226,49 +226,49 @@ public class HomeController {
 	      String id = principal.getName();
 	      String packId = memberService.getCurrPackage(id);
 	      
-	      System.out.println("packId :: "+packId);
-	      if(packId == null) {
-	          response.setContentType("text/html; charset=UTF-8");
-	            PrintWriter out = response.getWriter();
-	            out.println("<script>");
-	            out.println("alert('패키지 구매 후 이용해 주세요');");
-	            out.println("location.href=history.back();");
-	            out.println("</script>");
-	            out.close();
-	            return null;
-	      }
-	      
-	      List<AuthVO> authList =  authMapper.selectAuthListById(id);
-	      String watchGrade = movieService.getWatchGrade(movieCd);
-	      for (AuthVO auth : authList) {
-	         System.out.println("Auth : " + auth.getAuth());
-	         
-	         if (auth.getAuth().equals("ROLE_UNDER12")) {
-	            
-	            if (!watchGrade.equals("전체관람가")) {
-	               response.setContentType("text/html; charset=UTF-8");
-	                  PrintWriter out = response.getWriter();
-	                  out.println("<script>");
-	                  out.println("alert('시청 연령이 적절하지 않습니다.');");
-	                  out.println("history.back();");
-	                  out.println("</script>");
-	                  out.close();
-	                  return null;
-	            }
-	         }
-	         
-	         if (auth.getAuth().equals("ROLE_UNDER15")) {
-	            
-	            if (watchGrade.equals("15세이상관람가") || watchGrade.equals("청소년관람불가")) {
-	               response.setContentType("text/html; charset=UTF-8");
-	                  PrintWriter out = response.getWriter();
-	                  out.println("<script>");
-	                  out.println("alert('시청 연령이 적절하지 않습니다.');");
-	                  out.println("history.back();");
-	                  out.println("</script>");
-	                  out.close();
-	                  return null;
-	            }
+		System.out.println("packId :: " + packId);
+		if (packId == null) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('패키지 구매 후 이용해 주세요');");
+			out.println("location.href=history.back();");
+			out.println("</script>");
+			out.close();
+			return null;
+		}
+
+		List<AuthVO> authList = authMapper.selectAuthListById(id);
+		String watchGrade = movieService.getWatchGrade(movieCd);
+		for (AuthVO auth : authList) {
+			System.out.println("Auth : " + auth.getAuth());
+
+			if (auth.getAuth().equals("ROLE_UNDER12")) {
+
+				if (!watchGrade.equals("전체관람가")) {
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>");
+					out.println("alert('시청 연령이 적절하지 않습니다.');");
+					out.println("history.back();");
+					out.println("</script>");
+					out.close();
+					return null;
+				}
+			}
+
+			if (auth.getAuth().equals("ROLE_UNDER15")) {
+
+				if (watchGrade.equals("15세이상관람가") || watchGrade.equals("청소년관람불가")) {
+					response.setContentType("text/html; charset=UTF-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>");
+					out.println("alert('시청 연령이 적절하지 않습니다.');");
+					out.println("history.back();");
+					out.println("</script>");
+					out.close();
+					return null;
+				}
 	         }
 	         
 	         if (auth.getAuth().equals("ROLE_UNDER19")) {
