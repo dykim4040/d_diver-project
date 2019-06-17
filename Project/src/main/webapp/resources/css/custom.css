@@ -9,18 +9,28 @@
 
 
 .logout {
-	background-color: #141414;
+	background-color: #222222;
 	font-size: 12px;
-    color: #fff;
-    border: 1px solid #141414;
+    color: #CCC;
+/*     border: 1px solid #141414; */
+	border: none;
     padding: 0 5px;
     height: 22px;
     line-height: 23px;
     text-decoration: none!important;
 }
 .logout:hover {
-	border: 1px solid #BDC0C7;
-	background-color: #F3F3F3;
+/* 	border: 1px solid #BDC0C7; */
+/* 	background-color: #F3F3F3; */
+	color: #FFF;
+}
+
+span.memberId {
+	color: #FFF;
+}
+
+span.memberId:hover {
+	color: #C40F0F;
 }
 
 .pur {
