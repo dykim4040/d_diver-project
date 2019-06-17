@@ -20,8 +20,6 @@ public class MemberVO {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
 	
-	private String gender;
-	
 	private String hint;
 	
 	private List<AuthVO> authList;
