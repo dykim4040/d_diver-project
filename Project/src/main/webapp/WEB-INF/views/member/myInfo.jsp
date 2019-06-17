@@ -86,11 +86,7 @@
 						<input type="text" name="cash" disabled="disabled"
 							value="${member.cash }" required><br> 
 							
-						<label>mileage</label>
-						<input type="text" name="mileage" disabled="disabled"
-							value="${member.mileage }" required><br>
-							
-							<label>좋아하는 동물이름은?</label>
+						<label>좋아하는 동물이름은?</label>
 						<input type="text" name="hint" disabled="disabled"
 							value="${member.hint }" required><br>
 							

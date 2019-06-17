@@ -6,8 +6,8 @@
 
 <insert id="insert">
 	INSERT INTO d_diver.member
-	(id, password, reg_date, cash, mileage, email, birthday, gender,hint)
-	VALUES (#{id},#{password},CURRENT_TIMESTAMP, 0, 0, #{email},#{birthday},#{gender},#{hint})
+	(id, password, reg_date, cash, email, birthday, gender,hint)
+	VALUES (#{id},#{password},CURRENT_TIMESTAMP, 0, #{email},#{birthday},#{gender},#{hint})
 </insert>
 
 <select id="getMemberById" resultType="memberVO">
@@ -20,7 +20,6 @@
 	<result column="password" property="password" />
 	<result column="reg_date" property="regDate" />
 	<result column="cash" property="cash" />
-	<result column="mileage" property="mileage" />
 	<result column="email" property="email" />
 	<result column="birthday" property="birthday" />
 	<result column="gender" property="gender" />
@@ -32,7 +31,7 @@
 </resultMap>
 
 <select id="getMemberAndAuthById" resultMap="collectionResultMap">
-	SELECT m.id, m.password, m.reg_date, m.cash, m.mileage, m.email, 
+	SELECT m.id, m.password, m.reg_date, m.cash, m.email, 
 	       m.birthday, m.gender, m.hint, a.auth
 	FROM member m LEFT JOIN MEMBER_AUTH a
 	ON m.id = a.id
