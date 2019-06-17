@@ -24,7 +24,7 @@ public class DailyAuthTask {
 	public MemberMapper memberMapper;
 
 	// http://www.cronmaker.com/
-	@Scheduled(cron = "0 39 14 * * *")
+	@Scheduled(cron = "0 0 0 * * *")
 	public void authTask() {
 		System.out.println("\"시청 연령\" 권한 갱신");
 		
