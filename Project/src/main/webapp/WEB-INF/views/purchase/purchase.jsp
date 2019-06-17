@@ -88,7 +88,7 @@ location.href="/member/login";
 			</c:when>
 		</c:choose>
 		</h3>
-		<h4>만료 기간  : 
+		<h4>만료 시간  : 
 		<b><fmt:formatDate value="${expireDate }" pattern="yyyy.MM.dd HH:mm:ss" /></b>
 		</h4>
 	</fieldset>
